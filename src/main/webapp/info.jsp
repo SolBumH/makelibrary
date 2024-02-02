@@ -52,7 +52,7 @@ h4 {
       <div class="main">
          <div>
             <article>
-               
+               <!-- test -->
                <h1>> MyPage</h1>
                <h4>ID : ${info.mid } <br></h4>
                <h4>Name : ${info.mname }님, HELLO😊</h4>
