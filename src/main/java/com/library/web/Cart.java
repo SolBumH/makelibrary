@@ -25,7 +25,7 @@ public class Cart extends HttpServlet {
     HttpSession session = request.getSession();
     BookDTO dto = new BookDTO();
     BookDAO dao = new BookDAO(); 
-    dto.setMid((String)session.getAttribute("mname"));
+    dto.setMid((String)session.getAttribute("mid"));
     
     dto = dao.cartList(dto);
     

@@ -18,6 +18,7 @@ import java.util.Map;
 
 import com.library.db.DBConnection;
 import com.library.dto.BookDTO;
+import com.library.dto.CartDTO;
 
 public class BookDAO extends AbstractDAO {
 
@@ -139,11 +140,7 @@ public class BookDAO extends AbstractDAO {
         String[] rowDataInfo2 = new String[2];
         rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
         rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
-        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", "")); // 따옴표
-                                                                                                                        // 없애며
-                                                                                                                        // key,
-                                                                                                                        // value
-                                                                                                                        // put
+        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", "")); // 따옴표 없애며 key, value put
       }
       jsonList.add(bookMap);
 //      System.out.println(jsonList.get(i));
@@ -195,6 +192,14 @@ public class BookDAO extends AbstractDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = "";
+    
+    try {
+		pstmt = con.prepareStatement(sql);
+		
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
     
     
     return dto;
