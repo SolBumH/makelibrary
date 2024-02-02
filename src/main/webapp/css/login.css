@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body {
+	background-color: #E8E7D2;
+}
+
+.mainStyle {
+	text-align: center;
+}
+
+.login {
+	margin: 0 auto;
+	width: 500px;
+	min-height: 100px;
+	padding: 30px;
+	box-sizing: border-box;
+	text-align: center;
+	display: flex;
+}
+
+.id {
+	width: 80%;
+	/*height: 70px;*/
+	color: black;
+	box-sizing: border-box;
+}
+.id input{
+	width: 80%;
+	height:40px;
+}
+
+.boxbtn {
+	width: 20%;
+	height:100px;
+	box-sizing: border-box;
+	float: right;
+}
+.boxbtn button{
+	width: 100%;
+	height: 100%;
+}

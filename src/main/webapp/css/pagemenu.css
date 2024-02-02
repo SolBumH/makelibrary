@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.list {
+   font-family: Raleway;
+}
+
+.change {
+   position: fixed;
+   top: 100px; /* 메뉴가 아래로 100px 이동하도록 조정합니다. */
+   top: 0; /* 원하는 위치로 조정 */
+   left: 0; /* 왼쪽에 배치 */
+   width: 180px; /* 메뉴 너비 조정 */
+   height: 100%; /* 화면 전체 높이로 설정 */
+   background-color: #D2D5B8;
+   padding:0; /* 내부 여백 설정 */
+   box-sizing: border-box; /* 내부 여백을 너비에 포함 */
+   z-index: 999; /* 다른 요소 위로 표시 */
+}
+
+.change ul {
+   list-style-type: none;
+   padding-left: 20px; /* 내부 여백 제거 */
+}
+
+.change ul li {
+   margin-bottom: 20px;
+}
+
+.change ul li:hover {
+    background-color: #C9BA9B;
+    width:150px;
+}
+
+.container {
+   margin-left: 190px; /* 왼쪽 메뉴 공간 확보 */
+}

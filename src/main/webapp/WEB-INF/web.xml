@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+  id="WebApp_ID" version="4.0">
+  <display-name>library</display-name>
+  <welcome-file-list>
+    <!-- 하나씩 통과하면서 있는 파일 먼저 오픈, 페이지가 없을 경우 다음 것으로 넘어감 -->
+    <welcome-file>index</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <session-config>
+    <!-- 세션 유효시간을 분 단위로 설정 -->
+    <session-timeout>10</session-timeout>
+  </session-config>
+  
+  <!-- 별칭 정하는 내용들은 오류 발생으로 삭제 -->
+
+  <!-- 에러 페이지 설정하기 -->
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error.jsp</location>
+  </error-page>
+
+  <!-- 하단 내용은 .jsp 가 들어간 url 입력 시 들어가지 않게 하는 방법 -->
+  <security-constraint>
+    <display-name>JSP Protection</display-name>
+    <web-resource-collection>
+      <web-resource-name>SecureJSPPages</web-resource-name>
+      <url-pattern>*.jsp</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>nobody</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <security-role>
+    <description>
+      Nobody should be in this role so JSP files are protected
+      from direct access.
+    </description>
+    <role-name>nobody</role-name>
+  </security-role>
+</web-app>

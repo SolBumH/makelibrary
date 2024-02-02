@@ -1,0 +1,70 @@
+@charset "UTF-8";
+body{
+	width: 100%;
+	height: 100px;
+	padding: 0;
+	margin: 0;
+}
+
+.article {
+  margin-top: 30px;  
+}
+
+.booktable {
+  width: 100%;
+  text-align: center;
+}
+
+th{
+	background-color: yellow;
+}
+
+h1{
+	width: 100%;
+	height: 50px;
+	background-color: aqua;
+	text-align: center;
+}
+.w1{
+	width: 10%;
+}
+.w2{
+	width: 20%;
+}
+.w3{
+	width: 30%;
+}
+.w4{
+  width: 40%;
+}
+
+.bookimg {
+  width: 150px;
+}
+
+.paging {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 600px;
+  height: 30px;
+  line-height: 30px;
+  /* background-color: aliceblue; */
+  text-align: center;
+}
+
+.pageBtn {
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  background-color: lavender;
+  margin-right: 3px;
+  box-shadow: 1px 1px 1px #a09ca3;
+}
+
+.pageBtn.bt {
+  box-shadow: inset 1px 1px 1px #a09ca3;
+  /* background-color: black; */
+}

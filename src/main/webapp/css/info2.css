@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/*css변수 만들기 2024-01-29
+--변수명 : 값;
+전역 변수로 만들기 :root{}
+https://ossam5.tistory.com/324
+*/
+
+:root{
+	--main : 45px;
+/*	여기만 바꾸면 다른거 손 안대도 되는거*/
+}
+body{
+	background-color: rgb(254, 254, 250);
+	margin: 0;
+	padding: 0;
+}
+
+.wrap{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+}
+.menu{
+/*	변수 사용 var(변수명)*/
+	width: var(--main);
+	height: 100vh;
+	background-color: rgb(201, 231, 254);
+	overflow: hidden;
+	position: absolute;
+}
+.menu:hover{
+	width: 150px;
+	transition: 0.5s;
+/*	hover 반응을 좀 지연시켜줘*/
+}
+.main{
+	width: calc(100% - var(--main));
+	height: 100vh;
+	position: relative;
+	margin-left: var(--main);
+	/*background-color: lightskyblue; */
+}
+nav{
+	margin-top: 50px;
+	
+}
+nav ul{
+/*	전체 보는 녀석*/
+	margin : 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav > ul > li{
+	margin : 0;
+	padding: 0;
+	margin:5px 10px;
+	padding: 10px 0px;
+	text-align: left;
+	padding-left: 8px;
+/*	padding-left: 5px;*/
+	width: 150px;
+	overflow: hidden;
+	
+}
+nav > ul > li >i{ 
+/*	왼쪽 각각 메뉴*/
+	margin-right: 15px;
+	
+	/*파이어폭스*/
+	-moz--margin-right: 6px;
+	/* opera */
+/*	-o-margin-right: 6px;*/
+	/* 크롬, 앳지, 웨일 */
+	-webkit-margin-right: 6px;
+/*	webkit이라는 엔진을 사용하고 있는 브라우저는 
+    margin을 오른쪽으로 6띄어줘*/
+    /* 인터넷익스플로러 */
+    -ms--margin-right: 6px;
+}
+nav > ul > li:hover {
+	background-color: #ffffff;
+}
+.info{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	font-weight: bold;
+}
