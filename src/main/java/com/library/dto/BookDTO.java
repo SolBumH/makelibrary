@@ -2,7 +2,7 @@ package com.library.dto;
 
 public class BookDTO {
   private String title, image, author, publisher, isbn;
-  private String bname, bpub, bwrite, brent, link;
+  private String bisbn ,bname, bpub, bwrite, brent, link, mid;
   private int bno;
   
   public String getBname() {
@@ -91,5 +91,21 @@ public class BookDTO {
 
   public void setLink(String link) {
     this.link = link;
+  }
+
+  public String getMid() {
+    return mid;
+  }
+
+  public void setMid(String mid) {
+    this.mid = mid;
+  }
+
+  public String getBisbn() {
+    return bisbn;
+  }
+
+  public void setBisbn(String bisbn) {
+    this.bisbn = bisbn;
   }
 }
