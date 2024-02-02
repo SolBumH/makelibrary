@@ -1,8 +1,9 @@
 package com.library.dto;
 
 public class BookDTO {
-  private String title, image, author, publisher, isbn;
-  private String bisbn ,bname, bpub, bwrite, brent, link, mid;
+  private String title, image, author, link, isbn, publisher;
+  
+  private String bisbn ,bname, bpub, bwrite, brent, mid;
   private int bno;
   
   public String getBname() {

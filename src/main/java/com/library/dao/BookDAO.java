@@ -21,7 +21,7 @@ import com.library.dto.BookDTO;
 
 public class BookDAO extends AbstractDAO {
 
-  public static String api(Map<String, String> map) {
+  public String api(Map<String, String> map) {
     return get(map);
   }
 
@@ -139,11 +139,8 @@ public class BookDAO extends AbstractDAO {
         String[] rowDataInfo2 = new String[2];
         rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
         rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
-        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", "")); // 따옴표
-                                                                                                                        // 없애며
-                                                                                                                        // key,
-                                                                                                                        // value
-                                                                                                                        // put
+        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", ""));
+        // 따옴표 없애며 key, value put
       }
       jsonList.add(bookMap);
 //      System.out.println(jsonList.get(i));
@@ -160,6 +157,58 @@ public class BookDAO extends AbstractDAO {
       list.add(dto);
     }
     return list;
+  }
+
+  public BookDTO bookDetailInfo(String str) {
+    str = str.replaceAll("\t", ""); // 검색 결과에 탭 전체 삭제
+
+    String[] passingSplit = str.split("\"items\":\\[\\{"); // 앞 잉여데이터 삭제
+
+    if (passingSplit.length == 1) {
+      return null;
+    }
+
+    passingSplit = passingSplit[1].split("}]}"); // 뒤 잉여데이터 삭제
+    passingSplit = passingSplit[0].split("}"); // 각 아이템별로 데이터 나누기
+
+    for (int i = 0; i < passingSplit.length; i++) {
+      passingSplit[i] = passingSplit[i].replace(",{", "").replace("{", "").strip(); // 괄호 삭제
+    }
+
+    String[][] rowDataArr = new String[passingSplit.length][]; // ROW데이터를 담기위한 2차원 배열
+
+    for (int i = 0; i < passingSplit.length; i++) {
+      rowDataArr[i] = passingSplit[i].split("\",\""); // 따움표 삭제
+      for (int j = 0; j < rowDataArr[i].length; j++) {
+        rowDataArr[i][j] = rowDataArr[i][j].replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("&quot;", "")
+            .replaceAll("\"", "");
+      }
+    }
+
+    List<Map<String, String>> jsonList = new ArrayList<>(); // ROW데이터로 분리될 객체 MAP을 담을 LIST
+
+    for (int i = 0; i < rowDataArr.length; i++) {
+      Map<String, String> bookMap = new HashMap<>(); // ROW 데이터를 분리할 맵
+      for (int j = 0; j < rowDataArr[i].length; j++) {
+        rowDataArr[i][j] = rowDataArr[i][j].isBlank() ? "null" : rowDataArr[i][j];
+        String[] rowDataInfo2 = new String[2];
+        rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
+        rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
+        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", ""));
+      }
+      jsonList.add(bookMap);
+      // System.out.println("jsonList : " + jsonList);
+    }
+
+    BookDTO dto = new BookDTO();
+    dto.setTitle(jsonList.get(0).get("title"));
+    dto.setAuthor(jsonList.get(0).get("author"));
+    dto.setImage("https:" + jsonList.get(0).get("image"));
+    dto.setLink("https:" + jsonList.get(0).get("link"));
+    dto.setIsbn(jsonList.get(0).get("isbn"));
+    dto.setPublisher(jsonList.get(0).get("publisher"));
+
+    return dto;
   }
 
   public List<BookDTO> bookList() {
@@ -189,14 +238,12 @@ public class BookDAO extends AbstractDAO {
     }
     return list;
   }
-  
+
   public BookDTO cartList(BookDTO dto) {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = "";
-    
-    
     return dto;
   }
 }

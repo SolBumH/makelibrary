@@ -39,6 +39,13 @@
         <i class="xi-search"></i>
       </button>
     </div>
+    리스트 : ${bookList }
+    <div>
+      <c:forEach items="${bookList }" var="row">
+          ${row.title } / ${row.author } / ${row.publisher } <br>
+      </c:forEach>
+    </div>
+    
     <c:choose>
       <c:when test="${param.search ne null && param.search ne ''}">
         <form action="./booklist" method="post">
