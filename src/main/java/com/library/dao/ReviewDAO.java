@@ -14,16 +14,17 @@ public class ReviewDAO extends AbstractDAO{
 
   DBConnection db = new DBConnection();
 
-  public void addReview(String title, String author, String reviewContent) {
+  public void addReview(int mno, String rtitle, String rauthor, String rcontent) {
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
-    String sql = "INSERT INTO reviews (title, author, review_content) VALUES (?, ?, ?)";
+	String sql = "INSERT INTO reviews (mno,rtitle, rauthor, rcontent) VALUES (?, ?, ?, ?)";
 
     try {
       pstmt = con.prepareStatement(sql);
-      pstmt.setString(1, title);
-      pstmt.setString(2, author);
-      pstmt.setString(3, reviewContent);
+      pstmt.setInt(1, mno);
+      pstmt.setString(2, rtitle);
+      pstmt.setString(3, rauthor);
+      pstmt.setString(4, rcontent);
       pstmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -38,7 +39,7 @@ public class ReviewDAO extends AbstractDAO{
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
-    String sql = "SELECT title, author, review_content FROM reviews";
+    String sql = "SELECT mno, rtitle, rauthor, rcontent FROM reviews";
 
     try {
       pstmt = con.prepareStatement(sql);
@@ -46,9 +47,10 @@ public class ReviewDAO extends AbstractDAO{
 
       while (rs.next()) {
         ReviewDTO review = new ReviewDTO();
-        review.setTitle(rs.getString("title"));
-        review.setAuthor(rs.getString("author"));
-        review.setReview_content(rs.getString("review_content"));
+        review.setMno(rs.getInt("mno"));  // 수정된 부분
+        review.setRtitle(rs.getString("rtitle"));
+        review.setRauthor(rs.getString("rauthor"));
+        review.setRcontent(rs.getString("rcontent"));
         reviews.add(review);
       }
     } catch (SQLException e) {

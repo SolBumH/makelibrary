@@ -45,48 +45,54 @@
 	});
 
 	function makeReview() {
-		alert("눌렀습니다.");
-	    let title = $("#title").val();
-	    let author = $("#author").val();
-	    let reviewContent = $("#bookReview").val();
+	    alert("눌렀습니다.");
+	    let mno = $("#mno").val();
+	    let rtitle = $("#rtitle").val();
+	    let rauthor = $("#rauthor").val();
+	    let rcontent = $("#rcontent").val();
 	    
-	    alert("title: " + title + ", author: " + author + ", reviewContent: " + reviewContent);
-		$.ajax({
-			type : "POST",
-			url : "./bookreview",
-			 data: {title_give:title, author_give:author, review_give:reviewContent},
-             success: function (response) {
-            	 //alert(response);
-            	  window.location.reload();
-
-			}
-		});
+	    alert("mno: " + mno + ", rtitle: " + rtitle + ", rauthor: " + rauthor + ", rcontent: " + rcontent);
+	    $.ajax({
+	        type: "POST",
+	        url: "./bookreview",
+	        data: { mno_give: mno, rtitle_give: rtitle, rauthor_give: rauthor, rcontent_give: rcontent },
+	        success: function (response) {
+	            // alert(response);
+	            window.location.reload();
+	        }
+	    });
 	}
 
-	 function showReview() {
-         $.ajax({
-             type: "GET",
-             url: "./bookreview",
-             data: {},
-             success: function (response) {
-                 let reviews = response["all_reviews"]
-                 for(let i=0; i < reviews.length; i++){
-                     let title = reviews[i]["title"]
-                     let author = reviews[i]["author"]
-                     let review = reviews[i]["review_content"]
+	function showReview() {
+	    $.ajax({
+	        type: "GET",
+	        url: "./bookreview",
+	        dataType: 'json',
+	        success: function (response) {
+	            let reviews = response.reviews;
+	            if (reviews && reviews.length > 0) {
+	                for (let i = 0; i < reviews.length; i++) {
+	                    let title = reviews[i].rtitle;
+	                    let author = reviews[i].rauthor;
+	                    let review = reviews[i].rcontent;
 
-                     let temp_html =
-                     `<tr>
-                         <td>${title}</td>
-                         <td>${author}</td>
-                         <td>${review}</td>
-                       </tr>`
+	                    let temp_html =
+	                        `<tr>
+	                            <td>${i + 1}</td>
+	                            <td>${title}</td>
+	                            <td>${author}</td>
+	                            <td>${review}</td>
+	                        </tr>`;
 
-                  $("#reviews-box").append(temp_html)
-                 }
-             }
-         })
-     }
+	                    $("#reviews-box").append(temp_html);
+	                }
+	            } else {
+	                console.error("No reviews found.");
+	            }
+	        }
+	    });
+	}
+
 
 
 </script>
@@ -102,22 +108,29 @@
         <h1>여기는 리뷰 공간입니다.</h1>
         <p>재밌었던 책이나! 흥미진진했던 책의 리뷰를 남겨주세요.다른 사람들에게도 추천하고 싶은 그런 책으로요!</p>
 
-        <div class="input-group mb-3" id="titleInputGroup">
+        <div class="input-group mb-3" id="mnoInputGroup">
+          <div class="input-group-prepend">
+            <span class="input-group-text">회원번호</span>
+          </div>
+          <input type="text" class="form-control" id="mno">
+        </div>
+        
+        <div class="input-group mb-3" id="rtitleInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">제목</span>
           </div>
-          <input type="text" class="form-control" id="title">
+          <input type="text" class="form-control" id="rtitle">
         </div>
 
-        <div class="input-group mb-3" id="authorInputGroup">
+        <div class="input-group mb-3" id="rauthorInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">저자</span>
           </div>
-          <input type="text" class="form-control" id="author">
+          <input type="text" class="form-control" id="rauthor">
         </div>
 
 
-        <div class="input-group mb-3" id="reviewInputGroup">
+        <div class="input-group mb-3" id="rcontentInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">리뷰</span>
           </div>
@@ -135,17 +148,14 @@
         <table class="table">
           <thead>
             <tr>
+              <th scope="col">회원번호</th>
               <th scope="col">제목</th>
               <th scope="col">저자</th>
               <th scope="col">리뷰</th>
             </tr>
           </thead>
           <tbody id="reviews-box">
-            <tr>
-              <td>길동이의 개발일지</td>
-              <td>홍길동</td>
-              <td>완전 열심히 하시는 모습이 보기 좋네요</td>
-            </tr>
+                 
           </tbody>
         </table>
       </div>
@@ -153,3 +163,5 @@
   </div>
 </body>
 </html>
+
+

@@ -1,38 +1,35 @@
 package com.library.dto;
 
 public class ReviewDTO {
-	private int id;
-	private String title, author, review_content;
 
-	public int getId() {
-		return id;
+	private String rtitle, rauthor, rcontent;
+	private int mno;
+
+
+	public String getRtitle() {
+		return rtitle;
+	}
+	public void setRtitle(String rtitle) {
+		this.rtitle = rtitle;
+	}
+	public String getRauthor() {
+		return rauthor;
+	}
+	public void setRauthor(String rauthor) {
+		this.rauthor = rauthor;
+	}
+	public String getRcontent() {
+		return rcontent;
+	}
+	public void setRcontent(String rcontent) {
+		this.rcontent = rcontent;
+	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getReview_content() {
-		return review_content;
-	}
-
-	public void setReview_content(String review_content) {
-		this.review_content = review_content;
-	}
+	
 }
