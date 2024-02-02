@@ -9,6 +9,7 @@ import com.library.dto.MemberDTO;
 
 public class MemberDAO extends AbstractDAO {
 
+	//로그인
   public MemberDTO login(MemberDTO dto) {
 
     Connection con = db.getConnection();
@@ -35,6 +36,7 @@ public class MemberDAO extends AbstractDAO {
     return dto;
   }
 
+  //회원가입
   public int join(MemberDTO dto) {
 
     int result = 0;
@@ -58,6 +60,7 @@ public class MemberDAO extends AbstractDAO {
     return result;
   }
 
+  //아이디검사
   public int idCheck(MemberDTO dto) {
     int result = 1;
 
@@ -81,6 +84,7 @@ public class MemberDAO extends AbstractDAO {
     return result;
   }
 
+  //마이페이지
   public MemberDTO info(MemberDTO dto) {
 
     Connection con = db.getConnection();
@@ -97,7 +101,6 @@ public class MemberDAO extends AbstractDAO {
         dto.setNo(rs.getInt("no"));
         dto.setMname(rs.getString("mname"));
         dto.setMpw(rs.getString("mpw"));
-        ;
         dto.setMdate(rs.getString("mdate"));
       }
     } catch (SQLException e) {

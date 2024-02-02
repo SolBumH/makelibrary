@@ -33,7 +33,7 @@ public class Info extends HttpServlet {
 			
 			MemberDAO dao = new MemberDAO();
 			dto = dao.info(dto);
-			request.setAttribute("Info", dto);
+			request.setAttribute("info", dto);
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("info.jsp");

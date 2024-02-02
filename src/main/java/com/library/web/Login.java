@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
         session.setAttribute("mname", dto.getMname());
         session.setAttribute("mid", dto.getMid());
 
-        response.sendRedirect("./info");
+        response.sendRedirect("./index");
       }
     }
   }

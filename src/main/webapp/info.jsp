@@ -30,10 +30,6 @@ body {
    <%@ include file="menu.jsp"%>
    <nav class="change">
       <ul>
-      	
-      	 <br>
-         <br>
-         <br>
          <li onclick="window.location.href='./info'">> My Page</li>
          <li onclick="window.location.href='./changename'"></i>닉네임 변경</li>
          <li onclick="window.location.href='./changePw'"></i>패스워드 변경</li>
@@ -52,7 +48,7 @@ body {
                <br> <br>
                <h1>> MyPage</h1>
                <h4>
-                  Name : Hyojin <br> ID : Jung Hyo Jin님, HELLO😊
+                  Name : ${info.mname } <br> ID : ${info.mid }Jung Hyo Jin님, HELLO😊
                </h4>
                <button type="button" onclick="window.location.href='./changename'">닉네임
                   변경하기</button>
