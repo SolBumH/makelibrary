@@ -1,13 +1,13 @@
 package com.library.dto;
 
 public class CartDTO {
-	private int cartno, mno, bisbn;
-	private String bname, bimg, blink, bautor, bpub, cartdate;
-	public int getCartno() {
-		return cartno;
+	private int cno, mno;
+	private String bisbn,cdate,cdel;
+	public int getCno() {
+		return cno;
 	}
-	public void setCartno(int cartno) {
-		this.cartno = cartno;
+	public void setCno(int cno) {
+		this.cno = cno;
 	}
 	public int getMno() {
 		return mno;
@@ -15,47 +15,23 @@ public class CartDTO {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
-	public int getBisbn() {
+	public String getBisbn() {
 		return bisbn;
 	}
-	public void setBisbn(int bisbn) {
+	public void setBisbn(String bisbn) {
 		this.bisbn = bisbn;
 	}
-	public String getBname() {
-		return bname;
+	public String getCdate() {
+		return cdate;
 	}
-	public void setBname(String bname) {
-		this.bname = bname;
+	public void setCdate(String cdate) {
+		this.cdate = cdate;
 	}
-	public String getBimg() {
-		return bimg;
+	public String getCdel() {
+		return cdel;
 	}
-	public void setBimg(String bimg) {
-		this.bimg = bimg;
-	}
-	public String getBlink() {
-		return blink;
-	}
-	public void setBlink(String blink) {
-		this.blink = blink;
-	}
-	public String getBautor() {
-		return bautor;
-	}
-	public void setBautor(String bautor) {
-		this.bautor = bautor;
-	}
-	public String getBpub() {
-		return bpub;
-	}
-	public void setBpub(String bpub) {
-		this.bpub = bpub;
-	}
-	public String getCartdate() {
-		return cartdate;
-	}
-	public void setCartdate(String cartdate) {
-		this.cartdate = cartdate;
+	public void setCdel(String cdel) {
+		this.cdel = cdel;
 	}
 	
 }
