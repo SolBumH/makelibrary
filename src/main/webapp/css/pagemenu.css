@@ -4,8 +4,8 @@
 }
 
 .change {
+  padding-top: 100px; /* 컨텐츠를 아래로 내림 */
    position: fixed;
-   top: 100px; /* 메뉴가 아래로 100px 이동하도록 조정합니다. */
    top: 0; /* 원하는 위치로 조정 */
    left: 0; /* 왼쪽에 배치 */
    width: 180px; /* 메뉴 너비 조정 */
@@ -17,6 +17,7 @@
 }
 
 .change ul {
+   margin-top: 80px !important;
    list-style-type: none;
    padding-left: 20px; /* 내부 여백 제거 */
 }

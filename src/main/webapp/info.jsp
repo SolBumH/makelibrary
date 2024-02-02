@@ -20,6 +20,7 @@ body {
 }
 
 .main {
+   margin-top : 50px;
    font-family: Oswald;
 }
 h1 {
@@ -36,34 +37,27 @@ h4 {
    <%@ include file="menu.jsp"%>
    <nav class="change">
       <ul>
-      	
-      	 <br>
-         <br>
-         <br>
          <li onclick="window.location.href='./info'">> My Page</li>
-         <li onclick="window.location.href='./changename'"></i>닉네임 변경</li>
-         <li onclick="window.location.href='./changePw'"></i>패스워드 변경</li>
-         <li onclick="url('./rentList')"></i>대출 조회/반납연기</li>
-         <li onclick="url('./rentList')"></i>대출이력</li>
-         <li onclick="url('./rentList')"></i>도서 예약현황</li>
-         <li onclick="url('./rentList')"></i>희망도서 신청내역</li>
-         <li onclick="url('./reviews')"></i>나의 리뷰 작성</li>
-         <li onclick="url('./board')"></i>문의사항</li>
+         <li onclick="window.location.href='./changename'">닉네임 변경</li>
+         <li onclick="window.location.href='./changePw'">패스워드 변경</li>
+         <li onclick="url('./rentList')">대출 조회/반납연기</li>
+         <li onclick="url('./rentList')">대출이력</li>
+         <li onclick="url('./rentList')">도서 예약현황</li>
+         <li onclick="url('./rentList')">희망도서 신청내역</li>
+         <li onclick="url('./reviews')">나의 리뷰 작성</li>
+         <li onclick="url('./board')">문의사항</li>
       </ul>
    </nav>
    <div class="container">
       <div class="main">
          <div>
             <article>
-               <br> <br>
+               
                <h1>> MyPage</h1>
-               <h4>Name : Hyojin <br></h4>
-                  <h4>ID : Jung Hyo Jin님, HELLO😊</h4>
-                  
-               <button type="button" onclick="window.location.href='./changename'">닉네임
-                  변경하기</button>
-               <button type="button" onclick="window.location.href='./changePw'">패스워드
-                  변경하기</button>
+               <h4>ID : ${info.mid } <br></h4>
+               <h4>Name : ${info.mname }님, HELLO😊</h4>
+               <button type="button" onclick="window.location.href='./changename'">닉네임 변경하기</button>
+               <button type="button" onclick="window.location.href='./changePw'">패스워드 변경하기</button>
                <br> <br>
             </article>
          </div>
