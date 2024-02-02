@@ -57,38 +57,37 @@
 			 data: {title_give:title, author_give:author, review_give:reviewContent},
              success: function (response) {
             	 //alert(response);
-            	 showReview();
+            	  window.location.reload();
 
 			}
 		});
 	}
 
-	function showReview() {
-		$.ajax({
-			type : "GET",
-			url : "./bookreview",
-			dataType : "json",
-			  data: {},
-              success: function (response) {
-            	  let reviews = response["all_reviews"]
-                  for(let i=0; i < reviews.length; i++){
-                      let title = reviews[i]["title"]
-                      let author = reviews[i]["author"]
-                      let review = reviews[i]["review"]
+	 function showReview() {
+         $.ajax({
+             type: "GET",
+             url: "./bookreview",
+             data: {},
+             success: function (response) {
+                 let reviews = response["all_reviews"]
+                 for(let i=0; i < reviews.length; i++){
+                     let title = reviews[i]["title"]
+                     let author = reviews[i]["author"]
+                     let review = reviews[i]["review_content"]
 
-                      let temp_html =
-                      `<tr>
-                          <td>${title}</td>
-                          <td>${author}</td>
-                          <td>${review}</td>
-                        </tr>`
+                     let temp_html =
+                     `<tr>
+                         <td>${title}</td>
+                         <td>${author}</td>
+                         <td>${review}</td>
+                       </tr>`
 
-                   $("#reviews-box").append(temp_html)
-                  }
-              }
-          })
-      }
-출처: https://parkjh7764.tistory.com/32 [HwanE Develop Blog:티스토리]
+                  $("#reviews-box").append(temp_html)
+                 }
+             }
+         })
+     }
+
 
 </script>
 

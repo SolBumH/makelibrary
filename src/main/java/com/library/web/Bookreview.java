@@ -43,37 +43,30 @@ public class Bookreview extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			// 여기에 리뷰 작성 완료에 대한 처리 로직을 추가
-			String title = request.getParameter("title_give");
-			String author = request.getParameter("author_give");
-			String review = request.getParameter("review_give");
+		       // 여기에 리뷰 작성 완료에 대한 처리 로직을 추가
+	        String title = request.getParameter("title_give");
+	        String author = request.getParameter("author_give");
+	        String review = request.getParameter("review_give");
 
-			System.out.println("Received review: title=" + title + ", author=" + author + ", review=" + review);
+	        System.out.println("Received review: title=" + title + ", author=" + author + ", review=" + review);
 
-			// DB 연결 확인
-			DBConnection db = new DBConnection();
-			Connection con = db.getConnection();
-			if (con == null) {
-				response.getWriter().write("DB 연결 실패");
-				return;
-			}
+	        // ReviewDAO를 사용하여 리뷰를 데이터베이스에 저장
+	        ReviewDAO reviewDAO = new ReviewDAO();
+	        reviewDAO.addReview(title, author, review);
 
-			// ReviewDAO를 사용하여 리뷰를 데이터베이스에 저장
-			ReviewDAO reviewDAO = new ReviewDAO();
-			reviewDAO.addReview(title, author, review);
+	        // 응답으로 "저장완료"를 전송 (필요한 경우)
+	        response.getWriter().write("저장완료");
 
-			// 응답으로 "저장완료"를 전송
-			response.getWriter().write("저장완료");
+	        // 예시: 댓글을 다시 JSP 페이지로 포워딩
+	        RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
+	        rd.forward(request, response);
+	    } catch (Exception e) {
+	        // 예외가 발생하면 콘솔에 출력
+	        e.printStackTrace();
 
-			// 예시: 댓글을 다시 JSP 페이지로 포워딩
-			RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
-			rd.forward(request, response);
-		} catch (Exception e) {
-			// 예외가 발생하면 콘솔에 출력
-			e.printStackTrace();
-
-			// 예외 메시지를 응답으로 전송
-			response.getWriter().write("예외 발생: " + e.getMessage());
-		}
+	        // 예외 메시지를 응답으로 전송
+	        response.getWriter().write("예외 발생: " + e.getMessage());
+	    }
 	}
+	
 }
