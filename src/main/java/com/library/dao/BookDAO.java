@@ -140,12 +140,9 @@ public class BookDAO extends AbstractDAO {
         String[] rowDataInfo2 = new String[2];
         rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
         rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
-<<<<<<< HEAD
         bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", "")); // 따옴표 없애며 key, value put
-=======
         bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", ""));
         // 따옴표 없애며 key, value put
->>>>>>> 786bf3adc22d6e4154c117d0478df105cb2cc703
       }
       jsonList.add(bookMap);
 //      System.out.println(jsonList.get(i));
@@ -249,10 +246,9 @@ public class BookDAO extends AbstractDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = "";
-<<<<<<< HEAD
     
     try {
-		pstmt = con.prepareStatement(sql);
+		pstmt = conn.prepareStatement(sql);
 		
 		
 	} catch (SQLException e) {
@@ -260,8 +256,6 @@ public class BookDAO extends AbstractDAO {
 	}
     
     
-=======
->>>>>>> 786bf3adc22d6e4154c117d0478df105cb2cc703
     return dto;
   }
 }
