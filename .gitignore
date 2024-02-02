@@ -1,6 +1,6 @@
 # 우리 db 집어넣기
-DBConnection.java
-DBConnection_solbum.java
+DBConnection.*
+DBConnection_solbum.*
 
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,windows

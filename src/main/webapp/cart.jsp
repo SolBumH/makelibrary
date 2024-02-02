@@ -24,8 +24,28 @@ List<HashMap<String,String>> list = dao.get
 <body>
   <%@ include file="menu.jsp"%>
   <article class="main">
+<<<<<<< HEAD
     <h1>장바구니</h1>
 
+=======
+    <h1>대출하기</h1>
+    <div class="search">
+      <input type="text" id="search" />
+      <button id="searchBtn">
+        <i class="xi-search"></i>
+      </button>
+    </div>
+    리스트 : ${bookList }
+    <div>
+      <c:forEach items="${bookList }" var="row">
+          ${row.title } / ${row.author } / ${row.publisher } <br>
+      </c:forEach>
+    </div>
+    
+    <c:choose>
+      <c:when test="${param.search ne null && param.search ne ''}">
+        <form action="./booklist" method="post">
+>>>>>>> 786bf3adc22d6e4154c117d0478df105cb2cc703
           <table class="booktable">
             <thead>
               <tr>
