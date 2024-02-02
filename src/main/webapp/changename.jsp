@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>닉네임 변경하기</title>
-<link href="../css/pagemenu.css?ver=0.19" rel="stylesheet" />
-<link href="../css/changeform.css?ver=0.19" rel="stylesheet" />
+<link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
+<link href="./css/changeform.css?ver=0.19" rel="stylesheet" />
 <style>
         body {
             background-color: #E8E7D2; /* 바탕화면 색상 지정 */

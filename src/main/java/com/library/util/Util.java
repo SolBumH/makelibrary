@@ -1,7 +1,5 @@
 package com.library.util;
 
-import javax.servlet.http.HttpServletRequest;
-
 public class Util {
 
   public static int str2Int(String str) {

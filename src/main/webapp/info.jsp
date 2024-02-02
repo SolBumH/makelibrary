@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link href="../css/menu2.css?ver=0.19" rel="stylesheet" />
-<link href="../css/pagemenu.css?ver=0.19" rel="stylesheet" />
+<link href="./css/menu2.css?ver=0.19" rel="stylesheet" />
+<link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -22,7 +22,13 @@ body {
 .main {
    font-family: Oswald;
 }
+h1 {
+   margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
+}
 
+h4 {
+   margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
+}
 </style>
 <script src="./js/menu.js"></script>
 </head>
@@ -51,9 +57,9 @@ body {
             <article>
                <br> <br>
                <h1>> MyPage</h1>
-               <h4>
-                  Name : Hyojin <br> ID : Jung Hyo Jin님, HELLO😊
-               </h4>
+               <h4>Name : Hyojin <br></h4>
+                  <h4>ID : Jung Hyo Jin님, HELLO😊</h4>
+                  
                <button type="button" onclick="window.location.href='./changename'">닉네임
                   변경하기</button>
                <button type="button" onclick="window.location.href='./changePw'">패스워드
