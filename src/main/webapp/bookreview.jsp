@@ -106,7 +106,7 @@
     <div class="info">
       <div class="stylish-regular">
         <h1>여기는 리뷰 공간입니다.</h1>
-        <p>재밌었던 책이나! 흥미진진했던 책의 리뷰를 남겨주세요.다른 사람들에게도 추천하고 싶은 그런 책으로요!</p>
+        <p>다른 사람들과 공유하고 싶은 재밌고 흥미진진한 책의 리뷰를 남겨주세요.</p>
 
         <div class="input-group mb-3" id="mnoInputGroup">
           <div class="input-group-prepend">
@@ -134,7 +134,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">리뷰</span>
           </div>
-          <textarea class="form-control" id="bookReview" cols="30"
+          <textarea class="form-control" id="rcontent" cols="30"
             rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
         </div>
         <div class="review">
@@ -149,6 +149,7 @@
           <thead>
             <tr>
               <th scope="col">회원번호</th>
+              <th scope="col">날짜</th>
               <th scope="col">제목</th>
               <th scope="col">저자</th>
               <th scope="col">리뷰</th>
