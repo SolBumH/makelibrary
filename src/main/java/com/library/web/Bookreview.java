@@ -1,7 +1,6 @@
 package com.library.web;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.library.dao.ReviewDAO;
-import com.library.db.DBConnection;
 import com.library.dto.ReviewDTO;
 
 @WebServlet("/bookreview")
@@ -34,46 +32,39 @@ public class Bookreview extends HttpServlet {
 
 		// 리뷰 리스트를 request 속성에 저장
 		request.setAttribute("reviews", reviews);
+		
+		
 
 		// JSP 페이지로 포워딩
 		RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
 		rd.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		try {
-			// 여기에 리뷰 작성 완료에 대한 처리 로직을 추가
-			String title = request.getParameter("title_give");
-			String author = request.getParameter("author_give");
-			String review = request.getParameter("review_give");
+		
+			reviewDAO.addReview(reviewDTO);
+		
+			String mno = request.getParameter("mno_give");
+	        String rtitle = request.getParameter("rtitle_give");
+	        String rauthor = request.getParameter("rauthor_give");
+	        String rcontent = request.getParameter("rcontent_give");
 
-			System.out.println("Received review: title=" + title + ", author=" + author + ", review=" + review);
+	        System.out.println("Received review: mno= " + mno +  ", title=" + rtitle + ", author=" + rauthor + ", review=" + rcontent);
 
-			// DB 연결 확인
-			DBConnection db = new DBConnection();
-			Connection con = db.getConnection();
-			if (con == null) {
-				response.getWriter().write("DB 연결 실패");
-				return;
-			}
+	        // 받은 데이터를 ReviewDTO에 설정
+	        ReviewDTO reviewDTO = new ReviewDTO();
+	        reviewDTO.setMno(Integer.parseInt(mno));  // String을 int로 변환
+	        reviewDTO.setRtitle(rtitle);
+	        reviewDTO.setRauthor(rauthor);
+	        reviewDTO.setRcontent(rcontent);
 
-			// ReviewDAO를 사용하여 리뷰를 데이터베이스에 저장
-			ReviewDAO reviewDAO = new ReviewDAO();
-			reviewDAO.addReview(title, author, review);
+	       
 
-			// 응답으로 "저장완료"를 전송
-			response.getWriter().write("저장완료");
-
-			// 예시: 댓글을 다시 JSP 페이지로 포워딩
-			RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
-			rd.forward(request, response);
-		} catch (Exception e) {
-			// 예외가 발생하면 콘솔에 출력
-			e.printStackTrace();
-
-			// 예외 메시지를 응답으로 전송
-			response.getWriter().write("예외 발생: " + e.getMessage());
-		}
-	}
+	        // 성공적인 응답 전송
+	        response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");
+	    }
+	
 }
+

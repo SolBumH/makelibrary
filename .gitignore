@@ -1,7 +1,6 @@
 # 우리 db 집어넣기
 DBConnection.*
 DBConnection_solbum.*
-
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,windows
 
@@ -17,6 +16,9 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
+.project
+.settings
 
 # External tool builders
 .externalToolBuilders/
