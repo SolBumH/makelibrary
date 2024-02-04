@@ -6,15 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>닉네임 변경하기</title>
-<link href="../css/pagemenu.css?ver=0.19" rel="stylesheet" />
-<link href="../css/changeform.css?ver=0.19" rel="stylesheet" />
+<link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
+<link href="./css/changeform.css?ver=0.19" rel="stylesheet" />
 <style>
         body {
             background-color: #E8E7D2; /* 바탕화면 색상 지정 */
             color: rgb(75, 52, 12); /* 글자색 설정 */
         }
-        
- 
     </style>
 <script src="./js/menu.js">
 </script>
@@ -23,18 +21,15 @@
 	<%@ include file="menu.jsp"%>
 	<nav class="change">
       <ul>
-      	 <br>
-         <br>
-         <br>
          <li onclick="window.location.href='./info'">> My Page</li>
-         <li onclick="window.location.href='./changename'"></i>닉네임 변경</li>
-         <li onclick="window.location.href='./changePw'"></i>패스워드 변경</li>
-         <li onclick="url('./rentList')"></i>대출 조회/반납연기</li>
-         <li onclick="url('./rentList')"></i>대출이력</li>
-         <li onclick="url('./rentList')"></i>도서 예약현황</li>
-         <li onclick="url('./rentList')"></i>희망도서 신청내역</li>
-         <li onclick="url('./reviews')"></i>나의 리뷰 작성</li>
-         <li onclick="url('./board')"></i>문의사항</li>
+         <li onclick="window.location.href='./changename'">닉네임 변경</li>
+         <li onclick="window.location.href='./changePw'">패스워드 변경</li>
+         <li onclick="url('./rentList')">대출 조회/반납연기</li>
+         <li onclick="url('./rentList')">대출이력</li>
+         <li onclick="url('./rentList')">도서 예약현황</li>
+         <li onclick="url('./rentList')">희망도서 신청내역</li>
+         <li onclick="url('./reviews')">나의 리뷰 작성</li>
+         <li onclick="url('./board')">문의사항</li>
       </ul>
    </nav>
 	
