@@ -20,7 +20,7 @@ body {
 }
 
 .main {
-   margin-top : 50px;
+   margin-top : 75px;
    font-family: Oswald;
 }
 h1 {
@@ -37,15 +37,11 @@ h4 {
    <%@ include file="menu.jsp"%>
    <nav class="change">
       <ul>
-         <li onclick="window.location.href='./info'">> My Page</li>
-         <li onclick="window.location.href='./changename'">닉네임 변경</li>
-         <li onclick="window.location.href='./changePw'">패스워드 변경</li>
-         <li onclick="url('./rentList')">대출 조회/반납연기</li>
-         <li onclick="url('./rentList')">대출이력</li>
-         <li onclick="url('./rentList')">도서 예약현황</li>
-         <li onclick="url('./rentList')">희망도서 신청내역</li>
-         <li onclick="url('./reviews')">나의 리뷰 작성</li>
-         <li onclick="url('./board')">문의사항</li>
+  			<li onclick="window.location.href='./info'">> My Page</li>
+			<li onclick="window.location.href='./changename'">닉네임 변경</li>
+			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
+			<li onclick="window.location.href='./bookRentList')">대출조회/대출이력</li>
+			<li onclick="window.location.href='./bookreview')">나의 리뷰 작성</li>
       </ul>
    </nav>
    <div class="container">

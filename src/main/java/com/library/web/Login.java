@@ -23,8 +23,10 @@ public class Login extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
+
     RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
     rd.forward(request, response);
+    System.out.println("로그인" + request.getRemoteAddr());
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +35,6 @@ public class Login extends HttpServlet {
       dto.setMid(request.getParameter("mid"));
       dto.setMpw(request.getParameter("mpw"));
 
-      System.out.println("로그인로그인" + request.getParameter("mid") + request.getParameter("mpw"));
 
       MemberDAO dao = new MemberDAO();
       dto = dao.login(dto);
@@ -45,7 +46,7 @@ public class Login extends HttpServlet {
         session.setAttribute("mname", dto.getMname());
         session.setAttribute("mid", dto.getMid());
 
-        response.sendRedirect("./index");
+        response.sendRedirect("./info");
       }
     }
   }
