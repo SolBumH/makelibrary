@@ -33,25 +33,22 @@ public class Bookreview extends HttpServlet {
     // JSP 페이지로 포워딩
     RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
     rd.forward(request, response);
+  }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-			request.setCharacterEncoding("UTF-8");
-			ReviewDTO dto = new ReviewDTO();
-			dto.setRno(Integer.parseInt(request.getParameter("rno")));
-			dto.setMno(Integer.parseInt(request.getParameter("mno")));
-			dto.setRtitle(request.getParameter("rtitle"));
-			dto.setRauthor(request.getParameter("rauthor"));
-			dto.setRcontent(request.getParameter("rcontent"));
-			
-			ReviewDAO dao = new ReviewDAO();
-			dao.makeReview(dto);
-	    }
-	
-}
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    // 성공적인 응답 전송
-    response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");
+    request.setCharacterEncoding("UTF-8");
+    ReviewDTO dto = new ReviewDTO();
+    dto.setRno(Integer.parseInt(request.getParameter("rno")));
+    dto.setMno(Integer.parseInt(request.getParameter("mno")));
+    dto.setRtitle(request.getParameter("rtitle"));
+    dto.setRauthor(request.getParameter("rauthor"));
+    dto.setRcontent(request.getParameter("rcontent"));
+
+    ReviewDAO dao = new ReviewDAO();
+    dao.makeReview(dto);
   }
 }
+
+// 성공적인 응답 전송
+response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}

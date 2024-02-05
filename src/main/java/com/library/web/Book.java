@@ -23,8 +23,8 @@ public class Book extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookDAO dao = new BookDAO();
-		List<BookDTO> list = dao.bookList();
-		request.setAttribute("list", list);
+		// List<BookDTO> list = dao.bookList();
+		// request.setAttribute("list", list);
 		
 		RequestDispatcher rs = request.getRequestDispatcher("book.jsp");
 		rs.forward(request, response);
