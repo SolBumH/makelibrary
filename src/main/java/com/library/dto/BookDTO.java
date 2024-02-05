@@ -2,10 +2,39 @@ package com.library.dto;
 
 public class BookDTO {
   private String title, image, author, publisher, isbn;
-  private String bname, bpub, bwrite, brent, link;
-  private int bno;
+  private String bname, bpub, bwrite, brent, link, mid, rtdate, rtenum;
+  private int bno, mno;
   
-  public String getBname() {
+  public String getMid() {
+	return mid;
+}
+
+public String getRtenum() {
+	return rtenum;
+}
+
+public void setRtenum(String rtenum) {
+	this.rtenum = rtenum;
+}
+
+public void setMid(String mid) {
+	this.mid = mid;
+}
+
+public String getRtdate() {
+	return rtdate;
+}
+
+public void setRtdate(String rdate) {
+	this.rtdate = rdate;
+}
+
+
+public int getMno() {
+	return mno;
+}
+
+public String getBname() {
     return bname;
   }
 
@@ -92,4 +121,9 @@ public class BookDTO {
   public void setLink(String link) {
     this.link = link;
   }
+
+public void setMno(int int1) {
+	// TODO Auto-generated method stub
+	
+}
 }

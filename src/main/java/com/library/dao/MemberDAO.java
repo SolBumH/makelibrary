@@ -108,7 +108,7 @@ public class MemberDAO extends AbstractDAO {
 		return dto;
 	}
 	
-	// 비밀번호 변경
+	// 비밀번호 변경-효진 추가
 	public int changePW(MemberDTO dto) {
 		int result = 0;
 
@@ -131,7 +131,7 @@ public class MemberDAO extends AbstractDAO {
 		return result;
 	}
 	
-	// 닉네임 변경하기
+	// 닉네임 변경하기-효진 추가
 	public int changeName(MemberDTO dto) {
 		int result = 0;
 
@@ -149,5 +149,7 @@ public class MemberDAO extends AbstractDAO {
 		}
 
 		return result;
+	
+	
 	}
 }

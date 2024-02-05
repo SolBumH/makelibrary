@@ -190,5 +190,35 @@ public class BookDAO extends AbstractDAO {
 		}
 		return list;
 	}
+	
+	  //효진 추가
+	  public List<BookDTO> bookRentList() {
+	       List<BookDTO> list = new ArrayList<BookDTO>();
+	       Connection con = db.getConnection();
+	       PreparedStatement pstmt = null;
+	       ResultSet rs = null;
+	       String sql = "SELECT * FROM rentlist";
+
+	       try {
+	         pstmt = con.prepareStatement(sql);
+	         rs = pstmt.executeQuery();
+
+	         while (rs.next()) {
+	           BookDTO e = new BookDTO();
+	           e.setTitle(rs.getString("btitle"));
+	           e.setMno(rs.getInt("mno"));
+	           e.setMid(rs.getString("mid"));
+	           e.setRtdate(rs.getString("rtdate"));
+	           e.setRtenum(rs.getString("rtenum"));
+	           list.add(e);
+	         }
+	       } catch (SQLException e) {
+	         e.printStackTrace();
+	       } finally {
+	         close(rs, pstmt, con);
+	       }
+	       return list;
+	     }
+
 
 }
