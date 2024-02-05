@@ -97,7 +97,6 @@ public class MemberDAO extends AbstractDAO {
 				dto.setNo(rs.getInt("no"));
 				dto.setMname(rs.getString("mname"));
 				dto.setMpw(rs.getString("mpw"));
-				;
 				dto.setMdate(rs.getString("mdate"));
 			}
 		} catch (SQLException e) {

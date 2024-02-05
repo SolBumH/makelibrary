@@ -1,6 +1,7 @@
 package com.library.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,9 +26,11 @@ public class Cart extends HttpServlet {
     HttpSession session = request.getSession();
     BookDTO dto = new BookDTO();
     BookDAO dao = new BookDAO(); 
-    dto.setMid((String)session.getAttribute("mname"));
+    dto.setMid((String)session.getAttribute("mid"));
     
-    dto = dao.cartList(dto);
+    List<String> list = dao.cartList(dto);
+    
+    
     
     RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
     rd.forward(request, response);

@@ -57,6 +57,11 @@ public class BookList extends HttpServlet {
     }
     
     List<BookDTO> bookList = dao.bookInfo(book);
+    for(int i = 0; i < bookList.size(); i++) {
+      // System.out.println(bookList.get(i));
+      // DB 저장하는 메소드 실행
+      dao.insertList(bookList.get(i));
+    }
     
     request.setAttribute("bookList", bookList);
     

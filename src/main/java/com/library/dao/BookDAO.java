@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.library.db.DBConnection;
 import com.library.dto.BookDTO;
 
 public class BookDAO extends AbstractDAO {
@@ -242,13 +241,13 @@ public class BookDAO extends AbstractDAO {
   public int addCart(String isbn, String mid) {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
-    String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid=?))";
+    String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid='asd'))";
     int result = 0;
     
     try {
       pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, isbn);
-      pstmt.setString(2, mid);
+      // pstmt.setString(2, mid);
       result = pstmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -256,5 +255,49 @@ public class BookDAO extends AbstractDAO {
       close(null, pstmt, conn);
     }
     return result;
+  }
+
+  public List<String> cartList(BookDTO dto) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    String sql = "select * from cart where mno=(select mno from member where mid=1)";
+    List<String> list = new ArrayList<>();
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      // pstmt.setString(1, dto.getMid());
+      rs = pstmt.executeQuery();
+      
+      while (rs.next()) {
+        list.add(rs.getString("bisbn"));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(rs, pstmt, conn);
+    }
+    return list;
+  }
+
+  public void insertList(BookDTO dto) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "insert into book(btitle, bauthor, bpublisher, bimage, blink, bisbn) values (?,?,?,?,?,?)";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, dto.getTitle());
+      pstmt.setString(2, dto.getAuthor());
+      pstmt.setString(3, dto.getPublisher());
+      pstmt.setString(4, dto.getImage());
+      pstmt.setString(5, dto.getLink());
+      pstmt.setString(6, dto.getIsbn());
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
   }
 }
