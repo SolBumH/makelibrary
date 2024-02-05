@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>대출</title>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript">
   $(function() {
     $("#searchBtn").click(function() {
@@ -37,6 +38,9 @@
       <button id="searchBtn">
         <i class="xi-search"></i>
       </button>
+      <div class="lookBookList">
+      	<i class="xi-cart-o" onclick="url('./cart')">담은 책 보기</i>
+      </div>
     </div>
     <c:choose>
       <c:when test="${param.search ne null && param.search ne ''}">

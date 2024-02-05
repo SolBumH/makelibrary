@@ -1,105 +1,46 @@
 package com.library.dto;
 
 public class BookDTO {
-  private String title, image, author, link, isbn, publisher;
-  
-  private String bisbn ,bname, bpub, bwrite, brent, mid;
-  private int bno;
-  
-  public String getBname() {
-    return bname;
+  private String btitle, bauthor, bpublisher, bimage, blink, bisbn;
+
+  public String getBtitle() {
+    return btitle;
   }
 
-  public void setBname(String bname) {
-    this.bname = bname;
+  public void setBtitle(String btitle) {
+    this.btitle = btitle;
   }
 
-  public String getBpub() {
-    return bpub;
+  public String getBauthor() {
+    return bauthor;
   }
 
-  public void setBpub(String bpub) {
-    this.bpub = bpub;
+  public void setBauthor(String bauthor) {
+    this.bauthor = bauthor;
   }
 
-  public String getBwrite() {
-    return bwrite;
+  public String getBpublisher() {
+    return bpublisher;
   }
 
-  public void setBwrite(String bwrite) {
-    this.bwrite = bwrite;
+  public void setBpublisher(String bpublisher) {
+    this.bpublisher = bpublisher;
   }
 
-  public String getBrent() {
-    return brent;
+  public String getBimage() {
+    return bimage;
   }
 
-  public void setBrent(String brent) {
-    this.brent = brent;
+  public void setBimage(String bimage) {
+    this.bimage = bimage;
   }
 
-  public int getBno() {
-    return bno;
+  public String getBlink() {
+    return blink;
   }
 
-  public void setBno(int bno) {
-    this.bno = bno;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getPublisher() {
-    return publisher;
-  }
-
-  public void setPublisher(String publisher) {
-    this.publisher = publisher;
-  }
-
-  public String getIsbn() {
-    return isbn;
-  }
-
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
-
-  public String getLink() {
-    return link;
-  }
-
-  public void setLink(String link) {
-    this.link = link;
-  }
-
-  public String getMid() {
-    return mid;
-  }
-
-  public void setMid(String mid) {
-    this.mid = mid;
+  public void setBlink(String blink) {
+    this.blink = blink;
   }
 
   public String getBisbn() {
@@ -109,4 +50,5 @@ public class BookDTO {
   public void setBisbn(String bisbn) {
     this.bisbn = bisbn;
   }
+  
 }

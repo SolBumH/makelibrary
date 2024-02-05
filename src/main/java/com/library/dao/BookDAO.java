@@ -210,33 +210,33 @@ public class BookDAO extends AbstractDAO {
     return dto;
   }
 
-  public List<BookDTO> bookList() {
-    List<BookDTO> list = new ArrayList<BookDTO>();
-    Connection con = db.getConnection();
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
-
-    try {
-      pstmt = con.prepareStatement(sql);
-      rs = pstmt.executeQuery();
-
-      while (rs.next()) {
-        BookDTO e = new BookDTO();
-        e.setBno(rs.getInt("bno"));
-        e.setBname(rs.getString("bname"));
-        e.setBwrite(rs.getString("bwrite"));
-        e.setBpub(rs.getString("bpub"));
-        e.setBrent(rs.getString("brent"));
-        list.add(e);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      close(rs, pstmt, con);
-    }
-    return list;
-  }
+//  public List<BookDTO> bookList() {
+//    List<BookDTO> list = new ArrayList<BookDTO>();
+//    Connection con = db.getConnection();
+//    PreparedStatement pstmt = null;
+//    ResultSet rs = null;
+//    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
+//
+//    try {
+//      pstmt = con.prepareStatement(sql);
+//      rs = pstmt.executeQuery();
+//
+//      while (rs.next()) {
+//        BookDTO e = new BookDTO();
+//        e.setBno(rs.getInt("bno"));
+//        e.setBname(rs.getString("bname"));
+//        e.setBwrite(rs.getString("bwrite"));
+//        e.setBpub(rs.getString("bpub"));
+//        e.setBrent(rs.getString("brent"));
+//        list.add(e);
+//      }
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    } finally {
+//      close(rs, pstmt, con);
+//    }
+//    return list;
+//  }
 
   public int addCart(String isbn, String mid) {
     Connection conn = db.getConnection();
@@ -257,20 +257,27 @@ public class BookDAO extends AbstractDAO {
     return result;
   }
 
-  public List<String> cartList(BookDTO dto) {
+  public List<BookDTO> cartList(String mid) {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "select * from cart where mno=(select mno from member where mid=1)";
-    List<String> list = new ArrayList<>();
+    String sql = "select DISTINCT * from cart where mno=(select mno from member where mid=1)";
+    List<BookDTO> list = new ArrayList<>();
     
     try {
       pstmt = conn.prepareStatement(sql);
-      // pstmt.setString(1, dto.getMid());
+      // pstmt.setString(1, mid);
       rs = pstmt.executeQuery();
       
       while (rs.next()) {
-        list.add(rs.getString("bisbn"));
+        BookDTO dto = new BookDTO();
+        dto.setBtitle(rs.getString("btitle"));
+        dto.setBauthor(rs.getString("bauthor"));
+        dto.setBpublisher(rs.getString("bpublisher"));
+        dto.setBimage(rs.getString("bimage"));
+        dto.setBlink(rs.getString("blink"));
+        dto.setBisbn(rs.getString("bisbn"));
+        list.add(dto);
       }
     } catch (SQLException e) {
       e.printStackTrace();
