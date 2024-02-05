@@ -1,12 +1,13 @@
 package com.library.dto;
 
 public class BookDTO {
-  private String title, image, author, publisher, isbn;
-  private String bname, bpub, bwrite, brent, link, mid, rtdate, rtenum;
-  private int bno, mno;
-  
-  public String getMid() {
-	return mid;
+  private String btitle, bauthor, bpublisher, bimage, blink, bisbn, rtdate, rtenum, mid;
+  public String getRtdate() {
+	return rtdate;
+}
+
+public void setRtdate(String rtdate) {
+	this.rtdate = rtdate;
 }
 
 public String getRtenum() {
@@ -17,113 +18,69 @@ public void setRtenum(String rtenum) {
 	this.rtenum = rtenum;
 }
 
+public String getMid() {
+	return mid;
+}
+
 public void setMid(String mid) {
 	this.mid = mid;
 }
-
-public String getRtdate() {
-	return rtdate;
-}
-
-public void setRtdate(String rdate) {
-	this.rtdate = rdate;
-}
-
 
 public int getMno() {
 	return mno;
 }
 
-public String getBname() {
-    return bname;
-  }
-
-  public void setBname(String bname) {
-    this.bname = bname;
-  }
-
-  public String getBpub() {
-    return bpub;
-  }
-
-  public void setBpub(String bpub) {
-    this.bpub = bpub;
-  }
-
-  public String getBwrite() {
-    return bwrite;
-  }
-
-  public void setBwrite(String bwrite) {
-    this.bwrite = bwrite;
-  }
-
-  public String getBrent() {
-    return brent;
-  }
-
-  public void setBrent(String brent) {
-    this.brent = brent;
-  }
-
-  public int getBno() {
-    return bno;
-  }
-
-  public void setBno(int bno) {
-    this.bno = bno;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getPublisher() {
-    return publisher;
-  }
-
-  public void setPublisher(String publisher) {
-    this.publisher = publisher;
-  }
-
-  public String getIsbn() {
-    return isbn;
-  }
-
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
-
-  public String getLink() {
-    return link;
-  }
-
-  public void setLink(String link) {
-    this.link = link;
-  }
-
-public void setMno(int int1) {
-	// TODO Auto-generated method stub
-	
+public void setMno(int mno) {
+	this.mno = mno;
 }
+
+private int mno;
+
+  public String getBtitle() {
+    return btitle;
+  }
+
+  public void setBtitle(String btitle) {
+    this.btitle = btitle;
+  }
+
+  public String getBauthor() {
+    return bauthor;
+  }
+
+  public void setBauthor(String bauthor) {
+    this.bauthor = bauthor;
+  }
+
+  public String getBpublisher() {
+    return bpublisher;
+  }
+
+  public void setBpublisher(String bpublisher) {
+    this.bpublisher = bpublisher;
+  }
+
+  public String getBimage() {
+    return bimage;
+  }
+
+  public void setBimage(String bimage) {
+    this.bimage = bimage;
+  }
+
+  public String getBlink() {
+    return blink;
+  }
+
+  public void setBlink(String blink) {
+    this.blink = blink;
+  }
+
+  public String getBisbn() {
+    return bisbn;
+  }
+
+  public void setBisbn(String bisbn) {
+    this.bisbn = bisbn;
+  }
 }

@@ -50,10 +50,13 @@ h4 {
             <article>
                <!-- test -->
                <h1>> MyPage</h1>
-               <h4>ID : ${info.mid } <br></h4>
-               <h4>Name : ${info.mname }님, HELLO😊</h4>
-               <button type="button" onclick="window.location.href='./changename'">닉네임 변경하기</button>
-               <button type="button" onclick="window.location.href='./changePw'">패스워드 변경하기</button>
+               <h4>
+                  Name : ${info.mname } <br> ID : ${info.mid }님, HELLO😊
+               </h4>
+               <button type="button" onclick="window.location.href='./changename'">닉네임
+                  변경하기</button>
+               <button type="button" onclick="window.location.href='./changePw'">패스워드
+                  변경하기</button>
                <br> <br>
             </article>
          </div>

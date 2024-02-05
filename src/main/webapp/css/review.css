@@ -43,7 +43,7 @@ td:nth-child(3) {
 }
 
 /* 제목 입력 폼 스타일 변경 */
-#titleInputGroup .input-group-text {
+#rtitleInputGroup .input-group-text {
 	background-color: #C9BA9B;
 	/* 배경색 변경 (예: 노란색) */
 	color: #4D5057;
@@ -52,7 +52,7 @@ td:nth-child(3) {
 }
 
 /* 저자 입력 폼 스타일 변경 */
-#authorInputGroup .input-group-text {
+#rauthorInputGroup .input-group-text {
 	background-color: #C9BA9B;
 	/* 배경색 변경 (예: 파란색) */
 	color: #4D5057;
@@ -61,7 +61,22 @@ td:nth-child(3) {
 }
 
 /* 리뷰 입력 폼 스타일 변경 */
-#reviewInputGroup .input-group-text {
+#rcontentInputGroup .input-group-text {
+	background-color: #C9BA9B;
+	/* 배경색 변경 (예: 분홍색) */
+	color: #4D5057;
+	/* 텍스트 색상 변경 (예: 흰색) */
+	 border: 2px solid #C9BA9B;
+}
+
+#mnoInputGroup .input-group-text {
+	background-color: #C9BA9B;
+	/* 배경색 변경 (예: 분홍색) */
+	color: #4D5057;
+	/* 텍스트 색상 변경 (예: 흰색) */
+	 border: 2px solid #C9BA9B;
+}
+#rnoInputGroup .input-group-text {
 	background-color: #C9BA9B;
 	/* 배경색 변경 (예: 분홍색) */
 	color: #4D5057;
