@@ -40,7 +40,7 @@
     </div>
     <c:choose>
       <c:when test="${param.search ne null && param.search ne ''}">
-        <form action="./booklist" method="post">
+        <form action="./addCart" method="post">
           <table class="booktable">
             <thead>
               <tr>
@@ -66,7 +66,7 @@
               </c:forEach>
             </tbody>
           </table>
-          <button type="submit">대출하기</button>
+          <button type="submit">담기</button>
         </form>
         <div class="paging">
           <button class="pageBtn" onclick="paging(1)">‍🥔‍</button>
@@ -89,6 +89,7 @@
         <h1>검색하세요</h1>
       </c:otherwise>
     </c:choose>
+    <c:if test="${param.error ne null}">오류가 발생했습니다</c:if>
   </article>
 </body>
 </html>

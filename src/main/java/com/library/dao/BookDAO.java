@@ -239,11 +239,22 @@ public class BookDAO extends AbstractDAO {
     return list;
   }
 
-  public BookDTO cartList(BookDTO dto) {
+  public int addCart(String isbn, String mid) {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "";
-    return dto;
+    String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid=?))";
+    int result = 0;
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, isbn);
+      pstmt.setString(2, mid);
+      result = pstmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+    return result;
   }
 }

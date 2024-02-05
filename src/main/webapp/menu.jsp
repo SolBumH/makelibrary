@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="./css/menu2.css" rel="stylesheet" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<script type="text/javascript" src="./js/menu.js"></script>
 <nav class="menu-nav">
     <ul>
         <li onclick="url('./index')"><i class="xi-library"></i>Home</li>
