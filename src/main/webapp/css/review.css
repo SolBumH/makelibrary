@@ -76,3 +76,10 @@ td:nth-child(3) {
 	/* 텍스트 색상 변경 (예: 흰색) */
 	 border: 2px solid #C9BA9B;
 }
+#rnoInputGroup .input-group-text {
+	background-color: #C9BA9B;
+	/* 배경색 변경 (예: 분홍색) */
+	color: #4D5057;
+	/* 텍스트 색상 변경 (예: 흰색) */
+	 border: 2px solid #C9BA9B;
+}
