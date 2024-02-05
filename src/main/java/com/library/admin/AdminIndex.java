@@ -1,4 +1,4 @@
-package com.library.web;
+package com.library.admin;
 
 import java.io.IOException;
 
@@ -9,41 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.dao.MemberDAO;
-import com.library.dto.MemberDTO;
-
-@WebServlet("/join")
-public class Join extends HttpServlet {
+@WebServlet("/admin/index")
+public class AdminIndex extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Join() {
+	public AdminIndex() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("join.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/admin.jsp");//파일 있는 경로
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		MemberDTO dto = new MemberDTO();
-		dto.setMid(request.getParameter("mid"));
-		dto.setMname(request.getParameter("mname"));
-		dto.setMpw(request.getParameter("mpw1"));
-
-		MemberDAO dao = new MemberDAO();
-
-		int result = dao.join(dto);
-
-		if (result == 1) {
-			response.sendRedirect("./login");
-		} else {
-			response.sendRedirect("./error");
-
-		}
 	}
 
 }
