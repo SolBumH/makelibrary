@@ -44,8 +44,4 @@ public class ReviewDTO {
 	public void setRdate(Date rdate) {
 		this.rdate = rdate;
 	}
-
-
-	
-	
 }

@@ -1,6 +1,7 @@
 package com.library.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,7 @@ public class BookList extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  DBConnection_solbum db = new DBConnection_solbum();
+    DBConnection_solbum db = new DBConnection_solbum();
     // request.setCharacterEncoding("utf-8");
     BookDAO dao = new BookDAO();
     int page;
@@ -37,7 +38,7 @@ public class BookList extends HttpServlet {
       page = Util.str2Int(request.getParameter("page"));
     }
     int startPage;
-    
+
     if (page <= 10) {
       startPage = 1;
     } else if (page % 10 == 0) {
@@ -47,27 +48,48 @@ public class BookList extends HttpServlet {
     }
     request.setAttribute("startPage", startPage);
     request.setAttribute("page", page);
-    
+
     if (request.getParameter("search") == null || request.getParameter("search").isEmpty()) {
       // book = BookDAO.api(db.dbConn("자바", page)); // 괄호 안에 검색어 작성 필요
     } else {
       String search = request.getParameter("search");
-      book = BookDAO.api(db.dbConn(search, page)); // 괄호 안에 검색어 작성 필요
+      book = dao.api(db.dbConn(search, page)); // 괄호 안에 검색어 작성 필요
     }
-    
+
     List<BookDTO> bookList = dao.bookInfo(book);
-    
+//    System.out.println(bookList.size());
+    if (bookList != null) {
+      for (int i = 0; i < bookList.size(); i++) {
+        // System.out.println(bookList.get(i));
+        // DB 저장하는 메소드 실행
+        dao.insertList(bookList.get(i));
+      }
+    }
+
     request.setAttribute("bookList", bookList);
-    
+
     RequestDispatcher rd = request.getRequestDispatcher("booklist.jsp");
     rd.forward(request, response);
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // System.out.println(request.getParameter("bookisbn"));
-    System.out.println(request.getParameterValues("book"));
-    for(String s : request.getParameterValues("book")) {
-      System.out.println(s);
+    // 해당 메소드는 체크된 파라미터 값을 배열로 받음
+    // System.out.println(request.getParameterValues("book"));
+    DBConnection_solbum db = new DBConnection_solbum();
+    BookDAO dao = new BookDAO();
+    List<String> list = new ArrayList<String>();
+    for (String s : request.getParameterValues("book")) {
+      list.add(dao.api(db.dbConnDetail(s)));
     }
+    // System.out.println(list);
+    List<BookDTO> bookList = new ArrayList<BookDTO>();
+    for (int i = 0; i < list.size(); i++) {
+      bookList.add(dao.bookDetailInfo(list.get(i)));
+    }
+    // System.out.println(bookList);
+    request.setAttribute("bookList", bookList);
+    RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
+    rd.forward(request, response);
   }
 }

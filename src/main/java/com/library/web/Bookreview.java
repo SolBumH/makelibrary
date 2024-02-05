@@ -15,30 +15,24 @@ import com.library.dto.ReviewDTO;
 
 @WebServlet("/bookreview")
 public class Bookreview extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public Bookreview() {
-		super();
-	}
+  public Bookreview() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// ReviewDAO를 사용하여 데이터베이스에서 리뷰 리스트를 가져옴
-		ReviewDAO reviewDAO = new ReviewDAO();
-		List<ReviewDTO> allreviews = reviewDAO.showReviews();
+    // ReviewDAO를 사용하여 데이터베이스에서 리뷰 리스트를 가져옴
+    ReviewDAO reviewDAO = new ReviewDAO();
+    List<ReviewDTO> reviews = reviewDAO.getReviews();
 
-		// 리뷰 리스트를 request 속성에 저장
-		request.setAttribute("allreviews", allreviews);
-		System.out.println("서블릿 오냐");		
+    // 리뷰 리스트를 request 속성에 저장
+    request.setAttribute("reviews", reviews);
 
-		// JSP 페이지로 포워딩
-		RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
-		rd.forward(request, response);
-		
-	}
+    // JSP 페이지로 포워딩
+    RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
+    rd.forward(request, response);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -57,3 +51,7 @@ public class Bookreview extends HttpServlet {
 	
 }
 
+    // 성공적인 응답 전송
+    response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");
+  }
+}

@@ -1,7 +1,7 @@
 package com.library.dto;
 
 public class MemberDTO {
-	private int no, count;
+	private int mno, count;
 	private String mid, mpw, mname, mdate;
 
 	public String getMid() {
@@ -36,20 +36,20 @@ public class MemberDTO {
 		this.mdate = mdate;
 	}
 
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
 	public int getCount() {
 		return count;
 	}
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public int getMno() {
+		return mno;
+	}
+
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 
 }

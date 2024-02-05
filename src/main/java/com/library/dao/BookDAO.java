@@ -16,12 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.library.db.DBConnection;
 import com.library.dto.BookDTO;
 
 public class BookDAO extends AbstractDAO {
 
-  public static String api(Map<String, String> map) {
+  public String api(Map<String, String> map) {
     return get(map);
   }
 
@@ -139,11 +138,8 @@ public class BookDAO extends AbstractDAO {
         String[] rowDataInfo2 = new String[2];
         rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
         rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
-        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", "")); // 따옴표
-                                                                                                                        // 없애며
-                                                                                                                        // key,
-                                                                                                                        // value
-                                                                                                                        // put
+        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", ""));
+        // 따옴표 없애며 key, value put
       }
       jsonList.add(bookMap);
 //      System.out.println(jsonList.get(i));
@@ -151,42 +147,199 @@ public class BookDAO extends AbstractDAO {
 
     for (int i = 0; i < jsonList.size(); i++) {
       BookDTO dto = new BookDTO();
-      dto.setTitle(jsonList.get(i).get("title"));
-      dto.setAuthor(jsonList.get(i).get("author"));
-      dto.setImage("https:" + jsonList.get(i).get("image"));
-      dto.setLink("https:" + jsonList.get(i).get("link"));
-      dto.setIsbn(jsonList.get(i).get("isbn"));
-      dto.setPublisher(jsonList.get(i).get("publisher"));
+      dto.setBtitle (jsonList.get(i).get("title"));
+      dto.setBauthor(jsonList.get(i).get("author"));
+      dto.setBimage("https:" + jsonList.get(i).get("image"));
+      dto.setBlink("https:" + jsonList.get(i).get("link"));
+      dto.setBisbn(jsonList.get(i).get("isbn"));
+      dto.setBpublisher(jsonList.get(i).get("publisher"));
       list.add(dto);
     }
     return list;
   }
 
-  public List<BookDTO> bookList() {
-    List<BookDTO> list = new ArrayList<BookDTO>();
-    Connection con = db.getConnection();
+  public BookDTO bookDetailInfo(String str) {
+    str = str.replaceAll("\t", ""); // 검색 결과에 탭 전체 삭제
+
+    String[] passingSplit = str.split("\"items\":\\[\\{"); // 앞 잉여데이터 삭제
+
+    if (passingSplit.length == 1) {
+      return null;
+    }
+
+    passingSplit = passingSplit[1].split("}]}"); // 뒤 잉여데이터 삭제
+    passingSplit = passingSplit[0].split("}"); // 각 아이템별로 데이터 나누기
+
+    for (int i = 0; i < passingSplit.length; i++) {
+      passingSplit[i] = passingSplit[i].replace(",{", "").replace("{", "").strip(); // 괄호 삭제
+    }
+
+    String[][] rowDataArr = new String[passingSplit.length][]; // ROW데이터를 담기위한 2차원 배열
+
+    for (int i = 0; i < passingSplit.length; i++) {
+      rowDataArr[i] = passingSplit[i].split("\",\""); // 따움표 삭제
+      for (int j = 0; j < rowDataArr[i].length; j++) {
+        rowDataArr[i][j] = rowDataArr[i][j].replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("&quot;", "")
+            .replaceAll("\"", "");
+      }
+    }
+
+    List<Map<String, String>> jsonList = new ArrayList<>(); // ROW데이터로 분리될 객체 MAP을 담을 LIST
+
+    for (int i = 0; i < rowDataArr.length; i++) {
+      Map<String, String> bookMap = new HashMap<>(); // ROW 데이터를 분리할 맵
+      for (int j = 0; j < rowDataArr[i].length; j++) {
+        rowDataArr[i][j] = rowDataArr[i][j].isBlank() ? "null" : rowDataArr[i][j];
+        String[] rowDataInfo2 = new String[2];
+        rowDataInfo2[0] = rowDataArr[i][j].substring(0, rowDataArr[i][j].indexOf(":"));
+        rowDataInfo2[1] = rowDataArr[i][j].substring(rowDataArr[i][j].lastIndexOf(":") + 1);
+        bookMap.put(rowDataInfo2[0].replaceAll("\"", ""), rowDataInfo2[1].replaceAll("\"", "").replaceAll("\\\\", ""));
+      }
+      jsonList.add(bookMap);
+      // System.out.println("jsonList : " + jsonList);
+    }
+
+    BookDTO dto = new BookDTO();
+    dto.setBtitle(jsonList.get(0).get("title"));
+    dto.setBauthor(jsonList.get(0).get("author"));
+    dto.setBimage("https:" + jsonList.get(0).get("image"));
+    dto.setBlink("https:" + jsonList.get(0).get("link"));
+    dto.setBisbn(jsonList.get(0).get("isbn"));
+    dto.setBpublisher(jsonList.get(0).get("publisher"));
+
+    return dto;
+  }
+
+//  public List<BookDTO> bookList() {
+//    List<BookDTO> list = new ArrayList<BookDTO>();
+//    Connection con = db.getConnection();
+//    PreparedStatement pstmt = null;
+//    ResultSet rs = null;
+//    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
+//
+//    try {
+//      pstmt = con.prepareStatement(sql);
+//      rs = pstmt.executeQuery();
+//
+//      while (rs.next()) {
+//        BookDTO e = new BookDTO();
+//        e.setBno(rs.getInt("bno"));
+//        e.setBname(rs.getString("bname"));
+//        e.setBwrite(rs.getString("bwrite"));
+//        e.setBpub(rs.getString("bpub"));
+//        e.setBrent(rs.getString("brent"));
+//        list.add(e);
+//      }
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    } finally {
+//      close(rs, pstmt, con);
+//    }
+//    return list;
+//  }
+
+  public int addCart(String isbn, String mid) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid='asd'))";
+    int result = 0;
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, isbn);
+      // pstmt.setString(2, mid);
+      result = pstmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+    return result;
+  }
+
+  public List<BookDTO> cartList(String mid) {
+    Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
-
+    String sql = "select * from cartList where mno=(select mno from member where mid='asd')";
+    List<BookDTO> list = new ArrayList<>();
+    
     try {
-      pstmt = con.prepareStatement(sql);
+      pstmt = conn.prepareStatement(sql);
+      // pstmt.setString(1, mid);
       rs = pstmt.executeQuery();
-
+      
       while (rs.next()) {
-        BookDTO e = new BookDTO();
-        e.setBno(rs.getInt("bno"));
-        e.setBname(rs.getString("bname"));
-        e.setBwrite(rs.getString("bwrite"));
-        e.setBpub(rs.getString("bpub"));
-        e.setBrent(rs.getString("brent"));
-        list.add(e);
+        BookDTO dto = new BookDTO();
+        dto.setBtitle(rs.getString("btitle"));
+//        System.out.println(rs.getString("btitle"));
+        dto.setBauthor(rs.getString("bauthor"));
+        dto.setBpublisher(rs.getString("bpublisher"));
+        dto.setBimage(rs.getString("bimage"));
+        dto.setBlink(rs.getString("blink"));
+        dto.setBisbn(rs.getString("bisbn"));
+        list.add(dto);
       }
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
-      close(rs, pstmt, con);
+      close(rs, pstmt, conn);
     }
     return list;
+  }
+
+  public void insertList(BookDTO dto) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "insert into book(btitle, bauthor, bpublisher, bimage, blink, bisbn) values (?,?,?,?,?,?)";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, dto.getBtitle());
+      pstmt.setString(2, dto.getBauthor());
+      pstmt.setString(3, dto.getBpublisher());
+      pstmt.setString(4, dto.getBimage());
+      pstmt.setString(5, dto.getBlink());
+      pstmt.setString(6, dto.getBisbn());
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+  }
+
+  public void delCart(String isbn, String mid) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "update cart set cdel = '0' where mno=(select mno from member where mid=?) and bisbn = ?";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, "asd"); // mid 로 변경
+      pstmt.setString(2, isbn);
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+  }
+
+  public void addRent(String isbn, String mid) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "insert into bookrent(bisbn, mno) values(?,(select mno from member where mid=?))";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(2, "asd"); // mid 로 변경
+      pstmt.setString(1, isbn);
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
   }
 }
