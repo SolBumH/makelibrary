@@ -120,6 +120,29 @@ public class MemberDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getMpw());
 			pstmt.setString(2, dto.getMid());
+			result = pstmt.executeUpdate();   
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	// 닉네임 변경하기
+	public int changeName(MemberDTO dto) {
+		int result = 0;
+
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE member SET mname=? WHERE mid=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMname());
+			pstmt.setString(2, dto.getMid());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
