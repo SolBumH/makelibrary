@@ -22,7 +22,9 @@ public class BookRentList extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("bookRentList.jsp");
+        
+    	// 수정하기-효진
+    	RequestDispatcher rd = request.getRequestDispatcher("bookRentList.jsp");
         rd.forward(request, response);
     }
 

@@ -34,26 +34,22 @@ public class Bookreview extends HttpServlet {
     RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
     rd.forward(request, response);
 
-  }
-
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    ReviewDTO dto = new ReviewDTO();
-    ReviewDAO.addReview(dto);
-
-    String mno = request.getParameter("mno_give");
-    String rtitle = request.getParameter("rtitle_give");
-    String rauthor = request.getParameter("rauthor_give");
-    String rcontent = request.getParameter("rcontent_give");
-
-    System.out
-        .println("Received review: mno= " + mno + ", title=" + rtitle + ", author=" + rauthor + ", review=" + rcontent);
-
-    // 받은 데이터를 ReviewDTO에 설정
-    ReviewDTO reviewDTO = new ReviewDTO();
-    reviewDTO.setMno(Integer.parseInt(mno)); // String을 int로 변환
-    reviewDTO.setRtitle(rtitle);
-    reviewDTO.setRauthor(rauthor);
-    reviewDTO.setRcontent(rcontent);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+			request.setCharacterEncoding("UTF-8");
+			ReviewDTO dto = new ReviewDTO();
+			dto.setRno(Integer.parseInt(request.getParameter("rno")));
+			dto.setMno(Integer.parseInt(request.getParameter("mno")));
+			dto.setRtitle(request.getParameter("rtitle"));
+			dto.setRauthor(request.getParameter("rauthor"));
+			dto.setRcontent(request.getParameter("rcontent"));
+			
+			ReviewDAO dao = new ReviewDAO();
+			dao.makeReview(dto);
+	    }
+	
+}
 
     // 성공적인 응답 전송
     response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");

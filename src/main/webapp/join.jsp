@@ -141,7 +141,7 @@
 					<form action="./join" method="post" onsubmit="return check()">
 						<div class="input-group mb-2">
 							<label class="input-group-text">아이디</label> <input type="text"
-								id="mid" name="id" class="form-control" placeholder="아이디를 입력하세요">
+								id="mid" name="mid" class="form-control" placeholder="아이디를 입력하세요">
 							<button class="btn btn-light input-group-text"
 								onclick="return idCheck()">ID검사</button>
 						</div>
@@ -150,7 +150,7 @@
 						</div>
 						<div class="input-group mb-2">
 							<label class="input-group-text">이&ensp;&ensp;름</label> <input
-								type="text" id="mname" name="name" class="form-control"
+								type="text" id="mname" name="mname" class="form-control"
 								placeholder="이름을 입력하세요">
 						</div>
 						<div class="input-group mb-2 mname-alert">

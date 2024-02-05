@@ -29,10 +29,17 @@ public class Join extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		//String mid=request.getParameter("mid");
+		//String mname=request.getParameter("mname");
+		//String mpw1=request.getParameter("mpw1");
+		//System.out.println(mid+", "+mname+", "+mpw1);
+
 		MemberDTO dto = new MemberDTO();
 		dto.setMid(request.getParameter("mid"));
 		dto.setMname(request.getParameter("mname"));
 		dto.setMpw(request.getParameter("mpw1"));
+		
 
 		MemberDAO dao = new MemberDAO();
 
