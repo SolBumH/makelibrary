@@ -147,12 +147,12 @@ public class BookDAO extends AbstractDAO {
 
     for (int i = 0; i < jsonList.size(); i++) {
       BookDTO dto = new BookDTO();
-      dto.setTitle(jsonList.get(i).get("title"));
-      dto.setAuthor(jsonList.get(i).get("author"));
-      dto.setImage("https:" + jsonList.get(i).get("image"));
-      dto.setLink("https:" + jsonList.get(i).get("link"));
-      dto.setIsbn(jsonList.get(i).get("isbn"));
-      dto.setPublisher(jsonList.get(i).get("publisher"));
+      dto.setBtitle (jsonList.get(i).get("title"));
+      dto.setBauthor(jsonList.get(i).get("author"));
+      dto.setBimage("https:" + jsonList.get(i).get("image"));
+      dto.setBlink("https:" + jsonList.get(i).get("link"));
+      dto.setBisbn(jsonList.get(i).get("isbn"));
+      dto.setBpublisher(jsonList.get(i).get("publisher"));
       list.add(dto);
     }
     return list;
@@ -200,12 +200,12 @@ public class BookDAO extends AbstractDAO {
     }
 
     BookDTO dto = new BookDTO();
-    dto.setTitle(jsonList.get(0).get("title"));
-    dto.setAuthor(jsonList.get(0).get("author"));
-    dto.setImage("https:" + jsonList.get(0).get("image"));
-    dto.setLink("https:" + jsonList.get(0).get("link"));
-    dto.setIsbn(jsonList.get(0).get("isbn"));
-    dto.setPublisher(jsonList.get(0).get("publisher"));
+    dto.setBtitle(jsonList.get(0).get("title"));
+    dto.setBauthor(jsonList.get(0).get("author"));
+    dto.setBimage("https:" + jsonList.get(0).get("image"));
+    dto.setBlink("https:" + jsonList.get(0).get("link"));
+    dto.setBisbn(jsonList.get(0).get("isbn"));
+    dto.setBpublisher(jsonList.get(0).get("publisher"));
 
     return dto;
   }
@@ -261,7 +261,7 @@ public class BookDAO extends AbstractDAO {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "select DISTINCT * from cart where mno=(select mno from member where mid=1)";
+    String sql = "select * from cartList where mno=(select mno from member where mid='asd')";
     List<BookDTO> list = new ArrayList<>();
     
     try {
@@ -272,6 +272,7 @@ public class BookDAO extends AbstractDAO {
       while (rs.next()) {
         BookDTO dto = new BookDTO();
         dto.setBtitle(rs.getString("btitle"));
+//        System.out.println(rs.getString("btitle"));
         dto.setBauthor(rs.getString("bauthor"));
         dto.setBpublisher(rs.getString("bpublisher"));
         dto.setBimage(rs.getString("bimage"));
@@ -294,12 +295,46 @@ public class BookDAO extends AbstractDAO {
     
     try {
       pstmt = conn.prepareStatement(sql);
-      pstmt.setString(1, dto.getTitle());
-      pstmt.setString(2, dto.getAuthor());
-      pstmt.setString(3, dto.getPublisher());
-      pstmt.setString(4, dto.getImage());
-      pstmt.setString(5, dto.getLink());
-      pstmt.setString(6, dto.getIsbn());
+      pstmt.setString(1, dto.getBtitle());
+      pstmt.setString(2, dto.getBauthor());
+      pstmt.setString(3, dto.getBpublisher());
+      pstmt.setString(4, dto.getBimage());
+      pstmt.setString(5, dto.getBlink());
+      pstmt.setString(6, dto.getBisbn());
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+  }
+
+  public void delCart(String isbn, String mid) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "update cart set cdel = '0' where mno=(select mno from member where mid=?) and bisbn = ?";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, "asd"); // mid 로 변경
+      pstmt.setString(2, isbn);
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
+  }
+
+  public void addRent(String isbn, String mid) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "insert into bookrent(bisbn, mno) values(?,(select mno from member where mid=?))";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(2, "asd"); // mid 로 변경
+      pstmt.setString(1, isbn);
       pstmt.execute();
     } catch (SQLException e) {
       e.printStackTrace();

@@ -26,11 +26,11 @@ public class Cart extends HttpServlet {
     HttpSession session = request.getSession();
     BookDTO dto = new BookDTO();
     BookDAO dao = new BookDAO(); 
-    dto.setMid((String)session.getAttribute("mid"));
+    // dto.setMid((String)session.getAttribute("mid"));
     
-    List<String> list = dao.cartList(dto);
+    List<BookDTO> list = dao.cartList((String) session.getAttribute("mid"));
     
-    
+    request.setAttribute("list", list);
     
     RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
     rd.forward(request, response);

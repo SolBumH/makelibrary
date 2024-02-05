@@ -59,13 +59,13 @@
               <c:forEach items="${bookList }" var="bookList">
                 <tr>
                   <td class="w1"><input type="checkbox" name="book"
-                    value="${bookList.isbn }" id="bookchk"></td>
-                  <td class="w2"><img alt="${bookList.title }"
-                    src="${bookList.image }" class="bookimg"
-                    id="book${bookList.isbn }"/></td>
-                  <td class="w4 booklink"><a href="${bookList.link }" target="_blank">${bookList.title }</a></td>
-                  <td class="w1">${bookList.author }</td>
-                  <td class="w2">${bookList.publisher }</td>
+                    value="${bookList.bisbn }" id="bookchk"></td>
+                  <td class="w2"><img alt="${bookList.btitle }"
+                    src="${bookList.bimage }" class="bookimg"
+                    id="book${bookList.bisbn }"/></td>
+                  <td class="w4 booklink"><a href="${bookList.blink }" target="_blank">${bookList.btitle }</a></td>
+                  <td class="w1">${bookList.bauthor }</td>
+                  <td class="w2">${bookList.bpublisher }</td>
                 </tr>
               </c:forEach>
             </tbody>

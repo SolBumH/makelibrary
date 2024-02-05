@@ -32,8 +32,11 @@ public class AddCart extends HttpServlet {
     
     for(int i = 0; i < bookArr.length; i++) {
       int result = dao.addCart(bookArr[i], (String)session.getAttribute("mid"));
-      if (result == 0) break;
+      if (result == 0) {
+        response.sendRedirect("./booklist?error=1");
+        break;
+      }
     }
-    response.sendRedirect("./booklist?error=1");
+    response.sendRedirect("./booklist");
   }
 }
