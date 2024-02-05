@@ -41,13 +41,10 @@ body {
 			</tr>
 			<c:forEach items="${list }" var="row">
 			<tr>
-							<td class="w1" >${row.no }</td>
-							<td class="title"><a href="./detail?page=${page }&no=${row.no }">${row.title }&ensp;<c:if test="${row.comment ne 0 }">
-							<span>[${row.comment }]</span></c:if>
-							</a></td>
-							<td class="w2">${row.write }</td>
-							<td class="w1">${row.date }</td>
-							<td class="w1">${row.count }</td>
+							<td class="w1" >${row.btitle }</td>
+							<td class="w2">${row.mno }</td>
+							<td class="w1">${row.mid }</td>
+							<td class="w1">${row.rtdate }</td>
 							</tr></c:forEach>
 			</nav>
 		</table>
