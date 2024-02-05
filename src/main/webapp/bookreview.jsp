@@ -2,6 +2,7 @@
 <%@page import="com.library.dto.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,53 +46,56 @@
 	});
 
 	function makeReview() {
-	    alert("눌렀습니다.");
-	    let mno = $("#mno").val();
-	    let rtitle = $("#rtitle").val();
-	    let rauthor = $("#rauthor").val();
-	    let rcontent = $("#rcontent").val();
 	    
-	    alert("mno: " + mno + ", rtitle: " + rtitle + ", rauthor: " + rauthor + ", rcontent: " + rcontent);
-	    $.ajax({
-	        type: "POST",
-	        url: "./bookreview",
-	        data: { mno_give: mno, rtitle_give: rtitle, rauthor_give: rauthor, rcontent_give: rcontent },
-	        success: function (response) {
-	            // alert(response);
-	            window.location.reload();
-	        }
-	    });
+		let rno = $("#rno").val();
+		let mno = $("#mno").val();
+		//let rdate = $("#rdate").val();
+		let rtitle = $("#rtitle").val();
+		let rauthor = $("#rauthor").val();
+		let rcontent = $("#rcontent").val();
+		//console.log(mno+"454545")
+	    
+		$.ajax({
+			url:"./bookreview",	//요청할 서버url
+			type:"post", 				//post 타입	
+			dataType : 'text',			//수신 타입
+			data : {'rno': rno, 'mno':mno, 'rtitle':rtitle, 'rauthor':rauthor, 'rcontent':rcontent},	//수신타입
+			success: function(response) {
+				alert('작성했습니다.');
+				window.location.reload();
+			}	
+				
+		});
 	}
 
-	function showReview() {
-	    $.ajax({
-	        type: "GET",
-	        url: "./bookreview",
-	        dataType: 'json',
-	        success: function (response) {
-	            let reviews = response.reviews;
-	            if (reviews && reviews.length > 0) {
-	                for (let i = 0; i < reviews.length; i++) {
-	                    let title = reviews[i].rtitle;
-	                    let author = reviews[i].rauthor;
-	                    let review = reviews[i].rcontent;
+	function showReview(){
+		$.ajax({
+			url:"./bookreview",
+			type: "get",
+			dataType:'text',
+			data: {},
+			success: function (response){
+		/*		let reviews = response.allreviews;
+		 		for (let i = 0; i < reviews.length; i++) {
+                    let rdate = reviews[i]['rdate']
+                    let rtitle = reviews[i]['rtitle']
+                    let rauthor = reviews[i]['rauthor']
+                    let rcontent = reviews[i]['rcontent']
 
-	                    let temp_html =
-	                        `<tr>
-	                            <td>${i + 1}</td>
-	                            <td>${title}</td>
-	                            <td>${author}</td>
-	                            <td>${review}</td>
-	                        </tr>`;
-
-	                    $("#reviews-box").append(temp_html);
-	                }
-	            } else {
-	                console.error("No reviews found.");
-	            }
-	        }
-	    });
-	}
+                    let temp_html = `<tr>
+                                        <td>${rdate}</td>
+                                        <td>${rtitle}</td>
+                                        <td>${rauthor}</td>
+                                        <td>${recontent}</td>
+                                    </tr>`
+			$("#reviews-box").append(temp_html)
+			} */
+		},
+		error : function(error){
+			alert('문제가 발생했습니다. : ' + error);
+		}
+	});
+}
 
 
 
@@ -108,20 +112,27 @@
         <h1>여기는 리뷰 공간입니다.</h1>
         <p>다른 사람들과 공유하고 싶은 재밌고 흥미진진한 책의 리뷰를 남겨주세요.</p>
 
+        <div class="input-group mb-3" id="rnoInputGroup">
+          <div class="input-group-prepend">
+            <span class="input-group-text">리뷰번호</span>
+          </div>
+          <input type="text" class="form-control" id="rno">
+        </div>
+        
         <div class="input-group mb-3" id="mnoInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">회원번호</span>
           </div>
           <input type="text" class="form-control" id="mno">
         </div>
-        
+
         <div class="input-group mb-3" id="rtitleInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">제목</span>
           </div>
           <input type="text" class="form-control" id="rtitle">
         </div>
-
+        
         <div class="input-group mb-3" id="rauthorInputGroup">
           <div class="input-group-prepend">
             <span class="input-group-text">저자</span>
@@ -129,10 +140,9 @@
           <input type="text" class="form-control" id="rauthor">
         </div>
 
-
         <div class="input-group mb-3" id="rcontentInputGroup">
           <div class="input-group-prepend">
-            <span class="input-group-text">리뷰</span>
+            <span class="input-group-text">내용</span>
           </div>
           <textarea class="form-control" id="rcontent" cols="30"
             rows="5" placeholder="160자까지 입력할 수 있습니다."></textarea>
@@ -148,15 +158,22 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">회원번호</th>
-              <th scope="col">날짜</th>
+              
               <th scope="col">제목</th>
               <th scope="col">저자</th>
-              <th scope="col">리뷰</th>
+              <th scope="col">내용</th>
             </tr>
           </thead>
+          
           <tbody id="reviews-box">
-                 
+          	<c:forEach items="${allreviews }" var="eu">
+          	
+          	 <tr>          	  
+          	  <td>${eu.rtitle }</td>
+          	  <td>${eu.rauthor }</td>
+          	  <td>${eu.rcontent }</td>
+          	 </tr>	
+			</c:forEach> 
           </tbody>
         </table>
       </div>
