@@ -18,6 +18,7 @@ import java.util.Map;
 
 import com.library.db.DBConnection;
 import com.library.dto.BookDTO;
+import com.library.dto.BookrentDTO;
 import com.library.dto.CartDTO;
 
 public class BookDAO extends AbstractDAO {
@@ -150,12 +151,12 @@ public class BookDAO extends AbstractDAO {
 
     for (int i = 0; i < jsonList.size(); i++) {
       BookDTO dto = new BookDTO();
-      dto.setTitle(jsonList.get(i).get("title"));
-      dto.setAuthor(jsonList.get(i).get("author"));
-      dto.setImage("https:" + jsonList.get(i).get("image"));
-      dto.setLink("https:" + jsonList.get(i).get("link"));
-      dto.setIsbn(jsonList.get(i).get("isbn"));
-      dto.setPublisher(jsonList.get(i).get("publisher"));
+      dto.setBtitle(jsonList.get(i).get("title"));
+      dto.setBauthor(jsonList.get(i).get("author"));
+      dto.setBimage("https:" + jsonList.get(i).get("image"));
+      dto.setBlink("https:" + jsonList.get(i).get("link"));
+      dto.setBisbn(jsonList.get(i).get("isbn"));
+      dto.setBpublisher(jsonList.get(i).get("publisher"));
       list.add(dto);
     }
     return list;
@@ -203,12 +204,12 @@ public class BookDAO extends AbstractDAO {
     }
 
     BookDTO dto = new BookDTO();
-    dto.setTitle(jsonList.get(0).get("title"));
-    dto.setAuthor(jsonList.get(0).get("author"));
-    dto.setImage("https:" + jsonList.get(0).get("image"));
-    dto.setLink("https:" + jsonList.get(0).get("link"));
-    dto.setIsbn(jsonList.get(0).get("isbn"));
-    dto.setPublisher(jsonList.get(0).get("publisher"));
+    dto.setBtitle(jsonList.get(0).get("title"));
+    dto.setBauthor(jsonList.get(0).get("author"));
+    dto.setBimage("https:" + jsonList.get(0).get("image"));
+    dto.setBlink("https:" + jsonList.get(0).get("link"));
+    dto.setBisbn(jsonList.get(0).get("isbn"));
+    dto.setBpublisher(jsonList.get(0).get("publisher"));
 
     return dto;
   }
@@ -218,7 +219,7 @@ public class BookDAO extends AbstractDAO {
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
+    String sql = "SELECT bname, bpublisher, bauthor, brent FROM book " + "LIMIT 0, 10";
 
     try {
       pstmt = con.prepareStatement(sql);
@@ -226,11 +227,12 @@ public class BookDAO extends AbstractDAO {
 
       while (rs.next()) {
         BookDTO e = new BookDTO();
-        e.setBno(rs.getInt("bno"));
-        e.setBname(rs.getString("bname"));
-        e.setBwrite(rs.getString("bwrite"));
-        e.setBpub(rs.getString("bpub"));
-        e.setBrent(rs.getString("brent"));
+        e.setBtitle(rs.getString("btitle"));
+        e.setBauthor(rs.getString("bauthor"));
+        e.setBpublisher(rs.getString("bpublisher"));
+        e.setBimage(rs.getString("bimage"));
+        e.setBlink(rs.getString("blink"));
+        e.setBisbn(rs.getString("bisbn"));
         list.add(e);
       }
     } catch (SQLException e) {
@@ -241,21 +243,4 @@ public class BookDAO extends AbstractDAO {
     return list;
   }
 
-  public BookDTO cartList(BookDTO dto) {
-    Connection conn = db.getConnection();
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    String sql = "";
-    
-    try {
-		pstmt = conn.prepareStatement(sql);
-		
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-    
-    
-    return dto;
-  }
 }

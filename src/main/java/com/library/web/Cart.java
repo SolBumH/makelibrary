@@ -23,11 +23,7 @@ public class Cart extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
-    BookDTO dto = new BookDTO();
-    BookDAO dao = new BookDAO(); 
-    dto.setMid((String)session.getAttribute("mid"));
     
-    dto = dao.cartList(dto);
     
     RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
     rd.forward(request, response);

@@ -57,8 +57,13 @@ public class BookList extends HttpServlet {
     }
     
     List<BookDTO> bookList = dao.bookInfo(book);
+    for (int i = 0; i < bookList.size(); i++) {
+    	
+    	
+	}
     
     request.setAttribute("bookList", bookList);
+    
     
     RequestDispatcher rd = request.getRequestDispatcher("booklist.jsp");
     rd.forward(request, response);
