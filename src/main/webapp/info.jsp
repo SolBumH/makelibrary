@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link href="../css/menu2.css?ver=0.19" rel="stylesheet" />
-<link href="../css/pagemenu.css?ver=0.19" rel="stylesheet" />
+<link href="./css/menu2.css?ver=0.19" rel="stylesheet" />
+<link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
