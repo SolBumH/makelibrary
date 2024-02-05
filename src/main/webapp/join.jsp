@@ -164,7 +164,7 @@
 								placeholder="한번 더 입력하세요">
 						</div>
 						<div class="input-group mb-2 mpw1-alert">
-							<p class="alert">올바른 암호를 입력하세요</p>
+							<p class="alert">올바른 암호를 입력하세요.</p>
 						</div>
 						<div class="input-group mb-2">
 							<button type="reset" class="btn btn-light col-6">초기화</button>
