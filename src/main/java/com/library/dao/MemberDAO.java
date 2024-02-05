@@ -51,6 +51,7 @@ public class MemberDAO extends AbstractDAO {
       pstmt.setString(3, dto.getMname());
 
       result = pstmt.executeUpdate();
+      System.out.println(result);
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -98,7 +99,7 @@ public class MemberDAO extends AbstractDAO {
       rs = pstmt.executeQuery();
 
       if (rs.next()) {
-        dto.setNo(rs.getInt("no"));
+        dto.setMno(rs.getInt("mno"));
         dto.setMname(rs.getString("mname"));
         dto.setMpw(rs.getString("mpw"));
         dto.setMdate(rs.getString("mdate"));
