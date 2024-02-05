@@ -29,14 +29,13 @@ public class IdCheck extends HttpServlet {
 			throws ServletException, IOException {
 		String mid = request.getParameter("mid");
 		MemberDTO dto = new MemberDTO();
-		dto.setMid(mid);;
-		
+		dto.setMid(mid);
 		MemberDAO dao = new MemberDAO();
 		int result = dao.idCheck(dto);
-		
 		//System.out.println("검사요청이 들어온 ID : " + id + " 결과는 : " + result);
-		PrintWriter pw = response.getWriter();
-		pw.print(result);
+		
+		PrintWriter mpw = response.getWriter();
+		mpw.print(result);
 	}
 
 }

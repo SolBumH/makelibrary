@@ -11,6 +11,6 @@
         <c:choose><c:when test="${sessionScope.mname eq null }">
         <li onclick="url('./login')"><i class="xi-garden"></i>Login</li></c:when><c:otherwise>
         <li onclick="url('./info')"><i class="xi-bookmark"></i>${sessionScope.mname }님</li>
-        <li onclick="url('./myInfo')"><i class="xi-emoticon-smiley-o">Logout</li></c:otherwise></c:choose>
+        <li onclick="url('./logout')"><i class="xi-emoticon-smiley-o">Logout</li></c:otherwise></c:choose>
     </ul>
 </nav>

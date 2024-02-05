@@ -1,6 +1,10 @@
 # 우리 db 집어넣기
 DBConnection.*
 DBConnection_solbum.*
+<<<<<<< HEAD
+=======
+
+>>>>>>> 12dceb58e9f323332defcf22dea51090a3556248
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,windows
 
