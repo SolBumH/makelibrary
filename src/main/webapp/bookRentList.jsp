@@ -26,17 +26,11 @@ body {
 			<li onclick="window.location.href='./info'">> My Page</li>
 			<li onclick="window.location.href='./changename'">닉네임 변경</li>
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
-			<li onclick="url('./bookRentList')">대출 조회/반납연기</li>
-			<li onclick="url('./bookrent')">대출이력</li>
-			<li onclick="url('./rentList')">도서 예약현황</li>
-			<li onclick="url('./reviews')">나의 리뷰 작성</li>
-			<li onclick="url('./board')">문의사항</li>
+			<li onclick="window.location.href='./bookRentList')">대출조회/대출이력</li>
+			<li onclick="window.location.href='./bookreview')">나의 리뷰 작성</li>
 		</ul>
 	</nav>
 	<nav class="rentlist1"> 
-	
-	
-	
 		<h1>>대출 조회 리스트</h1>
 		<table>
 			<tr>
@@ -45,6 +39,16 @@ body {
 				<th>대출일</th>
 				<th>반납 예정일</th>
 			</tr>
+			<c:forEach items="${list }" var="row">
+			<tr>
+							<td class="w1" >${row.no }</td>
+							<td class="title"><a href="./detail?page=${page }&no=${row.no }">${row.title }&ensp;<c:if test="${row.comment ne 0 }">
+							<span>[${row.comment }]</span></c:if>
+							</a></td>
+							<td class="w2">${row.write }</td>
+							<td class="w1">${row.date }</td>
+							<td class="w1">${row.count }</td>
+							</tr></c:forEach>
 			</nav>
 		</table>
 </body>
