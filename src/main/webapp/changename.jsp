@@ -14,7 +14,23 @@
 	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
-function check() {
+
+$(function(){
+	$('#newname2').blur(function(){
+		let pw1 = $("#newname").val();
+		let pw2 = $("#newname2").val();
+		if (pw2.length < 4) {
+			$('#pname').show();
+			$('#pname').html("<p class='mname-alert' id='pname'>닉네임은 4글자 이상이여야합니다.</p>");
+			$('#newname').focus();
+			return false;
+		}else{
+			$('#pname').hide();			
+		}
+
+	});
+});
+/* function check() {
 	let pw1 = $("#newname").val();
 	let pw2 = $("#newname2").val();
 	if (pw2.length < 4) {
@@ -25,7 +41,7 @@ function check() {
 	}
 
 	$('.mname-alert').hide();
-}
+} */
 </script>
 <style>
         body {
@@ -52,9 +68,10 @@ function check() {
 			<img class="king2" alt="login" src="./img/빅토리아.png">
 			<h2>닉네임을 변경해주세요.</h2>
 			<input type="text" name="newname" id="newname" placeholder="현재 닉네임을 입력하세요"><br>
-			<!-- name은 서블릿에서 쓰려고 받아오는거야 , 자바를 쓸때 name에 써 -->
+			현재 닉네임 : ${sessionScope.mname }
 			<input type="text" name="newname2" id="newname2"  placeholder="새로운 닉네임을 입력하세요">
-			<p class="mname-alert">닉네임은 4글자 이상이여야합니다.</p>
+			<div id="pname">		
+			</div>
 			<button type="submit">변경하기</button>
 		</form>
 	</div>

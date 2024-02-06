@@ -227,7 +227,7 @@ public class BookDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				BookDTO e = new BookDTO();
-				e.setTitle(rs.getString("btitle"));
+				e.setBtitle(rs.getString("btitle"));
 				e.setMno(rs.getInt("mno"));
 				e.setMid(rs.getString("mid"));
 				e.setRtdate(rs.getString("rtdate"));

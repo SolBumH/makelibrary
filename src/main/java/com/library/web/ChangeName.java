@@ -31,33 +31,28 @@ public class ChangeName extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		
-		if (session.getAttribute("mid") != null) {
-			System.out.println("요기");
-			String mname = request.getParameter("newmname2");
-			MemberDTO dto = new MemberDTO();
-			dto.setMid((String)(session.getAttribute("mid")));
-			dto.setMname(mname);
-			MemberDAO dao = new MemberDAO();
-			int result = dao.changeName(dto);
-			
-			if(result ==1) {
-				System.out.println("저기");
-				response.sendRedirect("./info");
-			} else {
-				System.out.println("거기");
-				response.sendRedirect("./error.jsp");
-			}
-			
-		} else {
-			System.out.println("요이");
-			response.sendRedirect("./error.jsp");
-			//로그인을 하지않았다면 에러 페이지로 넘어가게된다.
-		}
-	
-	
-	}
-		
-		
-	
+	    if (session.getAttribute("mid") != null) {
+	        System.out.println("요기");
+	        String mname = request.getParameter("newname2");
+	        MemberDTO dto = new MemberDTO();
+	        dto.setMid((String) (session.getAttribute("mid")));
+	        dto.setMname(mname);
+	        MemberDAO dao = new MemberDAO();
+	        int result = dao.changeName(dto);
 
+	        if (result == 1) {
+	          System.out.println("저기");
+	          session.removeAttribute("mname");
+	          session.setAttribute("mname", mname);
+	          response.sendRedirect("./info");
+	        } else {
+	          System.out.println("거기");
+	          response.sendRedirect("./error.jsp");
+	        }
+	      } else {
+	        System.out.println("요이");
+	        response.sendRedirect("./error.jsp");
+	        // 로그인을 하지않았다면 에러 페이지로 넘어가게된다.
+	      }
+	    }
 }
