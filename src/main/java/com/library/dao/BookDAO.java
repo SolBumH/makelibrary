@@ -227,7 +227,7 @@ public class BookDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				BookDTO e = new BookDTO();
-				e.setTitle(rs.getString("btitle"));
+				e.setBtitle(rs.getString("btitle"));
 				e.setMno(rs.getInt("mno"));
 				e.setMid(rs.getString("mid"));
 				e.setRtdate(rs.getString("rtdate"));
@@ -241,34 +241,6 @@ public class BookDAO extends AbstractDAO {
 		}
 		return list;
 	}
-
-//  public List<BookDTO> bookList() {
-//    List<BookDTO> list = new ArrayList<BookDTO>();
-//    Connection con = db.getConnection();
-//    PreparedStatement pstmt = null;
-//    ResultSet rs = null;
-//    String sql = "SELECT bno, bname, bpub, bwrite, brent FROM book " + "LIMIT 0, 10";
-//
-//    try {
-//      pstmt = con.prepareStatement(sql);
-//      rs = pstmt.executeQuery();
-//
-//      while (rs.next()) {
-//        BookDTO e = new BookDTO();
-//        e.setBno(rs.getInt("bno"));
-//        e.setBname(rs.getString("bname"));
-//        e.setBwrite(rs.getString("bwrite"));
-//        e.setBpub(rs.getString("bpub"));
-//        e.setBrent(rs.getString("brent"));
-//        list.add(e);
-//      }
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    } finally {
-//      close(rs, pstmt, con);
-//    }
-//    return list;
-//  }
 
 	public int addCart(String isbn, String mid) {
 		Connection conn = db.getConnection();

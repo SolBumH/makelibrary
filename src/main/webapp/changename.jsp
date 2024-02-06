@@ -53,7 +53,8 @@ function check() {
 			<h2>닉네임을 변경해주세요.</h2>
 			<input type="text" name="newname" id="newname" placeholder="현재 닉네임을 입력하세요"><br>
 			<!-- name은 서블릿에서 쓰려고 받아오는거야 , 자바를 쓸때 name에 써 -->
-			<input type="text" name="newname2" id="newname2"  placeholder="새로운 닉네임을 입력하세요">
+			현재 닉네임 : ${sessionScope.mname }
+			<input type="text" name="newname2" id="newname2"  placeholder="새로운 닉네임을 입력하세요" />
 			<p class="mname-alert">닉네임은 4글자 이상이여야합니다.</p>
 			<button type="submit">변경하기</button>
 		</form>

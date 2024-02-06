@@ -123,13 +123,9 @@ public class MemberDAO extends AbstractDAO {
 			pstmt.setString(1, dto.getMpw());
 			pstmt.setString(2, dto.getMid());
 			result = pstmt.executeUpdate();   
-			
-			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return result;
 	}
 	
@@ -149,9 +145,6 @@ public class MemberDAO extends AbstractDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return result;
-	
-	
 	}
 }
