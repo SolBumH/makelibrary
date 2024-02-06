@@ -212,15 +212,16 @@ public class BookDAO extends AbstractDAO {
   }
 
   // 효진 추가
-  public List<BookDTO> bookRentList() {
+  public List<BookDTO> bookRentList(String mid) {
     List<BookDTO> list = new ArrayList<BookDTO>();
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT * FROM rentlist";
+    String sql = "SELECT * FROM rentlist where mno=(select mno from member where mid=?) and rtenum='1'";
 
     try {
       pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, mid);
       rs = pstmt.executeQuery();
 
       while (rs.next()) {

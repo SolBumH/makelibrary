@@ -51,4 +51,4 @@ public class Bookreview extends HttpServlet {
 }
 
 // 성공적인 응답 전송
-response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}
+//response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}
