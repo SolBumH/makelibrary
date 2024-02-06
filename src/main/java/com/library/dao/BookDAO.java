@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.library.dto.BookDTO;
-import com.library.dto.BookrentDTO;
-import com.library.dto.CartDTO;
 
 public class BookDAO extends AbstractDAO {
 
@@ -148,7 +146,6 @@ public class BookDAO extends AbstractDAO {
 //      System.out.println(jsonList.get(i));
 		}
 
-<<<<<<< HEAD
 		for (int i = 0; i < jsonList.size(); i++) {
 			BookDTO dto = new BookDTO();
 			dto.setBtitle(jsonList.get(i).get("title"));
@@ -347,3 +344,4 @@ public class BookDAO extends AbstractDAO {
 			close(null, pstmt, conn);
 		}
 	}
+}
