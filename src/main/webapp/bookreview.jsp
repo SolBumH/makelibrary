@@ -40,10 +40,6 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#reviews-box").html("");
-		showReview();
-	});
 	
 	function makeReview() {
 
@@ -65,7 +61,7 @@
 				'rauthor' : rauthor,
 				'rcontent' : rcontent }, //수신타입
 			success : function(response) {
-				//alert('작성했습니다.');
+				alert('작성했습니다.');
 				//window.location.reload();
 			},
 			error : function(error) {
@@ -73,21 +69,18 @@
 			}
 
 		});
+
+/* 	$("#commentcontent").keyup(function(){
+        let text = $(this).val();
+        if(text.length > 100){
+           alert("100자 넘었어요.");
+           $(this).val(  text.substr(0, 100)   );   
+        }
+        $("#comment-btn").text("글쓰기 " + text.length +  "/100");
+     });
+ */
 	}
 
-	function showReview() {
-		$.ajax({
-			url : "./bookreview",
-			type : "get",
-			dataType : 'text',
-			data : {},
-			success : function(response) {
-				$("#reviews-box").html(response);
-			},
-		
-		});
-
-	}
 </script>
 
 </head>
