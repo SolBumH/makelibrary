@@ -12,12 +12,14 @@
 
 </head>
 <body>
+<div>
  <%@ include file="menu.jsp"%>
+</div>
+  <article class="main">
 	<div class="container">
-		<div class="main">
 			<div class="mainStyle">
 				<img class="king" alt="login" src="./img/빅토리아.png">
-				<form action="./login" method="post">
+				<form action="./login" method="	post">
 				<div class="login">
 				<div class="id">
 					<input type="text" name="mid" placeholder="아이디를 입력하세요">
@@ -30,11 +32,10 @@
 				</form>
 				<a href="./join">회원가입</a>
 				</div>
-			</div>
 		</div>
 		<footer>
 	
 		</footer>
-	</div>
+		</article>
 </body>
 </html>

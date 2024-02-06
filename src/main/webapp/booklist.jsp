@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="./css/book.css" />
 <link rel="stylesheet"
   href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link href="./css/menu2.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>대출</title>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
@@ -30,16 +31,18 @@
 </script>
 </head>
 <body>
+	<div>
   <%@ include file="menu.jsp"%>
+	</div>
   <article class="main">
-    <h1>대출하기</h1>
+    
     <div class="search">
-      <input type="text" id="search" />
+      <input type="text" id="search-txt" placeholder="검색어를 입력하세요."/>
       <button id="searchBtn">
         <i class="xi-search"></i>
       </button>
       <div class="lookBookList">
-      	<i class="xi-cart-o" onclick="url('./cart')">담은 책 보기</i>
+      	
       </div>
     </div>
     <c:choose>
@@ -47,7 +50,7 @@
         <form action="./addCart" method="post">
           <table class="booktable">
             <thead>
-              <tr>
+              <tr id="title">
                 <th>선택</th>
                 <th>이미지</th>
                 <th>제목</th>
@@ -58,19 +61,20 @@
             <tbody>
               <c:forEach items="${bookList }" var="bookList">
                 <tr>
+                  
                   <td class="w1"><input type="checkbox" name="book"
                     value="${bookList.bisbn }" id="bookchk"></td>
                   <td class="w2"><img alt="${bookList.btitle }"
                     src="${bookList.bimage }" class="bookimg"
                     id="book${bookList.bisbn }"/></td>
                   <td class="w4 booklink"><a href="${bookList.blink }" target="_blank">${bookList.btitle }</a></td>
-                  <td class="w1">${bookList.bauthor }</td>
+                  <td class="w2">${bookList.bauthor }</td>
                   <td class="w2">${bookList.bpublisher }</td>
                 </tr>
               </c:forEach>
             </tbody>
           </table>
-          <button type="submit">담기</button>
+          <button class="add" type="submit">담기</button>
         </form>
         <div class="paging">
           <button class="pageBtn" onclick="paging(1)">‍🥔‍</button>
@@ -90,7 +94,7 @@
         </div>
       </c:when>
       <c:otherwise>
-        <h1>검색하세요</h1>
+        <h2>검색하세요</h2>
       </c:otherwise>
     </c:choose>
     <c:if test="${param.error ne null}">오류가 발생했습니다</c:if>

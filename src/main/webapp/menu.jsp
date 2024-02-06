@@ -6,11 +6,11 @@
 <nav class="menu-nav">
     <ul>
         <li onclick="url('./index')"><i class="xi-library"></i>Home</li>
-        <li onclick="url('./board')"><i class="xi-library-books-o"></i>Board</li>
-        <li onclick="url('./list')"><i class="xi-book"></i>Book List</li>
+        <li onclick="url('./bookreview')"><i class="xi-library-books-o"></i>Board</li>
+        <li onclick="url('./booklist')"><i class="xi-book"></i>Book List</li>
         <c:choose><c:when test="${sessionScope.mname eq null }">
         <li onclick="url('./login')"><i class="xi-garden"></i>Login</li></c:when><c:otherwise>
         <li onclick="url('./info')"><i class="xi-bookmark"></i>${sessionScope.mname }님</li>
-        <li onclick="url('./logout')"><i class="xi-emoticon-smiley-o">Logout</li></c:otherwise></c:choose>
+        <li onclick="url('./logout')"><i class="xi-emoticon-smiley-o"></i>Logout</li></c:otherwise></c:choose>
     </ul>
 </nav>
