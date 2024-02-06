@@ -45,13 +45,13 @@ $(function(){
 						<li class="nav-lists-item" onclick="url('./members?grade=5')">정상</li>
 						<li class="nav-lists-item" onclick="url('./members?grade=9')">관리자</li>
 					</ul>
+				</div>
+
+				<table>
 					<div class="search">
 						<input type="text" id="search">
 						<button id="searchBtn">검색</button>
 					</div>
-				</div>
-
-				<table>
 					<thead>
 						<tr>
 							<th>번호</th>
