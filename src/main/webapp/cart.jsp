@@ -35,7 +35,7 @@
 	<article class="main">
 		<h1>대출하기</h1>
 		<div class="search">
-			<input type="text" id="search-txt" placeholder="검색어를 입력하세요." />
+			<input type="text" id="search" placeholder="검색어를 입력하세요." />
 			<button id="searchBtn">
 				<i class="xi-search"></i>
 			</button>
