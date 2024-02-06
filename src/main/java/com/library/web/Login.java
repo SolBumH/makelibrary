@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 
     RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
     rd.forward(request, response);
-    System.out.println("로그인" + request.getRemoteAddr());
+    // System.out.println("로그인" + request.getRemoteAddr());
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +34,6 @@ public class Login extends HttpServlet {
       MemberDTO dto = new MemberDTO();
       dto.setMid(request.getParameter("mid"));
       dto.setMpw(request.getParameter("mpw"));
-
 
       MemberDAO dao = new MemberDAO();
       dto = dao.login(dto);
@@ -45,6 +44,7 @@ public class Login extends HttpServlet {
 
         session.setAttribute("mname", dto.getMname());
         session.setAttribute("mid", dto.getMid());
+        session.setAttribute("mgrade", dto.getMgrade());
 
         response.sendRedirect("./info");
       }

@@ -4,9 +4,3 @@
 function url(url){
 	location.href=url;
 }
-
-$(document).ready(function() {
-	$('submit').click(function(event){
-		
-	});
-});

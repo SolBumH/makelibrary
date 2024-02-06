@@ -1,7 +1,9 @@
-package com.library.web;
+package com.library.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,24 +12,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.dao.BookDAO;
-import com.library.dto.BookDTO;
+import com.library.dao.AdminDAO;
 
-@WebServlet("/book")
-public class Book extends HttpServlet {
+@WebServlet("/admin/rentlist")
+public class Rentlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public Book() {
+    public Rentlist() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookDAO dao = new BookDAO();
-		// List<BookDTO> list = dao.bookList();
-		// request.setAttribute("list", list);
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		AdminDAO dao = new AdminDAO();
+		list = dao.allRent();
 		
-		RequestDispatcher rs = request.getRequestDispatcher("book.jsp");
-		rs.forward(request, response);
+		request.setAttribute("list", list);
+		RequestDispatcher rd = request.getRequestDispatcher("/admin/rentlist.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

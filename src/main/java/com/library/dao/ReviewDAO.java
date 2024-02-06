@@ -19,7 +19,7 @@ public class ReviewDAO extends AbstractDAO {
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO reviews (mno, rno, rtitle, rauthor, rcontent, rdate) VALUES (?, ?, ?, ?,?, CURRENT_TIMESTAMP)";
+		String sql = "INSERT INTO reviews (mno, rno, rtitle, rauthor, rcontent, rdate) VALUES ((select mno from member where mid=?), ?, ?, ?,?, CURRENT_TIMESTAMP)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, dto.getMno());
