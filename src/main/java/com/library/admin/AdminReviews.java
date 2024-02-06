@@ -1,6 +1,7 @@
 package com.library.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.library.dao.ReviewDAO;
+import com.library.dao.AdminDAO;
 import com.library.dto.ReviewDTO;
 
 @WebServlet("/admin/reviews")
@@ -24,9 +25,12 @@ public class AdminReviews extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
     if (session.getAttribute("mgrade") != null && (int)session.getAttribute("mgrade") == 9) {
-      ReviewDAO dao = new ReviewDAO();
+      AdminDAO dao = new AdminDAO();
       ReviewDTO dto = new ReviewDTO();
-
+      
+      List<ReviewDTO> list = dao.reviewList();
+      request.setAttribute("list", list);
+      
       RequestDispatcher rd = request.getRequestDispatcher("adminReviews.jsp");
       rd.forward(request, response);
     } else {
