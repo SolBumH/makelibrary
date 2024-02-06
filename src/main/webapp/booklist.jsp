@@ -14,7 +14,7 @@
 <script type="text/javascript">
   $(function() {
     $("#searchBtn").click(function() {
-      let search = $('#search-txt').val();
+      let search = $('#search').val();
       // alert(encodeURIComponent(search));
       location.href = "./booklist?search=" + search;
     });
