@@ -1,6 +1,7 @@
 package com.library.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.connector.Response;
-
+import com.library.dao.BookDAO;
 import com.library.dao.MemberDAO;
+import com.library.dto.BookDTO;
 import com.library.dto.MemberDTO;
 
 @WebServlet("/info")
@@ -31,8 +32,12 @@ public class Info extends HttpServlet {
 			dto.setMid((String) session.getAttribute("mid"));;
 			
 			MemberDAO dao = new MemberDAO();
+			BookDAO bdao = new BookDAO();
 			dto = dao.info(dto);
 			request.setAttribute("info", dto);
+			
+			List<BookDTO> list = bdao.bookRentList(dto.getMid());
+			request.setAttribute("list", list);
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("info.jsp");
@@ -41,8 +46,6 @@ public class Info extends HttpServlet {
   
  //비밀번호 변경해서 로그인할때
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 		HttpSession session = request.getSession();
 		
 		if (session.getAttribute("mid") != null) {
