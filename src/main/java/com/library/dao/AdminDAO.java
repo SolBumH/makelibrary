@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.library.dto.MemberDTO;
 import com.library.dto.ReviewDTO;
+import com.library.util.Util;
 
 public class AdminDAO extends AbstractDAO {
 
@@ -51,7 +52,7 @@ public class AdminDAO extends AbstractDAO {
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT * FROM reviews";
+    String sql = "SELECT * FROM reviews order by rdate desc";
 
     try {
       pstmt = con.prepareStatement(sql);
@@ -65,6 +66,7 @@ public class AdminDAO extends AbstractDAO {
         e.setRauthor(rs.getString("rauthor"));
         e.setRcontent(rs.getString("rcontent"));
         e.setRdate(rs.getDate("rdate"));
+        e.setRdel(rs.getString("rdel"));
         list.add(e);
       }
     } catch (SQLException e) {
@@ -132,5 +134,23 @@ public class AdminDAO extends AbstractDAO {
       close(rs, pstmt, con);
     }
     return list;
+  }
+  
+  // 게시글 상태 변경
+  public void changeReviewDel(String rno, String del) {
+    Connection conn = db.getConnection();
+    PreparedStatement pstmt = null;
+    String sql = "update reviews set rdel=? where rno=?";
+    
+    try {
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, del);
+      pstmt.setInt(2, Util.str2Int(rno));
+      pstmt.execute();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(null, pstmt, conn);
+    }
   }
 }
