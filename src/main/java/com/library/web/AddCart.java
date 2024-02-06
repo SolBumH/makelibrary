@@ -23,8 +23,8 @@ public class AddCart extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    System.out.println(request.getParameterValues("book"));
-    System.out.println(request.getParameterValues("book").length);
+//    System.out.println(request.getParameterValues("book"));
+//    System.out.println(request.getParameterValues("book").length);
     HttpSession session = request.getSession();
     BookDTO dto = new BookDTO();
     BookDAO dao = new BookDAO(); 

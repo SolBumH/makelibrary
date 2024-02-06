@@ -65,31 +65,11 @@ public class BookList extends HttpServlet {
         dao.insertList(bookList.get(i));
       }
     }
-
     request.setAttribute("bookList", bookList);
-
     RequestDispatcher rd = request.getRequestDispatcher("booklist.jsp");
     rd.forward(request, response);
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    // System.out.println(request.getParameter("bookisbn"));
-    // 해당 메소드는 체크된 파라미터 값을 배열로 받음
-    // System.out.println(request.getParameterValues("book"));
-    DBConnection_solbum db = new DBConnection_solbum();
-    BookDAO dao = new BookDAO();
-    List<String> list = new ArrayList<String>();
-    for (String s : request.getParameterValues("book")) {
-      list.add(dao.api(db.dbConnDetail(s)));
-    }
-    // System.out.println(list);
-    List<BookDTO> bookList = new ArrayList<BookDTO>();
-    for (int i = 0; i < list.size(); i++) {
-      bookList.add(dao.bookDetailInfo(list.get(i)));
-    }
-    // System.out.println(bookList);
-    request.setAttribute("bookList", bookList);
-    RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
-    rd.forward(request, response);
   }
 }
