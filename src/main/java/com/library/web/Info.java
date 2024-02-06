@@ -67,7 +67,5 @@ public class Info extends HttpServlet {
 			response.sendRedirect("./error.jsp");
 			//로그인을 하지않았다면 에러 페이지로 넘어가게된다.
 		}
-		
-  
   }
 }
