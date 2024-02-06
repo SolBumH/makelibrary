@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.library.dao.AdminDAO;
+import com.library.dao.ReviewDAO;
 import com.library.dto.ReviewDTO;
 
 @WebServlet("/admin/reviews")
@@ -43,5 +44,9 @@ public class AdminReviews extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    AdminDAO dao = new AdminDAO();
+    dao.changeReviewDel(request.getParameter("rno"), request.getParameter("del"));
+   
+    response.sendRedirect("/admin/reviews");
   }
 }
