@@ -1,7 +1,7 @@
 package com.library.dto;
 
 public class MemberDTO {
-	private int mno, count;
+	private int mno, count, mgrade;
 	private String mid, mpw, mname, mdate;
 
 	public String getMid() {
@@ -51,5 +51,14 @@ public class MemberDTO {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+
+	public int getMgrade() {
+		return mgrade;
+	}
+
+	public void setMgrade(int mgrade) {
+		this.mgrade = mgrade;
+	}
+
 
 }
