@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.library.dto.MemberDTO;
 import com.library.dto.ReviewDTO;
@@ -75,4 +77,35 @@ public class AdminDAO extends AbstractDAO {
 		}
 		return list;
 	}
+
+
+	public List<Map<String, Object>> allRent() {
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT btitle, mid, rtenum, rtdate FROM rentlist "
+				+ "LIMIT 0, 10";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Map<String, Object> e = new HashMap<String, Object>();
+				e.put("btitle", rs.getString("btitle"));
+				e.put("mid", rs.getString("mid"));
+				e.put("rtenum", rs.getString("rtenum"));
+				e.put("rtdate", rs.getString("rtdate"));
+				list.add(e);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return list;
+	}
+
+
 }
