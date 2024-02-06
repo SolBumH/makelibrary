@@ -51,14 +51,11 @@ public class MemberDTO {
 	public void setMno(int mno) {
 		this.mno = mno;
 	}
+  public int getMgrade() {
+    return mgrade;
+  }
 
-	public int getMgrade() {
-		return mgrade;
-	}
-
-	public void setMgrade(int mgrade) {
-		this.mgrade = mgrade;
-	}
-
-
+  public void setMgrade(int mgrade) {
+    this.mgrade = mgrade;
+  }
 }
