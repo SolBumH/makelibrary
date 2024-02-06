@@ -13,9 +13,10 @@
 
 <script>
 $(function(){
-	$('select[name=grade]').on("chang", function(){
+	$('select[name=grade]').on("change", function(){
 		let val = $(this).val();//
 		let mno = $(this).closest("tr").children().first().text();
+		// alert(val + " : " + mno);
 		let form = $('<form></form>');
 		form.attr('method','post');
 		form.attr('action','./members');
@@ -69,6 +70,13 @@ $(function(){
 							<td class="d2">${row.mdate }</td>
 							<td class="d1">
 								<select name="grade">
+									<optgroup label="정지">
+										<option <c:if test="${row.mgrade eq 0 }"> selected="selected"</c:if> value="0">탈퇴</option>
+										<option <c:if test="${row.mgrade eq 1 }"> selected="selected"</c:if> value="1">강퇴</option>
+									</optgroup>
+									<optgroup label="관리요망">
+										<option <c:if test="${row.mgrade eq 3 }"> selected="selected"</c:if> value="3">관리요망</option>
+									</optgroup>
 									<optgroup label="정상회원">
 										<option <c:if test="${row.mgrade eq 5 }"> selected="selected"</c:if> value="5">정상회원</option>
 									</optgroup>
