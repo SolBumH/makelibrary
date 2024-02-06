@@ -25,7 +25,7 @@ public class Bookreview extends HttpServlet {
 
     // ReviewDAO를 사용하여 데이터베이스에서 리뷰 리스트를 가져옴
     ReviewDAO reviewDAO = new ReviewDAO();
-    List<ReviewDTO> reviews = reviewDAO.getReviews();
+    List<ReviewDTO> reviews = reviewDAO.showReviews();
 
     // 리뷰 리스트를 request 속성에 저장
     request.setAttribute("reviews", reviews);
@@ -51,4 +51,4 @@ public class Bookreview extends HttpServlet {
 }
 
 // 성공적인 응답 전송
-response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}
+//response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}

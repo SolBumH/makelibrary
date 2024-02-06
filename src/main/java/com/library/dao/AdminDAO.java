@@ -60,13 +60,14 @@ public class AdminDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				ReviewDTO e = new ReviewDTO();
-				e.setId(rs.getInt("id"));
-				e.setTitle(rs.getString("title"));
-				e.setAuthor(rs.getString("author"));
-				e.setReview_content(rs.getString("reviews_content"));
-				list.add(e);
+			while (rs.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setRno(rs.getInt("rno"));
+				review.setMno(rs.getInt("mno"));
+				review.setRtitle(rs.getString("rtitle"));
+				review.setRauthor(rs.getString("rauthor"));
+				review.setRcontent(rs.getString("rcontent"));
+				list.add(review);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -56,10 +56,10 @@ body {
 	<nav class="change">
 		<ul>
 			<li onclick="url('./info')">My Page</li>
-			<li onclick="url('./changename')">닉네임 변경</li>
+			<li onclick="url('./changename')">>닉네임 변경</li>
 			<li onclick="url('./changePw')">패스워드 변경</li>
 			<li onclick="url('./bookRentList')">대출조회/대출이력</li>
-			<li onclick="url('./bookreview')">나의 리뷰 작성</li>
+			<li onclick="url('./bookReviewList')">나의 리뷰 작성</li>
 		</ul>
 	</nav>
 

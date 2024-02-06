@@ -40,8 +40,8 @@ h4 {
   			<li onclick="window.location.href='./info'">> My Page</li>
 			<li onclick="window.location.href='./changename'">닉네임 변경</li>
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
-			<li onclick="window.location.href='./bookRentList')">대출조회/대출이력</li>
-			<li onclick="window.location.href='./bookreview')">나의 리뷰 작성</li>
+			<li onclick="url('./bookRentList')">대출조회/대출이력</li>
+			<li onclick="url('./bookReviewList')">나의 리뷰 작성</li>
       </ul>
    </nav>
    <div class="container">
@@ -69,6 +69,7 @@ h4 {
             <h4>list3</h4>
             <h4>list4</h4>
             <h4>list5</h4>
+             <button type="button" onclick="window.location.href='./bookRentList'">현재 대출중인 책 리스트 바로가기</button>
             <hr>
             <button type="button" onclick="window.location.href='./main'">HomePage</button>
          </div>

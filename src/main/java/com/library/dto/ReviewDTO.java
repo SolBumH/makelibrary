@@ -45,4 +45,8 @@ public class ReviewDTO {
 	public void setRdate(Date rdate) {
 		this.rdate = rdate;
 	}
+	public void setRdate(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -80,7 +80,7 @@ public class BookList extends HttpServlet {
     BookDAO dao = new BookDAO();
     List<String> list = new ArrayList<String>();
     for (String s : request.getParameterValues("book")) {
-      list.add(dao.api(db.dbConnDetail(s)));
+      //list.add(dao.api(db.dbConnDetail(s)));
     }
     // System.out.println(list);
     List<BookDTO> bookList = new ArrayList<BookDTO>();

@@ -1,7 +1,6 @@
 package com.library.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,6 +57,7 @@ public class ReviewDAO extends AbstractDAO {
 				review.setRtitle(rs.getString("rtitle"));
 				review.setRauthor(rs.getString("rauthor"));
 				review.setRcontent(rs.getString("rcontent"));
+				review.setRdate(rs.getDate("rdate"));
 				reviews.add(review);
 			}
 		} catch (SQLException e) {
@@ -68,4 +68,7 @@ public class ReviewDAO extends AbstractDAO {
 		return reviews;
 
 	}
+	
+
+	
 }
