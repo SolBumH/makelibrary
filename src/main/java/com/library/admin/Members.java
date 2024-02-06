@@ -39,6 +39,9 @@ public class Members extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
+		AdminDAO dao = new AdminDAO();
+		int result = dao.memberUpdate(Util.str2Int(request.getParameter("mgrade")), Util.str2Int(request.getParameter("mno")));
+			
 		if(request.getParameter("currentgrade") == null || request.getParameter("currentgrade").equals("")) {
 			response.sendRedirect("./members");
 		}else {

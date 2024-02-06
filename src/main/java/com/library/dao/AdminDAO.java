@@ -111,5 +111,24 @@ public class AdminDAO extends AbstractDAO {
 		return list;
 	}
 
-	
+	//레벨업
+	public int memberUpdate(int mgrade, int mno) {
+		
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE member SET mgrade=? WHERE mno=?";
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mgrade);
+			pstmt.setInt(2, mno);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(null, pstmt, con);
+		}
+		return result;
+	}
 }
