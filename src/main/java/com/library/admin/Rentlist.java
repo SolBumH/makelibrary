@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.library.dao.AdminDAO;
+import com.library.util.Util;
 
 @WebServlet("/admin/rentlist")
 public class Rentlist extends HttpServlet {
@@ -27,12 +28,24 @@ public class Rentlist extends HttpServlet {
 		AdminDAO dao = new AdminDAO();
 		list = dao.allRent();
 		
+		
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/rentlist.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println(request.getParameter("rtno"));
+//		System.out.println(request.getParameter("rtenum"));
+		AdminDAO dao = new AdminDAO();
+		int result = dao.rentUpdate(Util.str2Int(request.getParameter("rtno")), Util.str2Int(request.getParameter("enum")));
+		System.out.println(result);
+			
+		
+		
+		
+		
+		
 	}
 
 }
