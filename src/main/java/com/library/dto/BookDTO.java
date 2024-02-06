@@ -2,39 +2,40 @@ package com.library.dto;
 
 public class BookDTO {
   private String btitle, bauthor, bpublisher, bimage, blink, bisbn, rtdate, rtenum, mid;
+
   public String getRtdate() {
-	return rtdate;
-}
+    return rtdate;
+  }
 
-public void setRtdate(String rtdate) {
-	this.rtdate = rtdate;
-}
+  public void setRtdate(String rtdate) {
+    this.rtdate = rtdate;
+  }
 
-public String getRtenum() {
-	return rtenum;
-}
+  public String getRtenum() {
+    return rtenum;
+  }
 
-public void setRtenum(String rtenum) {
-	this.rtenum = rtenum;
-}
+  public void setRtenum(String rtenum) {
+    this.rtenum = rtenum;
+  }
 
-public String getMid() {
-	return mid;
-}
+  public String getMid() {
+    return mid;
+  }
 
-public void setMid(String mid) {
-	this.mid = mid;
-}
+  public void setMid(String mid) {
+    this.mid = mid;
+  }
 
-public int getMno() {
-	return mno;
-}
+  public int getMno() {
+    return mno;
+  }
 
-public void setMno(int mno) {
-	this.mno = mno;
-}
+  public void setMno(int mno) {
+    this.mno = mno;
+  }
 
-private int mno;
+  private int mno;
 
   public String getBtitle() {
     return btitle;

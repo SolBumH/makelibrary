@@ -65,9 +65,7 @@ public class BookList extends HttpServlet {
         dao.insertList(bookList.get(i));
       }
     }
-
     request.setAttribute("bookList", bookList);
-
     RequestDispatcher rd = request.getRequestDispatcher("booklist.jsp");
     rd.forward(request, response);
   }

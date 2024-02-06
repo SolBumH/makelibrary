@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <meta charset="UTF-8">
-<title>대출</title>
+<title>장바구니</title>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript">
