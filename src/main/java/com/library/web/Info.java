@@ -41,8 +41,6 @@ public class Info extends HttpServlet {
   
  //비밀번호 변경해서 로그인할때
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 		HttpSession session = request.getSession();
 		
 		if (session.getAttribute("mid") != null) {
@@ -67,7 +65,5 @@ public class Info extends HttpServlet {
 			response.sendRedirect("./error.jsp");
 			//로그인을 하지않았다면 에러 페이지로 넘어가게된다.
 		}
-		
-  
   }
 }

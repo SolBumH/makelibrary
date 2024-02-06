@@ -7,6 +7,7 @@ public class ReviewDTO {
 	private String rtitle, rauthor, rcontent;
 	private Date rdate;	
 	private int mno , rno;
+	
 	public String getRtitle() {
 		return rtitle;
 	}
