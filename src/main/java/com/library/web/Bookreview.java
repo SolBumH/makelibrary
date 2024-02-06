@@ -25,10 +25,10 @@ public class Bookreview extends HttpServlet {
 
     // ReviewDAO를 사용하여 데이터베이스에서 리뷰 리스트를 가져옴
     ReviewDAO reviewDAO = new ReviewDAO();
-    List<ReviewDTO> reviews = reviewDAO.getReviews();
+    List<ReviewDTO> allreviews = reviewDAO.showReviews();
 
     // 리뷰 리스트를 request 속성에 저장
-    request.setAttribute("reviews", reviews);
+    request.setAttribute("allreviews", allreviews);
 
     // JSP 페이지로 포워딩
     RequestDispatcher rd = request.getRequestDispatcher("bookreview.jsp");
@@ -47,6 +47,7 @@ public class Bookreview extends HttpServlet {
 
     ReviewDAO dao = new ReviewDAO();
     dao.makeReview(dto);
+    System.out.println("서블릿 오냐");
   }
 }
 
