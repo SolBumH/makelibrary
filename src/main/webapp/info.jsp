@@ -49,9 +49,10 @@ h4 {
          <div>
             <article>
                <!-- test -->
-               <h1>> MyPage</h1>
+               <h1> MyPage</h1>
                <h4>
-                  Name : ${info.mname } <br> ID : ${info.mid }님, HELLO😊
+                  Name : ${info.mname } <br><br>
+                  ID : ${info.mid }님, HELLO😊
                </h4>
                <button type="button" onclick="window.location.href='./changename'">닉네임
                   변경하기</button>
@@ -62,7 +63,7 @@ h4 {
          </div>
          <hr>
          <div class="list">
-            <h2>> 현재 대출중인 책 목록</h2>
+            <h2> 현재 대출중인 책 목록</h2>
             <h4>list1</h4>
             <h4>list2</h4>
             <h4>list3</h4>

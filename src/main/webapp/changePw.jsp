@@ -59,7 +59,6 @@ function check() {
 
 				<input type="text" name="pw1" placeholder="현재 비밀번호를 입력하세요"><br>
 				<input type="text" name="pw2" placeholder="새로운 비밀번호를 입력하세요"><br>
-				<!-- name은 서블릿에서 쓰려고 받아오는거야 , 자바를 쓸때 name에 써 -->
 				<input type="password" name="pw" placeholder="다시한번 새로운 비밀번호를 입력하세요">
 				<button type="submit">변경하기</button>
 
