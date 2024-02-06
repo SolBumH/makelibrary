@@ -54,7 +54,7 @@ public class AdminDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT reviews_id, reviews_title, reviews_author, reviews_reviews_content";
+		String sql = "SELECT rno, mno, rtitle, rauthor, rcontent, rdate";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
