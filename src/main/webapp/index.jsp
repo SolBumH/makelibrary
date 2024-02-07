@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
+
+
 <link href="./css/menu2.css" rel="stylesheet" />
 <link href="./css/login.css" rel="stylesheet" />
 <link rel="stylesheet"
@@ -23,6 +25,15 @@ body {
 	margin-top: 75px;
 	font-family: Oswald;
 }
+
+@font-face {
+	font-family: 'iceJaram-Rg';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
 </style>
 <body>
 	<div>
@@ -31,11 +42,15 @@ body {
 	<article class="main">
 		<div class="container">
 			<div class="mainStyle">
-				<img class="king" alt="login" src="./img/빅토리아.png" width="250" height="100"> <br>
-				<img class="love" alt="index" src="./img/도서관.png" width="700" height="500"> <br>
-				<h3>'도서관'은 영원히 지속되리라. 불을 밝히고, 고독하고, 무한하고, 부동적이고, 
-				<br>고귀한 책들로 무장하고, 쓸모없고, 부식하지 않고, 비밀스러운 모습으로 말이다.'
-				<br>- 바벨의 도서관 中</h3>
+				<div class='iceJaram-Rg'>
+					<img class="king" alt="login" src="./img/빅토리아.png" width="250"
+						height="100"> <br> <img class="love" alt="index"
+						src="./img/도서관.png" width="700" height="500"> <br>
+					<h3>
+						'도서관'은 영원히 지속되리라. 불을 밝히고, 고독하고, 무한하고, 부동적이고, <br>고귀한 책들로
+						무장하고, 쓸모없고, 부식하지 않고, 비밀스러운 모습으로 말이다.' <br>- 바벨의 도서관 中
+					</h3>
+				</div>
 			</div>
 		</div>
 	</article>
