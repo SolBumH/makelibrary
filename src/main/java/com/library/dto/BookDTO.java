@@ -1,7 +1,7 @@
 package com.library.dto;
 
 public class BookDTO {
-  private String btitle, bauthor, bpublisher, bimage, blink, bisbn, rtdate, rtenum, mid;
+  private String btitle, bauthor, bpublisher, bimage, blink, bisbn, rtdate, rtdateadd, rtenum, mid;
 
   public String getRtdate() {
     return rtdate;
@@ -83,5 +83,13 @@ public class BookDTO {
 
   public void setBisbn(String bisbn) {
     this.bisbn = bisbn;
+  }
+
+  public String getRtdateadd() {
+    return rtdateadd;
+  }
+
+  public void setRtdateadd(String rtdateadd) {
+    this.rtdateadd = rtdateadd;
   }
 }

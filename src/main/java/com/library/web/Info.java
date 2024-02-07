@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.library.dao.BookDAO;
 import com.library.dao.MemberDAO;
-import com.library.dto.BookDTO;
+import com.library.dto.BookrentDTO;
 import com.library.dto.MemberDTO;
 
 @WebServlet("/info")
@@ -36,12 +36,15 @@ public class Info extends HttpServlet {
 			dto = dao.info(dto);
 			request.setAttribute("info", dto);
 			
-			List<BookDTO> list = bdao.bookRentList(dto.getMid());
+			List<BookrentDTO> list = bdao.bookRentList(dto.getMid());
 			request.setAttribute("list", list);
+
+			RequestDispatcher rd = request.getRequestDispatcher("info.jsp");
+			rd.forward(request, response);
+		} else {
+		  response.sendRedirect("/login");
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("info.jsp");
-		rd.forward(request, response);
 	}
   
  //비밀번호 변경해서 로그인할때
