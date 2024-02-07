@@ -1,9 +1,11 @@
 @charset "UTF-8";
+
 .list {
-   font-family: Raleway;
+	font-family: Raleway;
 }
 
 .change {
+
   padding-top: 100px; /* 컨텐츠를 아래로 내림 */
    position: fixed;
    top: 0; /* 원하는 위치로 조정 */
@@ -14,23 +16,47 @@
    padding:0; /* 내부 여백 설정 */
    box-sizing: border-box; /* 내부 여백을 너비에 포함 */
    z-index: 999; /* 다른 요소 위로 표시 */
+
+
 }
 
 .change ul {
-   margin-top: 80px !important;
-   list-style-type: none;
-   padding-left: 20px; /* 내부 여백 제거 */
+	margin-top: 80px !important;
+	list-style-type: none;
+	padding-left: 20px;
+	/* 내부 여백 제거 */
 }
 
 .change ul li {
-   margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .change ul li:hover {
-    background-color: #D2D5B8;
-    width:150px;
+
+	background-color: #C9BA9B;
+	width: 150px;
+
 }
 
 .container {
-   margin-left: 190px; /* 왼쪽 메뉴 공간 확보 */
+	margin-left: 190px;
+	/* 왼쪽 메뉴 공간 확보 */
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.booktablebody>td {
+	text-align: center;
+	padding: 0 20px;
+	border-right: 1px solid #5e5e5e;
+}
+
+.booktablebody>tr {
+	height: 30px;
+}
+
+table>th {
+	border-bottom: 1px solid #5e5e5e;
 }
