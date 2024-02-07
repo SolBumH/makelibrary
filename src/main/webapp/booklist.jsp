@@ -47,8 +47,8 @@
 			<c:when test="${param.search ne null && param.search ne ''}">
 				<form action="./addCart" method="post">
 					<table class="booktable">
-						<thead>
-							<tr id="title">
+						<thead class="title">
+							<tr>
 								<th>선택</th>
 								<th>이미지</th>
 								<th>제목</th>
