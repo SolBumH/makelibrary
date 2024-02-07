@@ -17,48 +17,47 @@ import com.library.util.Util;
 
 @WebServlet("/admin/members")
 public class Members extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public Members() {
-		super();
-	}
+  public Members() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		AdminDAO dao = new AdminDAO();
-		List<MemberDTO> list = null;
-		if (request.getParameter("grade") == null || request.getParameter("grade").equals("")) {
-			list = dao.memberList();
-		} else {
-			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
-		}
-		request.setAttribute("list", list);
-		
-		HttpSession session = request.getSession();
-		//System.out.println(session.getAttribute("mgrade"));
-		
-		if((int)session.getAttribute("mgrade") != 9 || session.getAttribute("mgrade") == null)  {
-			response.sendRedirect("/index");
-		}else {
-			
-			RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
-			rd.forward(request, response);
-		}
-	}
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    AdminDAO dao = new AdminDAO();
+    List<MemberDTO> list = null;
+    int mgrade = 0;
+    if (session.getAttribute("mgrade") != null) {
+      mgrade = (int) session.getAttribute("mgrade");
+    }
+    if (request.getParameter("grade") == null || request.getParameter("grade").equals("")) {
+      list = dao.memberList();
+    } else {
+      list = dao.memberList(Util.str2Int(request.getParameter("grade")));
+    }
+    request.setAttribute("list", list);
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    // System.out.println(session.getAttribute("mgrade"));
 
-		AdminDAO dao = new AdminDAO();
-		int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")),
-				Util.str2Int(request.getParameter("mno")));
-		System.out.println(request.getParameter("grade") + request.getParameter("mno"));
+    if (mgrade == 0 || mgrade != 9) {
+      response.sendRedirect("/index");
+    } else {
+      RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
+      rd.forward(request, response);
+    }
+  }
 
-		if (request.getParameter("currentgrade") == null || request.getParameter("currentgrade").equals("")) {
-			response.sendRedirect("./members");
-		} else {
-			response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    AdminDAO dao = new AdminDAO();
+    int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")),
+        Util.str2Int(request.getParameter("mno")));
+    System.out.println(request.getParameter("grade") + request.getParameter("mno"));
 
-		}
-	}
+    if (request.getParameter("currentgrade") == null || request.getParameter("currentgrade").equals("")) {
+      response.sendRedirect("./members");
+    } else {
+      response.sendRedirect("./members?grade=" + request.getParameter("currentgrade"));
+    }
+  }
 }
