@@ -1,20 +1,20 @@
 
-
-
-
 package com.library.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.library.dto.BookrentDTO;
 import com.library.dto.MemberDTO;
 
 public class MemberDAO extends AbstractDAO {
 
-	//로그인
-  public MemberDTO login(MemberDTO dto) {
+	// 로그인
+	public MemberDTO login(MemberDTO dto) {
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
@@ -40,8 +40,8 @@ public class MemberDAO extends AbstractDAO {
 		return dto;
 	}
 
-  //회원가입
-  public int join(MemberDTO dto) {
+	// 회원가입
+	public int join(MemberDTO dto) {
 
 		int result = 0;
 		Connection con = db.getConnection();
@@ -54,8 +54,8 @@ public class MemberDAO extends AbstractDAO {
 			pstmt.setString(2, dto.getMpw());
 			pstmt.setString(3, dto.getMname());
 
-      result = pstmt.executeUpdate();
-      System.out.println(result);
+			result = pstmt.executeUpdate();
+			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -64,9 +64,9 @@ public class MemberDAO extends AbstractDAO {
 		return result;
 	}
 
-  //아이디검사
-  public int idCheck(MemberDTO dto) {
-    int result = 1;
+	// 아이디검사
+	public int idCheck(MemberDTO dto) {
+		int result = 1;
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
@@ -100,20 +100,20 @@ public class MemberDAO extends AbstractDAO {
 			pstmt.setString(1, dto.getMid());
 			rs = pstmt.executeQuery();
 
-      if (rs.next()) {
-        dto.setMno(rs.getInt("mno"));
-        dto.setMname(rs.getString("mname"));
-        dto.setMpw(rs.getString("mpw"));
-        dto.setMdate(rs.getString("mdate"));
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      close(rs, pstmt, con);
-    }
-    return dto;
-  }
-	
+			if (rs.next()) {
+				dto.setMno(rs.getInt("mno"));
+				dto.setMname(rs.getString("mname"));
+				dto.setMpw(rs.getString("mpw"));
+				dto.setMdate(rs.getString("mdate"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return dto;
+	}
+
 	// 비밀번호 변경-효진 추가
 	public int changePW(MemberDTO dto) {
 		int result = 0;
@@ -126,13 +126,13 @@ public class MemberDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getMpw());
 			pstmt.setString(2, dto.getMid());
-			result = pstmt.executeUpdate();   
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
 	// 닉네임 변경하기-효진 추가
 	public int changeName(MemberDTO dto) {
 		int result = 0;
@@ -150,5 +150,40 @@ public class MemberDAO extends AbstractDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public List<BookrentDTO> bookRentList(String mid) {
+		List<BookrentDTO> rentlist = new ArrayList<BookrentDTO>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM rentlist where mno=(select mno from mid=?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookrentDTO rentlists = new BookrentDTO();
+				rentlists.setRtno(rs.getInt("rtno"));
+				rentlists.setMno(rs.getInt("mno"));
+				//rentlists.setBisbn(rs.getString("bisbn"));
+				rentlists.setRtdate(rs.getString("rtdate"));
+				rentlists.setRtdateadd(rs.getString("rtdateadd"));
+				rentlists.setRtenum(rs.getString("rtenum"));
+				rentlists.setBtitle(rs.getString("btitle"));
+				rentlists.setMid(rs.getString("mid"));	
+				rentlist.add(rentlists);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+
+		}
+		return rentlist;
+
 	}
 }
