@@ -20,7 +20,7 @@ public class ReviewDAO extends AbstractDAO {
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO reviews (mno, rtitle, rcontent) VALUES ((select mno from member where mid=?), ?, ?)";
+		String sql = "INSERT INTO reviews (mno, rtitle, rcontent) VALUES ((select mno from member where mid=? ORDER BY rno DESC), ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getMid());

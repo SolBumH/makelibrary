@@ -21,10 +21,10 @@ body {
 	color: rgb(75, 52, 12);
 }
 
-.main {
+/* .main {
 	margin-top: 75px;
 	font-family: Oswald;
-}
+} */
 
 @font-face {
     font-family: 'SOGANGUNIVERSITYTTF';
@@ -35,6 +35,18 @@ body {
 
 *{
 font-family: 'SOGANGUNIVERSITYTTF';
+}
+
+.love { 
+	width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지하면서 화면에 가득 채우기 */
+    opacity: 0.7; /* 투명도 설정 */
+}
+
+.mainStyle {
+	text-align: center;
+	
 }
 
 
@@ -49,14 +61,14 @@ font-family: 'SOGANGUNIVERSITYTTF';
 			<div class="mainStyle">
 			<div class='iceJaram-Rg'>
 				
-					<img class="king" alt="login" src="./img/빅토리아.png" width="250"
-						height="100"> <br> <img class="love" alt="index"
-						src="./img/도서관.png" width="700" height="500"> <br>
-					<h3>
+					<!-- <img class="king" alt="login" src="./img/빅토리아.png" width="250"
+				 		height="100"> <br>  -->
+					<!-- <h3>
 						'도서관'은 영원히 지속되리라. 불을 밝히고, 고독하고, 무한하고, 부동적이고, <br>고귀한 책들로
 						무장하고, 쓸모없고, 부식하지 않고, 비밀스러운 모습으로 말이다.' <br>- 바벨의 도서관 中
-					</h3>
+					</h3> -->
 
+					<img class="love" alt="index" src="./img/도서관4.png"> <br>
 				</div>
 			</div>
 		</div>

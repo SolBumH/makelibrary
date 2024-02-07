@@ -61,7 +61,7 @@ $(document).ready(function() {
 			}, //수신타입
 			success : function(response) {
 				 alert('작성했습니다.');
-				// window.location.reload();
+				 window.location.href = "./bookreview";
 			},
 			error : function(error) {
 				alert('문제가 발생했습니다. : ' + error);
@@ -72,15 +72,14 @@ $(document).ready(function() {
 	function makeReview() {
 
 		
-
-		/* 		 	$("#commentcontent").keyup(function(){
+ 	$("#commentcontent").keyup(function(){
 		 let text = $(this).val();
 		 if(text.length > 100){
 		 alert("100자 넘었어요.");
 		 $(this).val(  text.substr(0, 100)   );   
 		 }
 		 $("#comment-btn").text("글쓰기 " + text.length +  "/100");
-		 }); */
+		 }); 
 
 	}
 });
@@ -146,9 +145,7 @@ $(document).ready(function() {
 								<td class="w1">${eu.rtitle }</td>
 								<td class="w2">${eu.rcontent }</td>
 								<td class="w3">${eu.mname }</td>
-
 							</tr>
-
 						</c:forEach>
 					</tbody>
 				</table>

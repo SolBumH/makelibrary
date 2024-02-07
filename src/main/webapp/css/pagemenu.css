@@ -10,7 +10,7 @@
    left: 0; /* 왼쪽에 배치 */
    width: 180px; /* 메뉴 너비 조정 */
    height: 100%; /* 화면 전체 높이로 설정 */
-   background-color: #D2D5B8;
+   background-color: #C9BA9B ;
    padding:0; /* 내부 여백 설정 */
    box-sizing: border-box; /* 내부 여백을 너비에 포함 */
    z-index: 999; /* 다른 요소 위로 표시 */
@@ -27,7 +27,7 @@
 }
 
 .change ul li:hover {
-    background-color: #C9BA9B;
+    background-color: #D2D5B8;
     width:150px;
 }
 
