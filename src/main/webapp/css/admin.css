@@ -9,11 +9,10 @@ body{
 article{
 	text-align: center;
 }
-h1,h2{
+h1{
 	display: block;
- 	height: 100px;
   	line-height: 100px;
-  	white-space: nowrap;
+  	/* white-space: nowrap; */
 	margin:0;
 	padding: 0;
 	height: 100px;
@@ -50,7 +49,7 @@ nav ul{
 	background-color: #D2D5B8;
 }
 .sb{
-	padding-top : 10%;
+	padding-top : 5px;
 	background-color: #D2D5B8;
 }
 nav ul > li{
@@ -70,7 +69,7 @@ nav > ul > li:hover{
 .nav-lists-item{
 	display: inline-block;
 	font-size: large;
-	float: none;
+	/* float: none */;
 	width: 15%;
 }
 table{

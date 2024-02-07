@@ -35,7 +35,7 @@ public class Members extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("mgrade"));
+		//System.out.println(session.getAttribute("mgrade"));
 		
 		if((int)session.getAttribute("mgrade") != 9) {
 			response.sendRedirect("/info");
