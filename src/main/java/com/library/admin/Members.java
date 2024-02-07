@@ -25,22 +25,27 @@ public class Members extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		AdminDAO dao = new AdminDAO();
 		List<MemberDTO> list = null;
+		int mgrade = 0;
+
+		if (session.getAttribute("mgrade") != null) {
+			mgrade = (int) session.getAttribute("mgrade");
+		}
 		if (request.getParameter("grade") == null || request.getParameter("grade").equals("")) {
 			list = dao.memberList();
 		} else {
 			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
 		}
 		request.setAttribute("list", list);
-		
-		HttpSession session = request.getSession();
-		//System.out.println(session.getAttribute("mgrade"));
-		
-		if((int)session.getAttribute("mgrade") != 9 || session.getAttribute("mgrade") == null)  {
+
+		// System.out.println(session.getAttribute("mgrade"));
+
+		if (mgrade == 0 || mgrade != 9) {
 			response.sendRedirect("/index");
-		}else {
-			
+		} else {
+
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
 			rd.forward(request, response);
 		}
