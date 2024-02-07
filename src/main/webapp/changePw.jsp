@@ -45,8 +45,8 @@ function check() {
 			<li onclick="window.location.href='./info'">> My Page</li>
 			<li onclick="window.location.href='./changename'">닉네임 변경</li>
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
-			<li onclick="window.location.href='./bookRentList')">대출조회/대출이력</li>
-			<li onclick="window.location.href='./bookreview')">나의 리뷰 작성</li>
+			<li onclick="window.location.href='./bookRentList'">대출조회/대출이력</li>
+			<li onclick="window.location.href='./bookreview'">나의 리뷰 작성</li>
 			<c:if test="${sessionScope.mgrade eq 9 }"><li onclick="url('./admin/index')">관리자 페이지</li></c:if>
 		</ul>
 	</nav>
@@ -58,8 +58,8 @@ function check() {
 		<div>
 			<form action="./changePw" method="post">
 
-				<input type="text" name="pw1" placeholder="현재 비밀번호를 입력하세요"><br>
-				<input type="text" name="pw2" placeholder="새로운 비밀번호를 입력하세요"><br>
+				<!-- <input type="text" name="pw1" placeholder="현재 비밀번호를 입력하세요"><br> -->
+				<input type="password" name="pw2" placeholder="새로운 비밀번호를 입력하세요"><br>
 				<input type="password" name="pw" placeholder="다시한번 새로운 비밀번호를 입력하세요">
 				<button type="submit">변경하기</button>
 
