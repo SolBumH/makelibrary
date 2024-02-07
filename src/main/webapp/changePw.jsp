@@ -58,8 +58,8 @@ function check() {
 		<div>
 			<form action="./changePw" method="post">
 
-				<input type="text" name="pw1" placeholder="현재 비밀번호를 입력하세요"><br>
-				<input type="text" name="pw2" placeholder="새로운 비밀번호를 입력하세요"><br>
+				<!-- <input type="text" name="pw1" placeholder="현재 비밀번호를 입력하세요"><br> -->
+				<input type="password" name="pw2" placeholder="새로운 비밀번호를 입력하세요"><br>
 				<input type="password" name="pw" placeholder="다시한번 새로운 비밀번호를 입력하세요">
 				<button type="submit">변경하기</button>
 
