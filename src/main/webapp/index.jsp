@@ -15,6 +15,7 @@
 
 <style>
 body {
+	margin:0px;
 	background-color: #E8E7D2;
 	color: rgb(75, 52, 12);
 }
@@ -25,9 +26,7 @@ body {
 }
 </style>
 <body>
-	<div>
-		<%@ include file="menu.jsp"%>
-	</div>
+	<%@ include file="menu.jsp"%>
 	<article class="main">
 		<div class="container">
 			<div class="mainStyle">

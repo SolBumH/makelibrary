@@ -15,6 +15,7 @@
 	rel="stylesheet">
 <style>
 body {
+	margin: 0px;
 	background-color: #E8E7D2;
 	color: rgb(75, 52, 12);
 }
