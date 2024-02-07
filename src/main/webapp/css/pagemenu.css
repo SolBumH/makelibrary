@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .change {
-  padding-top: 100px; /* 컨텐츠를 아래로 내림 */
+   padding-top: 100px; /* 컨텐츠를 아래로 내림 */
    position: fixed;
    top: 0; /* 원하는 위치로 조정 */
    left: 0; /* 왼쪽에 배치 */

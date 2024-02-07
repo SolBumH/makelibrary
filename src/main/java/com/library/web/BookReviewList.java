@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.library.dao.ReviewDAO;
 import com.library.dto.ReviewDTO;
@@ -23,16 +24,25 @@ public class BookReviewList extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-    	// 수정하기-효진
-    	
+ 
+	      HttpSession session = request.getSession();
+	      String mid = (String)(session.getAttribute("mid"));
+	      // session에서 mid 값을 받아오기
 	      
-	      ReviewDAO dao = new ReviewDAO();
-	      List<ReviewDTO> list = dao.showReviews();
+	      if(session.getAttribute("mid") != null && !session.getAttribute("mid").equals("")) {
+	    	  ReviewDAO dao = new ReviewDAO();
+	    	  List<ReviewDTO> list = dao.myReviews(mid);
+	    	  
+	    	  request.setAttribute("list", list); // "list"라는 변수명으로 보낸다
+	    	  
+	    	  RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp"); //board.jsp페이지로
+	    	  rd.forward(request, response);
+	    	  
+	      } else {
+	    	  
+	    	  response.sendRedirect("/login");
+	      }
 	      
-	      request.setAttribute("list", list); // "list"라는 변수명으로 보낸다
-	      
-	      RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp"); //board.jsp페이지로
-	      rd.forward(request, response);
 	   }
     	
 

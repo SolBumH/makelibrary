@@ -44,7 +44,7 @@ public class ReviewDAO extends AbstractDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT mno, rno, rtitle, rauthor, rcontent, rdate FROM reviews";
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews";
 		System.out.println("dao오냐");
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -55,7 +55,6 @@ public class ReviewDAO extends AbstractDAO {
 				review.setRno(rs.getInt("rno"));
 				review.setMno(rs.getInt("mno"));
 				review.setRtitle(rs.getString("rtitle"));
-				review.setRauthor(rs.getString("rauthor"));
 				review.setRcontent(rs.getString("rcontent"));
 				review.setRdate(rs.getDate("rdate"));
 				reviews.add(review);
@@ -70,5 +69,35 @@ public class ReviewDAO extends AbstractDAO {
 	}
 	
 
+	public List<ReviewDTO> myReviews(String mid) {
+		List<ReviewDTO> reviews = new ArrayList<>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?)";
+		System.out.println("dao오냐");
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setRno(rs.getInt("rno"));
+				review.setMno(rs.getInt("mno"));
+				review.setRtitle(rs.getString("rtitle"));
+				review.setRcontent(rs.getString("rcontent"));
+				review.setRdate(rs.getDate("rdate"));
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return reviews;
+
+	}
 	
 }
