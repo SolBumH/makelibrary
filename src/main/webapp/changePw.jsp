@@ -15,8 +15,11 @@ body {
 	color: rgb(75, 52, 12); /* 글자색 설정 */
 }
 </style>
+
+	
 <script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript">
+
 function check() {
 	let pw1 = $("#pw1").val();
 	let pw2 = $("#pw2").val();

@@ -23,7 +23,7 @@ public class Info extends HttpServlet {
   public Info() {
     super();
   }
-
+  // 로그인을 해야 info 페이지 이동, 로그인x login 페이지 이동
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("mid") != null) {
@@ -38,10 +38,14 @@ public class Info extends HttpServlet {
 			
 			List<BookDTO> list = bdao.bookRentList(dto.getMid());
 			request.setAttribute("list", list);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("info.jsp");// 파일 있는 경로
+			rd.forward(request, response);
+		} else {
+			response.sendRedirect("/login");
+			
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("info.jsp");
-		rd.forward(request, response);
 	}
   
  //비밀번호 변경해서 로그인할때

@@ -10,6 +10,12 @@
 <link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 구글폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Diphylleia&family=East+Sea+Dokdo&family=Gowun+Batang&family=Orbit&family=Stylish&display=swap"
+	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
 	rel="stylesheet">
@@ -20,16 +26,24 @@ body {
 	color: rgb(75, 52, 12);
 }
 
+
+h1 {
+	font-family: 'Stylish', serif; /* 폰트 적용 */
+	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
+}
+
+h4 {
+	font-family: 'Stylish', serif; /* 폰트 적용 */
+	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
+}
+
 .main {
 	margin-top: 75px;
 	font-family: Oswald;
 }
 
-h1 {
-	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
-}
-
-h4 {
+.list {
+  	font-family: 'Stylish', serif; /* 폰트 적용 */
 	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
 }
 </style>
@@ -52,10 +66,10 @@ h4 {
 			<div>
 				<article>
 					<!-- test -->
-					<h1>MyPage</h1>
+					<h1>- MyPage</h1>
 					<h4>
 						Name : ${info.mname } <br>
-						<br> ID : ${info.mid }님, HELLO😊
+						<br> ID : ${info.mid }님,&nbsp;HELLO😊
 					</h4>
 					<button type="button" onclick="window.location.href='./changename'">닉네임
 						변경하기</button>
@@ -66,7 +80,7 @@ h4 {
 			</div>
 			<hr>
 			<div class="list">
-				<h2>현재 대출중인 책 목록</h2>
+				<h2>- 현재 대출중인 책 목록</h2>
 				<c:forEach items="${list }" var="list">
 					<h4>${list.btitle }/ ${list.rtdate }</h4>
 				</c:forEach>
