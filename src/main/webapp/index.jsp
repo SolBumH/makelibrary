@@ -27,11 +27,17 @@ body {
 }
 
 @font-face {
-    font-family: 'iceJaram-Rg';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2') format('woff2');
+    font-family: 'SOGANGUNIVERSITYTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SOGANGUNIVERSITYTTF.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+
+*{
+font-family: 'SOGANGUNIVERSITYTTF';
+}
+
+
 
 </style>
 <body>

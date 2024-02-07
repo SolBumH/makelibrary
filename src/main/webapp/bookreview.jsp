@@ -40,6 +40,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Diphylleia&family=East+Sea+Dokdo&family=Gowun+Batang&family=Orbit&family=Stylish&display=swap"
 	rel="stylesheet">
+	
+   
 
 
 <script type="text/javascript">
@@ -58,7 +60,7 @@ $(document).ready(function() {
 				'rcontent' : rcontent,
 			}, //수신타입
 			success : function(response) {
-				// alert('작성했습니다.');
+				 alert('작성했습니다.');
 				// window.location.reload();
 			},
 			error : function(error) {
@@ -94,8 +96,9 @@ $(document).ready(function() {
 				
 				<br> 
 				<br>
-				<h1>이곳은 리뷰 공간입니다.</h1>				
-				<p>"남의 책을 읽는데 시간을 보내라. 남이 고생한 것에 의해 쉽게 자신을 개선할 수 있다. -소크라테스-</p>
+				<h1>이곳은 리뷰 공간입니다.</h1>
+				<p>"남의 책을 읽는데 시간을 보내라. 남이 고생한 것에 의해 쉽게 자신을 개선할 수 있다." -소크라테스-</p>
+				<br>				
 
 				<div class="input-group mb-3" id="rtitleInputGroup">
 					<div class="input-group-prepend">
