@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,17 @@ body {
 	color: rgb(75, 52, 12);
 }
 
-.rentlist1 {
+h1 {
 	margin-top: 80px;
 	margin-left: 200px;
+	padding: 0;
+	text-align: center;
+}
+
+.rentlist1 {
+margin-left: 180px;
+	width: 400px;
+	height: 100px;
 }
 </style>
 </head>
@@ -28,25 +37,26 @@ body {
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
 			<li onclick="window.location.href='./bookRentList'">대출조회/대출이력</li>
 			<li onclick="window.location.href='./bookreview'">나의 리뷰 작성</li>
-			<c:if test="${sessionScope.mgrade eq 9 }"><li onclick="url('./admin/index')">관리자 페이지</li></c:if>
+			<c:if test="${sessionScope.mgrade eq 9 }">
+				<li onclick="url('./admin/index')">관리자 페이지</li>
+			</c:if>
 		</ul>
 	</nav>
-	<nav class="rentlist1"> 
-		<h1>>대출 조회 리스트</h1>
+	<h1>>대출 조회 리스트</h1>
+	<nav class="rentlist1">
 		<table>
 			<tr>
 				<th>도서 제목</th>
-				<th>대출자</th>
 				<th>대출일</th>
 				<th>반납 예정일</th>
 			</tr>
-			<c:forEach items="${list }" var="row">
-			<tr>
-							<td class="w1" >${row.btitle }</td>
-							<td class="w2">${row.mno }</td>
-							<td class="w1">${row.mid }</td>
-							<td class="w1">${row.rtdate }</td>
-							</tr></c:forEach>
+			<c:forEach items="${bookrentlist }" var="row">
+				<tr>
+					<td class="w1">${row.btitle }</td>
+					<td class="w1">${row.rtdate }</td>
+					<td class="w1">${row.rtdateadd }</td>
+				</tr>
+			</c:forEach>
 			</nav>
 		</table>
 </body>
