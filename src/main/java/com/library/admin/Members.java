@@ -37,8 +37,8 @@ public class Members extends HttpServlet {
 		HttpSession session = request.getSession();
 		//System.out.println(session.getAttribute("mgrade"));
 		
-		if((int)session.getAttribute("mgrade") != 9) {
-			response.sendRedirect("/info");
+		if((int)session.getAttribute("mgrade") != 9 || session.getAttribute("mgrade") == null)  {
+			response.sendRedirect("/index");
 		}else {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");

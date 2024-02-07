@@ -46,6 +46,8 @@ public class Login extends HttpServlet {
         session.setAttribute("mgrade", dto.getMgrade());
 
         response.sendRedirect("./info");
+      }else {
+    	  response.sendRedirect("./login");
       }
     }
     

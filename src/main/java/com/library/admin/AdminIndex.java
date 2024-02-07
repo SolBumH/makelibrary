@@ -21,7 +21,7 @@ public class AdminIndex extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("mgrade"));
+		//sSystem.out.println(session.getAttribute("mgrade"));
 		// System.out.println(grade);
 
 		if ((int)session.getAttribute("mgrade") != 9) {
