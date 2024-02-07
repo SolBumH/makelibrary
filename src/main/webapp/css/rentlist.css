@@ -9,13 +9,16 @@ body{
 	background-size: cover;
 }
 .r1{
-	width: 2%;
+	width: 1%;
 }
 .r2{
-	width: 30%;
+	width: 22%;
 }
 .r3{
-	width: 5%;
+	width: 4%;
+}
+.r4{
+	width: 2%;
 }
 .ti{
 	height: 40px;
@@ -33,4 +36,8 @@ body{
 }
 .id{
 	text-align: center;
+}
+.le{
+	float: left;
+	height: 1000px;
 }

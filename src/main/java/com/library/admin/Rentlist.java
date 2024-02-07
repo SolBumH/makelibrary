@@ -28,9 +28,17 @@ public class Rentlist extends HttpServlet {
 			throws ServletException, IOException {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		AdminDAO dao = new AdminDAO();
-		list = dao.allRent();
-
+		
+		//반납 0 대출1 화면만 보이게하기
+		if (request.getParameter("rtenum") == null || request.getParameter("rtenum").equals("")) {
+			list = dao.allRent();
+		} else {
+			list = dao.allRent(request.getParameter("rtenum"));			
+		}
 		request.setAttribute("list", list);
+		
+		//System.out.println(request.getParameter("rtenum"));
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/rentlist.jsp");
 		rd.forward(request, response);
 	}
