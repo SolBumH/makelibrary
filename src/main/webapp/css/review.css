@@ -7,18 +7,6 @@
 	font-size: large;
 }
 
-
-
-h1,
-h5 {
-	display: inline;
-}
-
-.info {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
 .review {
 	text-align: center;
 }
@@ -27,52 +15,60 @@ h5 {
 	margin-top: 100px;
 }
 
+.container { 
+	width: 800px;
+}
+body{
+	background-color: #E8E7D2;
+	margin-top: 10px;
+	
+}
+
 th {
 	color: #4D5057;
 	background-color: #C9BA9B;
+	}
+	
+td{
+	border-bottom: 1px solid #C9BA9B;
+	
+	
+}	
+
+.w1 {
+	width: 20%;
 }
 
-td:nth-child(2) {
-	color: #4D5057;
-	background-color: #E8E7D2;
+.w2 {
+	width: 70%
 }
 
-td:nth-child(3) {
-	color: #4D5057;
-	background-color: #E8E7D2;
-
+.w3 {
+	width: 10%
 }
 
 /* 제목 입력 폼 스타일 변경 */
 #rtitleInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 노란색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 검은색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
 }
 
 /* 저자 입력 폼 스타일 변경 */
-#rauthorInputGroup .input-group-text {
+#mnameInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 파란색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 흰색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
 }
 
 /* 리뷰 입력 폼 스타일 변경 */
 #rcontentInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 분홍색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 흰색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
 }
-
 
 .Rbtn{
 	color: #4D5057;
-	background-color: #E8E7D2;	
-	
+	background-color: #C9BA9B;		
 }
