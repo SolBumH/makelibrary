@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.library.dao.AdminDAO;
 import com.library.dto.MemberDTO;
@@ -32,8 +33,17 @@ public class Members extends HttpServlet {
 			list = dao.memberList(Util.str2Int(request.getParameter("grade")));
 		}
 		request.setAttribute("list", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
-		rd.forward(request, response);
+		
+		HttpSession session = request.getSession();
+		//System.out.println(session.getAttribute("mgrade"));
+		
+		if((int)session.getAttribute("mgrade") != 9 || session.getAttribute("mgrade") == null)  {
+			response.sendRedirect("/index");
+		}else {
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/admin/members.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
