@@ -42,6 +42,7 @@ public class Members extends HttpServlet {
 		AdminDAO dao = new AdminDAO();
 		int result = dao.memberUpdate(Util.str2Int(request.getParameter("grade")),
 				Util.str2Int(request.getParameter("mno")));
+		System.out.println(request.getParameter("grade") + request.getParameter("mno"));
 
 		if (request.getParameter("currentgrade") == null || request.getParameter("currentgrade").equals("")) {
 			response.sendRedirect("./members");
