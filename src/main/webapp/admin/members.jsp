@@ -36,7 +36,7 @@ $(function(){
 		<%@ include file="menu.jsp"%>
 		<div class="main">
 			<article>
-				<h2>회원관리</h2>
+				<h2>회 원 관 리</h2>
 				<div class="nav-lists">
 					<ul class="nav-lists-group">
 						<li class="nav-lists-item" onclick="url('./members?grade=0')">탈퇴</li>
@@ -46,12 +46,9 @@ $(function(){
 						<li class="nav-lists-item" onclick="url('./members?grade=9')">관리자</li>
 					</ul>
 				</div>
+					
 
 				<table>
-					<div class="search">
-						<input type="text" id="search">
-						<button id="searchBtn">검색</button>
-					</div>
 					<thead>
 						<tr>
 							<th>번호</th>
@@ -89,6 +86,11 @@ $(function(){
 						</c:forEach>
 					</tbody>
 				</table>
+				
+				<div class="search">
+						<input type="text" id="search">
+						<button id="searchBtn">검색</button>
+					</div>
 			</article>
 		</div>
 	</div>
