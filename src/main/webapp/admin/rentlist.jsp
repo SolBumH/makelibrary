@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../css/rentlist.css" />
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<link href="./css/menu2.css" rel="stylesheet" />
+<script type="text/javascript" src="../js/meun.js"></script>
 <meta charset="UTF-8">
 <title>도서 대출 리스트</title>
 <script
@@ -46,19 +46,20 @@
 </head>
 <body>
 	<h1 class="id">대출이력 관리 시스템</h1>
-	<div class="le">
+	<div class="wrap">
+	<nav class="me">
 		<%@ include file="menu.jsp"%>
-	</div>
-	<article>
+	</nav>
+	<div class="main">
+	<article class="a">
 		<form>
-			<div>
-				<ul>
+				<ul class="ab">
+					<li onclick="url('./rentlist?rtenum=')">전체보기</li>
 					<li onclick="url('./rentlist?rtenum=0')"><i
 						class="xi-close-circle-o"></i> 반납</li>
 					<li onclick="url('./rentlist?rtenum=1')"><i
 						class="xi-minus-circle-o"></i> 대출</li>
 				</ul>
-			</div>
 			<table class="renttable">
 				<thead>
 					<tr class="ti">
@@ -90,5 +91,8 @@
 			</table>
 		</form>
 	</article>
+	</div>
+	</div>
+	
 </body>
 </html>
