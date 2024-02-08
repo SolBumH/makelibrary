@@ -140,7 +140,6 @@ $(document).ready(function() {
 
 					<tbody id="reviews-box">
 						<c:forEach items="${allreviews }" var="eu">
-
 							<tr>
 								<td class="w1">${eu.rtitle }</td>
 								<td class="w2">${eu.rcontent }</td>
