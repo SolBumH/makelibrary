@@ -87,25 +87,23 @@ public class ReviewDAO extends AbstractDAO {
 		}
 		return dto;
 	}
-
-	public int delete(BookDTO dto) {
+	// 리뷰 삭제하기
+	public int delete(ReviewDTO dto) {
 		int result = 0;
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE reviews SET rdel='0' WHERE mno=? AND mid=?";
+		String sql = "UPDATE reviews SET rdel='0' WHERE rno=? AND mno=(select mno from member where mid=?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getMno());
-			pstmt.setString(1, dto.getMid());
+			pstmt.setInt(1, dto.getRno());
+			pstmt.setString(2, dto.getMid());
 			result = pstmt.executeUpdate();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(null, pstmt, conn);
 		}
-
 		return result;
 	}
 
@@ -115,7 +113,7 @@ public class ReviewDAO extends AbstractDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?)";
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?) and rdel='1'";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mid);
