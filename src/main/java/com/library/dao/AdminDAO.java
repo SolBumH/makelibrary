@@ -191,7 +191,6 @@ public class AdminDAO extends AbstractDAO {
         e.setRno(rs.getInt("rno"));
         e.setMno(rs.getInt("mno"));
         e.setRtitle(rs.getString("rtitle"));
-        e.setRauthor(rs.getString("rauthor"));
         e.setRcontent(rs.getString("rcontent"));
         e.setRdate(rs.getDate("rdate"));
         e.setRdel(rs.getString("rdel"));

@@ -40,7 +40,7 @@ public class ReviewDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews";
+		String sql = "SELECT mname, rtitle, rcontent, rdate FROM reviewcomment";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -48,8 +48,7 @@ public class ReviewDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				ReviewDTO review = new ReviewDTO();
-				review.setRno(rs.getInt("rno"));
-				review.setMno(rs.getInt("mno"));
+				review.setMname(rs.getString("mname"));
 				review.setRtitle(rs.getString("rtitle"));
 				review.setRcontent(rs.getString("rcontent"));
 				review.setRdate(rs.getDate("rdate"));
