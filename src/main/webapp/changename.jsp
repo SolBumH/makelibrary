@@ -54,13 +54,14 @@ body {
 <body>
 	<%@ include file="menu.jsp"%>
 	<nav class="change">
-		<ul>
 			<li onclick="window.location.href='./info'">> My Page</li>
 			<li onclick="window.location.href='./changename'">닉네임 변경</li>
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
-			<li onclick="window.location.href='./bookRentList')">대출조회/대출이력</li>
-			<li onclick="window.location.href='./bookreview')">나의 리뷰 작성</li>
-			<c:if test="${sessionScope.mgrade eq 9 }"><li onclick="url('./admin/index')">관리자 페이지</li></c:if>
+			<li onclick="window.location.href='./bookRentList'">대출조회/대출이력</li>
+			<li onclick="window.location.href='./bookreview'">나의 리뷰 작성</li>
+			<c:if test="${sessionScope.mgrade eq 9 }">
+				<li onclick="url('./admin/index')">관리자 페이지</li>
+			</c:if>
 		</ul>
 	</nav>
 
@@ -69,10 +70,11 @@ body {
 		<form action="./changename" method="post">
 			<img class="king2" alt="login" src="./img/빅토리아.png">
 			<h2>닉네임을 변경해주세요.</h2>
-			<input type="text" name="newname" id="newname"
-				placeholder="현재 닉네임을 입력하세요"><br> 현재 닉네임 :
-			${sessionScope.mname } <input type="text" name="newname2"
-				id="newname2" placeholder="새로운 닉네임을 입력하세요">
+			<!-- <input type="text" name="newname" id="newname"
+				placeholder="현재 닉네임을 입력하세요"><br> -->
+			<h3>현재 닉네임 : ${sessionScope.mname }</h3>
+			<input type="text" name="newname2" id="newname2"
+				placeholder="새로운 닉네임을 입력하세요">
 			<div id="pname"></div>
 			<button type="submit">변경하기</button>
 		</form>
