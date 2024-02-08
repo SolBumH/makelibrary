@@ -157,7 +157,7 @@ public class MemberDAO extends AbstractDAO {
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT * FROM rentlist where mno=(select mno from mid=?)";
+    String sql = "SELECT * FROM rentlist where mno=(select mno from member where mid=?)";
 
     try {
       pstmt = con.prepareStatement(sql);
@@ -169,8 +169,8 @@ public class MemberDAO extends AbstractDAO {
         rentlists.setRtno(rs.getInt("rtno"));
         rentlists.setMno(rs.getInt("mno"));
         // rentlists.setBisbn(rs.getString("bisbn"));
-        rentlists.setRtdate(rs.getString("rtdate"));
-        rentlists.setRtdateadd(rs.getString("rtdateadd"));
+        rentlists.setRtdate(rs.getString("rtdate").substring(0, 11));
+        rentlists.setRtdateadd(rs.getString("rtdateadd").substring(0, 11));
         rentlists.setRtenum(rs.getString("rtenum"));
         rentlists.setBtitle(rs.getString("btitle"));
         rentlist.add(rentlists);
