@@ -19,6 +19,27 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
 	rel="stylesheet">
+
+<script>
+    function deleteReview(rno) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            $.ajax({
+                url: 'Delete',
+                type: 'GET',
+                data: { mno: mno , mid: mid },
+                success: function(response) {
+                    // 삭제가 성공했을 때 실행할 코드
+                    location.reload(); // 페이지 새로고침
+                },
+                error: function(xhr, status, error) {
+                    // 삭제가 실패했을 때 실행할 코드
+                    alert("삭제에 실패했습니다.");
+                }
+            });
+        }
+    }
+</script>
+	
 <style>
 body {
 	background-color: #E8E7D2;
@@ -106,7 +127,7 @@ button:hover {
 					<td class="w1">${row.rno }</td>
 					<td class="w2">${row.rtitle }</td>
 					<td class="w1">${row.rcontent }</td>
-					<td class="w1">${row.rdate}&ensp;&ensp;&ensp;<button type="button">삭제</button></td>
+					<td class="w1">${row.rdate}&ensp;&ensp;&ensp;<button type="button" onclick="deleteReview(${row.rno})">삭제</button></td>
 				</tr>
 			</c:forEach>
 		</table>
