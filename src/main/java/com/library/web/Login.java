@@ -47,6 +47,9 @@ public class Login extends HttpServlet {
         session.setAttribute("mgrade", dto.getMgrade());
 
         response.sendRedirect("./info");
+      } else {
+        RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+        rd.forward(request, response);
       }
     }
   }
