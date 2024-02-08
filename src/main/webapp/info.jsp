@@ -100,7 +100,7 @@ button:hover {
 			<hr>
 			<div class="list">
 				<h2>현재 대출중인 책 목록</h2>
-				<table>
+				<table boder="1">
 					<thead>
 						<tr>
 							<th></th>
