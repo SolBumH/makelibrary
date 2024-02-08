@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.library.dto.BookDTO;
-import com.library.dto.BookrentDTO;
 
 public class BookDAO extends AbstractDAO {
 
@@ -212,8 +211,8 @@ public class BookDAO extends AbstractDAO {
   }
 
   // 효진 추가
-  public List<BookrentDTO> bookRentList(String mid) {
-    List<BookrentDTO> list = new ArrayList<BookrentDTO>();
+  public List<BookDTO> bookRentList(String mid) {
+    List<BookDTO> list = new ArrayList<BookDTO>();
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -225,13 +224,11 @@ public class BookDAO extends AbstractDAO {
       rs = pstmt.executeQuery();
 
       while (rs.next()) {
-        BookrentDTO e = new BookrentDTO();
-        e.setRtno(rs.getInt("rtno"));
+        BookDTO e = new BookDTO();
         e.setBtitle(rs.getString("btitle"));
         e.setMno(rs.getInt("mno"));
         e.setMid(rs.getString("mid"));
-        e.setRtdate(rs.getString("rtdate").substring(0, 11));
-        e.setRtdateadd(rs.getString("rtdateadd").substring(0, 11));
+        e.setRtdate(rs.getString("rtdate"));
         e.setRtenum(rs.getString("rtenum"));
         list.add(e);
       }
@@ -347,12 +344,12 @@ public class BookDAO extends AbstractDAO {
       close(null, pstmt, conn);
     }
   }
-  
+
   public void bookReturn(int rtno, String mid) {
     Connection conn = db.getConnection();
     PreparedStatement pstmt = null;
     String sql = "Update bookrent set rtenum='0' where rtno=? and mno=(select mno from member where mid=?)";
-    
+
     try {
       pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, rtno);

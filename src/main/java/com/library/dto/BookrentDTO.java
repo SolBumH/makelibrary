@@ -2,31 +2,7 @@ package com.library.dto;
 
 public class BookrentDTO {
   private int rtno, mno;
-  private String bisbn, rtdate, rtdateadd, rtenum, btitle, mid;
-
-  public String getRtdateadd() {
-    return rtdateadd;
-  }
-
-  public void setRtdateadd(String rtdateadd) {
-    this.rtdateadd = rtdateadd;
-  }
-
-  public String getBtitle() {
-    return btitle;
-  }
-
-  public void setBtitle(String btitle) {
-    this.btitle = btitle;
-  }
-
-  public String getMid() {
-    return mid;
-  }
-
-  public void setMid(String mid) {
-    this.mid = mid;
-  }
+  private String bisbn, rtdate, rtenum, rtdateadd, btitle;
 
   public int getRtno() {
     return rtno;
@@ -66,6 +42,22 @@ public class BookrentDTO {
 
   public void setRtenum(String rtenum) {
     this.rtenum = rtenum;
+  }
+
+  public String getRtdateadd() {
+    return rtdateadd;
+  }
+
+  public void setRtdateadd(String rtdateadd) {
+    this.rtdateadd = rtdateadd;
+  }
+
+  public String getBtitle() {
+    return btitle;
+  }
+
+  public void setBtitle(String btitle) {
+    this.btitle = btitle;
   }
 
 }
