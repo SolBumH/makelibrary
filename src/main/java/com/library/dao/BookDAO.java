@@ -346,6 +346,7 @@ public class BookDAO extends AbstractDAO {
 			close(null, pstmt, conn);
 		}
 	}
+
 // 효진 추가
 	public int delete(BookDTO dto) {
 		int result = 0;
@@ -366,5 +367,22 @@ public class BookDAO extends AbstractDAO {
 		}
 
 		return result;
+	}
+
+	public void bookReturn(int rtno, String mid) {
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "Update bookrent set rtenum='0' where rtno=? and mno=(select mno from member where mid=?)";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rtno);
+			pstmt.setString(2, mid);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, conn);
+		}
 	}
 }
