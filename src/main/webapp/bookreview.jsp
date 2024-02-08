@@ -9,6 +9,8 @@
 <!-- Webpage Title -->
 <title>리뷰 공간</title>
 
+
+
 <!-- Reqyired meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -22,7 +24,8 @@
 <!-- Your custom CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/review.css">
-
+ <link href="./css/menu2.css" rel="stylesheet" /> 
+ 
 <!-- JS -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -37,77 +40,64 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Diphylleia&family=East+Sea+Dokdo&family=Gowun+Batang&family=Orbit&family=Stylish&display=swap"
 	rel="stylesheet">
+	
+   
 
 
 <script type="text/javascript">
+$(document).ready(function() {
 	
-	function makeReview() {
-
-		let rno = $("#rno").val();
-		let mno = $("#mno").val();
+	$('.Rbtn').click(function() {
 		let rtitle = $("#rtitle").val();
-		let rauthor = $("#rauthor").val();
 		let rcontent = $("#rcontent").val();
-		//console.log(mno+"454545")
-
+		
 		$.ajax({
 			url : "./bookreview", //요청할 서버url
 			type : "post", //post 타입	
 			dataType : 'text', //수신 타입
 			data : {
-				'rno' : rno,
-				'mno' : mno,
 				'rtitle' : rtitle,
-				'rauthor' : rauthor,
-				'rcontent' : rcontent }, //수신타입
+				'rcontent' : rcontent,
+			}, //수신타입
 			success : function(response) {
-				alert('작성했습니다.');
-				//window.location.reload();
+				 alert('작성했습니다.');
+				 window.location.href = "./bookreview";
 			},
 			error : function(error) {
 				alert('문제가 발생했습니다. : ' + error);
 			}
-
 		});
+	});
+	
+	function makeReview() {
 
-/* 	$("#commentcontent").keyup(function(){
-        let text = $(this).val();
-        if(text.length > 100){
-           alert("100자 넘었어요.");
-           $(this).val(  text.substr(0, 100)   );   
-        }
-        $("#comment-btn").text("글쓰기 " + text.length +  "/100");
-     });
- */
+		
+ 	$("#commentcontent").keyup(function(){
+		 let text = $(this).val();
+		 if(text.length > 100){
+		 alert("100자 넘었어요.");
+		 $(this).val(  text.substr(0, 100)   );   
+		 }
+		 $("#comment-btn").text("글쓰기 " + text.length +  "/100");
+		 }); 
+
 	}
-
+});
 </script>
 
 </head>
 
 <body>
-	<div class="container">
-		<!-- <img src="./img/서재.jpg" alt="오류" class="img-fluid"
-			alt="Responsive image"> -->
+ <%@ include file="menu.jsp"%>
+	<div class="container">	
 		<div class="info">
 			<div class="stylish-regular">
-				<h1>여기는 리뷰 공간입니다.</h1>
-				<p>다른 사람들과 공유하고 싶은 재밌고 흥미진진한 책의 리뷰를 남겨주세요.</p>
-
-
-				<div class="input-group mb-3" id="rnoInputGroup">
-					<div class="input-group-prepend">
-						<span class="input-group-text">리뷰번호</span>
-					</div>
-					<input type="text" class="form-control" id="rno">
-				</div>
-
-				<div class="input-group mb-3" id="mnoInputGroup">
-					<div class="input-group-prepend">
-						<span class="input-group-text">회원번호</span>
-					</div>
-					<input type="text" class="form-control" id="mno">
-				</div>
+				
+				<br> 
+				<br>
+				<h1>이곳은 리뷰 공간입니다.</h1>
+				<p>"남의 책을 읽는데 시간을 보내라. 남이 고생한 것에 의해 쉽게 자신을 개선할 수 있다." -소크라테스-</p>
+				<br>				
 
 				<div class="input-group mb-3" id="rtitleInputGroup">
 					<div class="input-group-prepend">
@@ -116,23 +106,22 @@
 					<input type="text" class="form-control" id="rtitle">
 				</div>
 
-				<div class="input-group mb-3" id="rauthorInputGroup">
+			<!-- 	<div class="input-group mb-3" id="mnameInputGroup">
 					<div class="input-group-prepend">
-						<span class="input-group-text">저자</span>
+						<span class="input-group-text">글쓴이</span>
 					</div>
-					<input type="text" class="form-control" id="rauthor">
-				</div>
+					<input type="text" class="form-control" id="mname">
+				</div> -->
 
 				<div class="input-group mb-3" id="rcontentInputGroup">
 					<div class="input-group-prepend">
 						<span class="input-group-text">내용</span>
 					</div>
 					<textarea class="form-control" id="rcontent" cols="30" rows="5"
-						placeholder="160자까지 입력할 수 있습니다."></textarea>
+						placeholder="160자까지 입력할 수 있습니다." maxlength="180"></textarea>
 				</div>
 				<div class="review">
-					<button onclick="makeReview()" type="button" class="Rbtn">리뷰
-						작성완료</button>
+					<button type="button" class="Rbtn">리뷰 작성완료</button>
 				</div>
 			</div>
 		</div>
@@ -141,9 +130,11 @@
 				<table class="table">
 					<thead>
 						<tr>
+						<tr>
+						<tr>
 							<th scope="col">제목</th>
-							<th scope="col">저자</th>
 							<th scope="col">내용</th>
+							<th scope="col">작성자</th>
 						</tr>
 					</thead>
 
@@ -151,11 +142,10 @@
 						<c:forEach items="${allreviews }" var="eu">
 
 							<tr>
-								<td>${eu.rtitle }</td>
-								<td>${eu.rauthor }</td>
-								<td>${eu.rcontent }</td>
+								<td class="w1">${eu.rtitle }</td>
+								<td class="w2">${eu.rcontent }</td>
+								<td class="w3">${eu.mname }</td>
 							</tr>
-
 						</c:forEach>
 					</tbody>
 				</table>

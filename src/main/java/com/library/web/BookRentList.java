@@ -9,9 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.library.dao.BookDAO;
-import com.library.dto.BookDTO;
+import com.library.dao.MemberDAO;
+import com.library.dto.BookrentDTO;
 
 @WebServlet("/bookRentList")
 public class BookRentList extends HttpServlet {
@@ -22,7 +23,10 @@ public class BookRentList extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        MemberDAO dao = new MemberDAO();
+        HttpSession session = request.getSession();
+        List<BookrentDTO> bookrentlist = dao.bookRentList((String)session.getAttribute("mid"));
+        request.setAttribute("bookrentlist", bookrentlist);
     	// 수정하기-효진
     	RequestDispatcher rd = request.getRequestDispatcher("bookRentList.jsp");
         rd.forward(request, response);

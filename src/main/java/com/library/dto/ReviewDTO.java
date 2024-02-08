@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class ReviewDTO {
 
-	private String rtitle, rauthor, rcontent, rdel;
+	private String rtitle, rauthor, rcontent, mid, mname, rdel;
 	private Date rdate;	
 	private int mno , rno;
 	
@@ -44,6 +44,18 @@ public class ReviewDTO {
 	}
 	public void setRdate(Date rdate) {
 		this.rdate = rdate;
+	}
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
   public String getRdel() {
     return rdel;

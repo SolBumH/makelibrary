@@ -7,17 +7,34 @@
 	font-size: large;
 }
 
-
-
-h1,
-h5 {
-	display: inline;
+@font-face {
+    font-family: 'KimjungchulMyungjo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulMyungjo-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
 }
 
-.info {
-	margin-top: 20px;
-	margin-bottom: 20px;
+.stylish-regular{
+	font-family: 'KimjungchulMyungjo-Bold';
+	
 }
+
+
+
+@font-face {
+    font-family: 'KCCChassam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+#reviews-box{
+	font-family: 'KCCChassam';
+
+}
+
 
 .review {
 	text-align: center;
@@ -27,52 +44,81 @@ h5 {
 	margin-top: 100px;
 }
 
-th {
-	color: #4D5057;
+.container { 
+	width: 800px;
+}
+body{
+	background-color: #E8E7D2;
+	
+}
+
+table {
+	width: 100%;
+	border-top: 1px solid #C9BA9B;
+	border-collapse: collapse;
+}
+
+th, td {
+	border-bottom: 1px solid #C9BA9B;
+	border-left: 1px solid #C9BA9B;
+	padding: 10px;
+}
+	
+th{
+	
+	text-align: center;
 	background-color: #C9BA9B;
+}	
+
+  th:first-child, td:first-child {
+    border-left: none;
+  }	
+
+
+h1{
+	margin-top: 50px;
 }
 
-td:nth-child(2) {
-	color: #4D5057;
-	background-color: #E8E7D2;
+.w1 {
+	width: 25%;
 }
 
-td:nth-child(3) {
-	color: #4D5057;
-	background-color: #E8E7D2;
+.w2 {
+	width: 60%;
+}
 
+.w3 {
+	width: 15%;
+}
+
+textarea{
+	font-family: 'KCCChassam';
 }
 
 /* 제목 입력 폼 스타일 변경 */
 #rtitleInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 노란색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 검은색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
+
 }
 
 /* 저자 입력 폼 스타일 변경 */
-#rauthorInputGroup .input-group-text {
+#mnameInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 파란색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 흰색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
 }
 
 /* 리뷰 입력 폼 스타일 변경 */
 #rcontentInputGroup .input-group-text {
 	background-color: #C9BA9B;
-	/* 배경색 변경 (예: 분홍색) */
 	color: #4D5057;
-	/* 텍스트 색상 변경 (예: 흰색) */
-	 border: 2px solid #C9BA9B;
+	border: 2px solid #C9BA9B;
 }
-
 
 .Rbtn{
 	color: #4D5057;
-	background-color: #E8E7D2;	
-	
+	background-color: #C9BA9B;
+	font-family: 'KCCChassam';		
 }
