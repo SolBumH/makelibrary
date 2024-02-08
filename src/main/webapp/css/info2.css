@@ -7,7 +7,6 @@ https://ossam5.tistory.com/324
 
 :root{
 	--main : 45px;
-/*	여기만 바꾸면 다른거 손 안대도 되는거*/
 }
 body{
 	background-color: rgb(254, 254, 250);
@@ -22,7 +21,7 @@ body{
 }
 .menu{
 /*	변수 사용 var(변수명)*/
-	width: var(--main);
+	width: calc(var(--main) - 10px);
 	height: 100vh;
 	background-color: rgb(201, 231, 254);
 	overflow: hidden;

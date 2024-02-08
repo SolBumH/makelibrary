@@ -12,6 +12,5 @@
         <li onclick="url('./login')"><i class="xi-garden"></i>Login</li></c:when><c:otherwise>
         <li onclick="url('./info')"><i class="xi-bookmark"></i>${sessionScope.mname }님</li>
         <li onclick="url('./logout')"><i class="xi-emoticon-smiley-o"></i>Logout</li></c:otherwise></c:choose>
-        <li onclick="url('./cart')"><i class="xi-cart-o"></i>Cart</li>
     </ul>
 </nav>

@@ -1,5 +1,6 @@
 @charset "UTF-8";
-body{
+
+body {
 	width: 100%;
 	height: 100px;
 	padding: 0;
@@ -8,36 +9,72 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-.r1{
+
+.r1 {
 	width: 1%;
 }
-.r2{
+
+.r2 {
 	width: 22%;
 }
-.r3{
+
+.r3 {
 	width: 4%;
 }
-.r4{
+
+.r4 {
 	width: 2%;
 }
-.ti{
+
+.ti {
 	height: 40px;
 	background-color: #D2D5B8;
 }
-.renttable{
-    border-bottom: inset;
-    text-align: center;
-    border: ridge;
+
+.renttable {
+	border-bottom: inset;
+	text-align: center;
+	border: ridge;
 }
-.rentbody{
+
+.rentbody {
 	height: 40px;
 	background-color: #E8E7D2;
 
 }
-.id{
+
+.id {
 	text-align: center;
 }
-.le{
+
+.le {
 	float: left;
 	height: 1000px;
+}
+
+.ab {
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	background-color: #E8E7D2;
+}
+
+.me {
+	height: 100vH;
+	background-color: #D2D5B8;
+	padding-right: 15px;
+	/* overflow: hidden; */
+}
+
+.main {
+	width: calc(100% - var(--main));
+	height: auto;
+	background-color: #E8E7D2;
+}
+
+.wrap {
+	width: 100%;
+	height: auto;
+	display: flex;
+	border: double;
 }

@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
 
     RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
     rd.forward(request, response);
+    // System.out.println("로그인" + request.getRemoteAddr());
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,11 +47,7 @@ public class Login extends HttpServlet {
         session.setAttribute("mgrade", dto.getMgrade());
 
         response.sendRedirect("./info");
-      }else {
-    	  response.sendRedirect("./login");
       }
     }
-    
   }
-  
 }

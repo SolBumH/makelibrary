@@ -20,7 +20,7 @@ public class ReviewDAO extends AbstractDAO {
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO reviews (mno, rtitle, rcontent) VALUES ((select mno from member where mid=?), ?, ?)";
+		String sql = "INSERT INTO reviews (mno, rtitle, rcontent) VALUES ((select mno from member where mid=? ORDER BY rno DESC), ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getMid());
@@ -39,19 +39,48 @@ public class ReviewDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews";
 
-		String sql = "select * from reviewcomment";
+    try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setRno(rs.getInt("rno"));
+				review.setMno(rs.getInt("mno"));
+				review.setRtitle(rs.getString("rtitle"));
+				review.setRcontent(rs.getString("rcontent"));
+				review.setRdate(rs.getDate("rdate"));
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return reviews;
+	}
+
+	public List<ReviewDTO> myReviews(String mid) {
+		List<ReviewDTO> reviews = new ArrayList<>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?)";
+		System.out.println("dao오냐");
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
 		
 			while (rs.next()) {
 				ReviewDTO review = new ReviewDTO();
 				review.setMname(rs.getString("mname"));
 				review.setRtitle(rs.getString("rtitle"));
-//				review.setRauthor(rs.getString("rauthor"));
 				review.setRcontent(rs.getString("rcontent"));
-//				review.setRdate(rs.getDate("rdate"));
+				review.setRdate(rs.getDate("rdate"));
 				reviews.add(review);
 			}
 		} catch (SQLException e) {
@@ -87,5 +116,4 @@ public class ReviewDAO extends AbstractDAO {
 		}
 		return dto;
 	}
-
 }

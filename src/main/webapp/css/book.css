@@ -18,7 +18,7 @@ body{
   text-align: center;
 }
 
-.title{
+#title{
 	height: 40px;
 	background-color: #D2D5B8;
 	border-bottom: inset;
@@ -78,6 +78,10 @@ h2{
 .pageBtn.bt {
   box-shadow: inset 1px 1px 1px #a09ca3;
   /* background-color: black; */
+}
+td{
+	border-bottom: inset;
+	border-left: outset;
 }
 /* 담은 책 보기 cart 오른쪽 보내기  */
 #cart{
