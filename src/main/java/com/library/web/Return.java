@@ -34,5 +34,4 @@ public class Return extends HttpServlet {
     }
     response.sendRedirect("/info");
   }
-
 }
