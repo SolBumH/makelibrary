@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.db.DBConnection;
+import com.library.dto.BookDTO;
 import com.library.dto.MemberDTO;
 import com.library.dto.ReviewDTO;
 
@@ -41,38 +42,8 @@ public class ReviewDAO extends AbstractDAO {
 		ResultSet rs = null;
 		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews";
 
-    try {
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				ReviewDTO review = new ReviewDTO();
-				review.setRno(rs.getInt("rno"));
-				review.setMno(rs.getInt("mno"));
-				review.setRtitle(rs.getString("rtitle"));
-				review.setRcontent(rs.getString("rcontent"));
-				review.setRdate(rs.getDate("rdate"));
-				reviews.add(review);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs, pstmt, con);
-		}
-		return reviews;
-	}
-
-	public List<ReviewDTO> myReviews(String mid) {
-		List<ReviewDTO> reviews = new ArrayList<>();
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?)";
-		System.out.println("dao오냐");
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -90,7 +61,6 @@ public class ReviewDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		return reviews;
-
 	}
 
 	public MemberDTO Bookreview(MemberDTO dto) {
@@ -116,5 +86,55 @@ public class ReviewDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		return dto;
+	}
+
+	public int delete(BookDTO dto) {
+		int result = 0;
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE reviews SET rdel='0' WHERE mno=? AND mid=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getMno());
+			pstmt.setString(1, dto.getMid());
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(null, pstmt, conn);
+		}
+
+		return result;
+	}
+
+	public List<ReviewDTO> myReviews(String mid) {
+		List<ReviewDTO> reviews = new ArrayList<>();
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews WHERE mno=(SELECT mno from member WHERE mid=?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewDTO review = new ReviewDTO();
+				review.setRno(rs.getInt("rno"));
+				review.setMno(rs.getInt("mno"));
+				review.setRtitle(rs.getString("rtitle"));
+				review.setRcontent(rs.getString("rcontent"));
+				review.setRdate(rs.getDate("rdate"));
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return reviews;
 	}
 }
