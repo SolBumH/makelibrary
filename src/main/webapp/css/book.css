@@ -84,7 +84,9 @@ td{
 	border-left: outset;
 }
 /* 담은 책 보기 cart 오른쪽 보내기  */
-#cart{
+.cart{
+	text-align: center;
+	
 }
 /* 담기버튼 add  */
 .add{
