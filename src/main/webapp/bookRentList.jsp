@@ -23,8 +23,9 @@ h1 {
 
 .rentlist1 {
 margin-left: 180px;
-	width: 400px;
+	width: 100%;
 	height: 100px;
+	text-align: center;
 }
 </style>
 </head>

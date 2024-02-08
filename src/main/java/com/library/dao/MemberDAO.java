@@ -157,7 +157,7 @@ public class MemberDAO extends AbstractDAO {
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM rentlist where mno=(select mno from mid=?)";
+		String sql = "SELECT * FROM rentlist where mno=(select mno from member where mid=?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
