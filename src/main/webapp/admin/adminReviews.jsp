@@ -8,35 +8,36 @@
 <title>리뷰 관리 페이지</title>
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="../css/rentlist2.css" />
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-$(function() {
-  // alert("!");
-  $('select[name=rdel]').on("change", function() {
-    let del = $(this).val();
-    let rno = $(this).parent().siblings('.rno').children('.rno.input').val();
-    // alert(del + ":" + rno)
+  $(function() {
+    // alert("!");
+    $('select[name=rdel]').on("change", function() {
+      let del = $(this).val();
+      let rno = $(this).parent().siblings('.rno').children('.rno.input').val();
+      // alert(del + ":" + rno)
 
-    let form = $('<form></form>');
-    // form.attr('name', 'form'); // 이번엔 없고 저번엔 왜 있을까 ?
-    form.attr('method', 'post');
-    form.attr('action', './reviews');
+      let form = $('<form></form>');
+      // form.attr('name', 'form'); // 이번엔 없고 저번엔 왜 있을까 ?
+      form.attr('method', 'post');
+      form.attr('action', './reviews');
 
-    form.append($('<input/>', {
-      type : 'hidden',
-      name : 'del',
-      value : del
-    }));
-    form.append($('<input/>', {
-      type : 'hidden',
-      name : 'rno',
-      value : rno
-    }));
-    
-    form.appendTo('body');
-    form.submit();
+      form.append($('<input/>', {
+        type : 'hidden',
+        name : 'del',
+        value : del
+      }));
+      form.append($('<input/>', {
+        type : 'hidden',
+        name : 'rno',
+        value : rno
+      }));
+
+      form.appendTo('body');
+      form.submit();
+    });
   });
-});
 </script>
 </head>
 <body>
@@ -67,7 +68,8 @@ $(function() {
 									<option <c:if test="${list.rdel eq 1 }">selected</c:if>
 										value="1">공개</option>
 							</select></td>
-							<td class="rno"><input type="hidden" class="rno input" value="${list.rno }" ></td>
+							<td class="rno"><input type="hidden" class="rno input"
+								value="${list.rno }"></td>
 						</tr>
 					</c:forEach>
 				</tbody>
