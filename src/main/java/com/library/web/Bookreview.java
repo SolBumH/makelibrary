@@ -24,6 +24,7 @@ public class Bookreview extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 
 		// ReviewDAO를 사용하여 데이터베이스에서 리뷰 리스트를 가져옴
 		ReviewDAO reviewDAO = new ReviewDAO();
@@ -56,5 +57,3 @@ public class Bookreview extends HttpServlet {
 	}
 }
 
-// 성공적인 응답 전송
-//response.getWriter().write("리뷰가 성공적으로 저장되었습니다.");}}
