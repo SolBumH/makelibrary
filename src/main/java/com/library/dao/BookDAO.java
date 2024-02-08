@@ -246,13 +246,13 @@ public class BookDAO extends AbstractDAO {
 	public int addCart(String isbn, String mid) {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid='asd'))";
+		String sql = "Insert INTO cart(bisbn, mno) values(?,(select mno from member where mid=?))";
 		int result = 0;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, isbn);
-			// pstmt.setString(2, mid);
+			pstmt.setString(2, mid);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -321,7 +321,7 @@ public class BookDAO extends AbstractDAO {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "asd"); // mid 로 변경
+			pstmt.setString(1, mid); // mid 로 변경
 			pstmt.setString(2, isbn);
 			pstmt.execute();
 		} catch (SQLException e) {
