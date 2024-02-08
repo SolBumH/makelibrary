@@ -15,26 +15,24 @@ import com.library.util.Util;
 @WebServlet("/return")
 public class Return extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public Return() {
-		super();
-	}
+  public Return() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	}
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String mid = (String) session.getAttribute("mid");
-		BookDAO dao = new BookDAO();
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    String mid = (String) session.getAttribute("mid");
+    BookDAO dao = new BookDAO();
 
-		for (String s : request.getParameterValues("rtno")) {
-			dao.bookReturn(Util.str2Int(s), mid);
-		}
-		response.sendRedirect("/info");
-	}
+    for (String s : request.getParameterValues("rtno")) {
+      dao.bookReturn(Util.str2Int(s), mid);
+    }
+    response.sendRedirect("/info");
+  }
 
 }

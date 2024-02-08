@@ -16,36 +16,31 @@ import com.library.dto.ReviewDTO;
 
 @WebServlet("/bookReviewList")
 public class BookReviewList extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-       
-    public BookReviewList() {
-        super();
-    }
+	private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
- 
-	      HttpSession session = request.getSession();
-	      String mid = (String)(session.getAttribute("mid"));
-	      // session에서 mid 값을 받아오기
-	      
-	      if(session.getAttribute("mid") != null && !session.getAttribute("mid").equals("")) {
-	    	  ReviewDAO dao = new ReviewDAO();
-	    	  List<ReviewDTO> list = dao.myReviews(mid);
-	    	  
-	    	  request.setAttribute("list", list); // "list"라는 변수명으로 보낸다
-	    	  
-	    	  RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp"); //board.jsp페이지로
-	    	  rd.forward(request, response);
-	    	  
-	      } else {
-	    	  
-	    	  response.sendRedirect("/login");
-	      }
-	      
-	   }
-    	
+	public BookReviewList() {
+		super();
+	}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String mid = (String) (session.getAttribute("mid"));
+
+		if (session.getAttribute("mid") != null && !session.getAttribute("mid").equals("")) {
+			ReviewDAO dao = new ReviewDAO();
+			List<ReviewDTO> list = dao.myReviews(mid);
+
+			request.setAttribute("list", list);
+
+			RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp");
+			rd.forward(request, response);
+		} else {
+			response.sendRedirect("/login");
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
 }

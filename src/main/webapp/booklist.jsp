@@ -1,17 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="./css/book.css" />
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link href="./css/menu2.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>대출</title>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="./js/menu.js"></script>
 <script type="text/javascript">
   $(function() {
     $("#searchBtn").click(function() {
@@ -48,12 +45,12 @@
 				<form action="./addCart" method="post">
 					<table class="booktable">
 						<thead>
-							<tr id="title">
-								<th>선택</th>
-								<th>이미지</th>
-								<th>제목</th>
-								<th>저자</th>
-								<th>출판사</th>
+							<tr>
+								<th class="a1">선택</th>
+								<th class="a1">이미지</th>
+								<th class="a1">제목</th>
+								<th class="a1">저자</th>
+								<th class="a1">출판사</th>
 							</tr>
 						</thead>
 						<tbody>

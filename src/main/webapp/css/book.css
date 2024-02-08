@@ -18,7 +18,7 @@ body{
   text-align: center;
 }
 
-#title{
+.a1{
 	height: 40px;
 	background-color: #D2D5B8;
 	border-bottom: inset;
@@ -70,9 +70,10 @@ h2{
   display: inline-block;
   border: none;
   cursor: pointer;
-  background-color: lavender;
+  background-color: #CD853F;
   margin-right: 3px;
   box-shadow: 1px 1px 1px #a09ca3;
+  color: white;
 }
 
 .pageBtn.bt {
@@ -84,12 +85,14 @@ td{
 	border-left: outset;
 }
 /* 담은 책 보기 cart 오른쪽 보내기  */
-#cart{
+.cart{
+	text-align: center;
+	
 }
 /* 담기버튼 add  */
 .add{
 	float: right;
-    background-color:#0a0a23;
+    background-color:#CD853F;
     color: #fff;
     border:none; 
     border-radius:10px; 
@@ -116,7 +119,7 @@ td{
 	background: white;
 	border-radius: 40px;
 	padding: 10px;
-	border: 1px solid #f9deec;
+	border: 1px solid #D26E6E; 
 	float: right;
 }
 #search{
@@ -131,7 +134,7 @@ td{
 	width: 200px;
 }
 #searchBtn{
-	color: #f9deec;
+	color: #D26E6E;
 	float: right;
 	width: 40px;
 	height: 100%;
@@ -146,6 +149,6 @@ td{
 .main{
 	padding-top: 55px;
 }
-.xi-search{
+.head{
 	
 }

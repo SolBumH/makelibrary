@@ -4,9 +4,10 @@
 	--main: 180px;
 }
 
-body {
+body ,article{
 	margin: 0;
 	padding: 0;
+	background-color: #E8E7D2;
 }
 
 h1,
@@ -38,7 +39,7 @@ h2 {
 .main {
 	width: calc(100% - var(--main));
 	height: auto;
-	background-color: white;
+	background-color: #E8E7D2;
 }
 
 nav {
@@ -79,21 +80,25 @@ nav>ul>li:hover {
 	;
 	width: 15%;
 }
-
+.search{
+	font-size: large;
+	text-align: center;
+}
 table {
 	text-align: center;
 	/* 	margin-left: auto;
 	margin-right:auto; */
 	margin: auto;
+	margin-top:5%;
 	width: 100%;
 	height: auto;
+	font-size: large;
 }
 
-table,
-tr,
-td {
+table,tr,td {
 	border-left: medium;
 	border-bottom: medium;
-	width: 50px;
-	background-color: #ff0080;
+	width: 800px;
+	background-color: #E8E7D2;
+	font-size: large;
 }
