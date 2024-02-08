@@ -8,9 +8,6 @@
 <head>
 <!-- Webpage Title -->
 <title>리뷰 공간</title>
-
-
-
 <!-- Reqyired meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -64,13 +61,6 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
-	function makeReview() {
-
-		
-
-
-	}
 });
 </script>
 </head>
@@ -88,7 +78,7 @@ $(document).ready(function() {
 					<div class="input-group-prepend">
 						<span class="input-group-text">제목</span>
 					</div>
-					<input type="text" class="form-control" id="rtitle">
+					<input type="text" class="form-control" id="rtitle" placeholder="제목을 입력하세요.">
 				</div>
 
 			<!-- 	<div class="input-group mb-3" id="mnameInputGroup">
