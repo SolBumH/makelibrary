@@ -32,7 +32,7 @@
 <body>
 	<%@ include file="menu.jsp"%>
 	<article class="main">
-		<h1>대출하기</h1>
+		<h1>장바구니</h1>
 		<div class="search">
 			<input type="text" id="search" placeholder="검색어를 입력하세요." />
 			<button id="searchBtn">
@@ -42,7 +42,7 @@
 		<form>
 			<table class="booktable">
 				<thead>
-					<tr>
+					<tr class="head">
 						<th>체크</th>
 						<th>이미지</th>
 						<th>제목</th>
