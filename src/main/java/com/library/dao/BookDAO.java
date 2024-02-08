@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.library.dto.BookDTO;
+import com.library.dto.BookrentDTO;
 
 public class BookDAO extends AbstractDAO {
 
@@ -212,35 +213,35 @@ public class BookDAO extends AbstractDAO {
 		return dto;
 	}
 
-	// 효진 추가
-	public List<BookDTO> bookRentList(String mid) {
-		List<BookDTO> list = new ArrayList<BookDTO>();
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT * FROM rentlist where mno=(select mno from member where mid=?) and rtenum='1'";
+  // 효진 추가
+  public List<BookrentDTO> bookRentList(String mid) {
+    List<BookrentDTO> list = new ArrayList<BookrentDTO>();
+    Connection con = db.getConnection();
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    String sql = "SELECT * FROM rentlist where mno=(select mno from member where mid=?) and rtenum='1'";
+    try {
+      pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, mid);
+      rs = pstmt.executeQuery();
 
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mid);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				BookDTO e = new BookDTO();
-				e.setBtitle(rs.getString("btitle"));
-				e.setMno(rs.getInt("mno"));
-				e.setMid(rs.getString("mid"));
-				e.setRtdate(rs.getString("rtdate"));
-				e.setRtenum(rs.getString("rtenum"));
-				list.add(e);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs, pstmt, con);
-		}
-		return list;
-	}
+      while (rs.next()) {
+        BookrentDTO e = new BookrentDTO();
+        e.setRtno(rs.getInt("rtno"));
+        e.setBtitle(rs.getString("btitle"));
+        e.setMno(rs.getInt("mno"));
+        e.setRtdate(rs.getString("rtdate").substring(0, 11));
+        e.setRtdateadd(rs.getString("rtdateadd").substring(0, 11));
+        e.setRtenum(rs.getString("rtenum"));
+        list.add(e);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      close(rs, pstmt, con);
+    }
+    return list;
+  }
 
 	public int addCart(String isbn, String mid) {
 		Connection conn = db.getConnection();

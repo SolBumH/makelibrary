@@ -74,10 +74,11 @@ public class ReviewDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
-		
+
 			while (rs.next()) {
 				ReviewDTO review = new ReviewDTO();
-				review.setMname(rs.getString("mname"));
+				review.setRno(rs.getInt("rno"));
+				review.setMno(rs.getInt("mno"));
 				review.setRtitle(rs.getString("rtitle"));
 				review.setRcontent(rs.getString("rcontent"));
 				review.setRdate(rs.getDate("rdate"));

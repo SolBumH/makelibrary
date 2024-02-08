@@ -27,15 +27,14 @@ public class BookReviewList extends HttpServlet {
  
 	      HttpSession session = request.getSession();
 	      String mid = (String)(session.getAttribute("mid"));
-	      // session에서 mid 값을 받아오기
 	      
 	      if(session.getAttribute("mid") != null && !session.getAttribute("mid").equals("")) {
 	    	  ReviewDAO dao = new ReviewDAO();
 	    	  List<ReviewDTO> list = dao.myReviews(mid);
 	    	  
-	    	  request.setAttribute("list", list); // "list"라는 변수명으로 보낸다
+	    	  request.setAttribute("list", list); 
 	    	  
-	    	  RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp"); //board.jsp페이지로
+	    	  RequestDispatcher rd = request.getRequestDispatcher("bookReviewList.jsp"); 
 	    	  rd.forward(request, response);
 	    	  
 	      } else {
