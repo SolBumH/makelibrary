@@ -51,8 +51,9 @@ public class Rentlist extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		System.out.println(request.getParameter("rtno"));
 //		System.out.println(request.getParameter("rtenum"));
+    // 대출여부 1,0 선택
     AdminDAO dao = new AdminDAO();
-    int result = dao.rentUpdate(Util.str2Int(request.getParameter("rtno")), Util.str2Int(request.getParameter("enum")));
-    System.out.println(result);
+    dao.rentUpdate(Util.str2Int(request.getParameter("rtno")), request.getParameter("rtenum"));
+    response.sendRedirect("/admin/rentlist");
   }
 }
