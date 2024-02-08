@@ -5,3 +5,30 @@ body{
 h1{
 	text-align: center;
 }
+.me{
+	float: inline-start;
+    margin: 40px;
+}
+.ab{
+	list-style-type: none;
+    display: flex;
+    -webkit-text-stroke-width: thin;
+    height: 10px;
+}
+.a{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid purple;
+  text-align: center;
+}
+.head{
+	height: 40px;
+	background-color: #D2D5B8;
+	border-bottom: inset;
+    border-left: outset;
+}
+td{
+	padding: 20px;
+	border-bottom: inset;
+}

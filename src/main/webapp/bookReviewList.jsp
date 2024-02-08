@@ -16,9 +16,46 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Diphylleia&family=East+Sea+Dokdo&family=Gowun+Batang&family=Orbit&family=Stylish&display=swap"
 	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
-	rel="stylesheet">
+
+<script>
+	function deleteReview(rno) {
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			$.ajax({
+				url : '/delete',
+				type : 'post',
+				data : {
+					rno : rno,
+					mid : mid
+				},
+				success : function(response) {
+					// 삭제가 성공했을 때 실행할 코드
+					location.reload(); // 페이지 새로고침
+					$(this).hide();
+				},
+				error : function(xhr, status, error) {
+					// 삭제가 실패했을 때 실행할 코드
+					alert("삭제에 실패했습니다.");
+				}
+			});
+		}
+	}
+	$(function() {
+		$('#deleteBtn').on('click', function() {
+			let rno = $(this).parents('tr').children().first().text();
+			// alert(rno);
+			let form = $('<form></form>');
+			form.attr('name', 'form');
+			form.attr('method','post');
+			form.attr('action', './delete');
+			
+			form.append($('<input/>', {type:'hidden', name:'rno', value:rno}));
+			
+			form.appendTo("body");
+			form.submit();
+		});
+	});
+</script>
+
 <style>
 body {
 	background-color: #E8E7D2;
@@ -31,47 +68,89 @@ table {
 }
 
 h1 {
-	padding-left : 20px;
+	padding-left: 20px;
 	font-family: 'Stylish', serif; /* 폰트 적용 */
 	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
 	font-size: 28px;
 }
+
 tr {
 	font-size: 23px;
 }
+
 .review {
 	font-family: 'Stylish', serif; /* 폰트 적용 */
 	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
-	font-size: 19px; 
+	font-size: 19px;
 }
 
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 300;
+	src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf')
+		format('opentype')
+}
 
-@font-face{
-font-family:'DNFForgedBlade';font-style:normal;font-weight:300;
-src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf')format('opentype')}
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 500;
+	src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf')
+		format('opentype')
+}
 
-@font-face{
-font-family:'DNFForgedBlade';font-style:normal;font-weight:500;
-src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Medium.otf')format('opentype')}
-
-@font-face{
-font-family:'DNFForgedBlade';font-style:normal;font-weight:700;
-src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf')format('opentype')}
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 700;
+	src: url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf')
+		format('opentype')
+}
 
 button {
-    background-color: #c9ba9b36;
-    color: rgb(75 52 12 / 88%);
-    border: 2px solid rgb(75 52 12 / 35%);
-    border-radius: 5px;
-    padding: 5px 15px;
-    font-size: 13px;
-    margin: 4px 2px;
-    border-radius: 10px;
+	background-color: #c9ba9b36;
+	color: rgb(75 52 12/ 88%);
+	border: 2px solid rgb(75 52 12/ 35%);
+	border-radius: 5px;
+	padding: 5px 15px;
+	font-size: 13px;
+	margin: 4px 2px;
+	border-radius: 10px;
 }
 
 button:hover {
-    background-color: #c9ba9b; /* 진한 베이지색 */
-    color: white; /* 텍스트 색상 변경 */
+	background-color: #c9ba9b; /* 진한 베이지색 */
+	color: white; /* 텍스트 색상 변경 */
+}
+
+.stylish-regular {
+	font-family: "Stylish", serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: large;
+}
+
+@font-face {
+	font-family: 'KimjungchulMyungjo-Bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/KimjungchulMyungjo-Bold.woff2')
+		format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+.stylish-regular {
+	font-family: 'KimjungchulMyungjo-Bold';
+}
+
+@font-face {
+	font-family: 'KCCChassam';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 </style>
 </head>
@@ -103,10 +182,11 @@ button:hover {
 			</nav>
 			<c:forEach items="${list }" var="row">
 				<tr class="review">
-					<td class="w1">${row.rno }</td>
+					<td class="w1" class="rno">${row.rno }</td>
 					<td class="w2">${row.rtitle }</td>
 					<td class="w1">${row.rcontent }</td>
-					<td class="w1">${row.rdate}&ensp;&ensp;&ensp;<button type="button">삭제</button></td>
+					<td class="w1">${row.rdate}&ensp;&ensp;&ensp;<button
+							type="button" id="deleteBtn"<%-- onclick="deleteReview(${row.rno})" --%>>삭제</button></td>
 				</tr>
 			</c:forEach>
 		</table>
