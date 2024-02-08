@@ -186,7 +186,7 @@ public class AdminDAO extends AbstractDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				ReviewDTO e = new ReviewDTO();
 				e.setRno(rs.getInt("rno"));

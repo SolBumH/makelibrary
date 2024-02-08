@@ -10,27 +10,62 @@
 <link href="./css/pagemenu.css?ver=0.19" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 구글폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Diphylleia&family=East+Sea+Dokdo&family=Gowun+Batang&family=Orbit&family=Stylish&display=swap"
+	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
 	rel="stylesheet">
 <style>
 body {
+	margin: 0px;
 	background-color: #E8E7D2;
 	color: rgb(75, 52, 12);
 }
 
-.main {
-	margin-top: 75px;
-	font-family: Oswald;
-}
 
 h1 {
+	font-family: 'Stylish', serif; /* 폰트 적용 */
 	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
 }
 
 h4 {
+	font-family: 'Stylish', serif; /* 폰트 적용 */
+	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
+	font-size: 18px; /* 기본 크기에서 5px 키워서 18px로 설정 */
+}
+
+button {
+    background-color: #c9ba9b36;
+    color: rgb(75 52 12 / 88%);
+    border: 2px solid rgb(75 52 12 / 35%);
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 13px;
+    margin: 4px 2px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #c9ba9b; /* 진한 베이지색 */
+    color: white; /* 텍스트 색상 변경 */
+}
+
+.main {
+	padding-left : 20px;
+	margin-top: 75px;
+	font-family: Oswald;
+}
+
+.list {
+  	font-family: 'Stylish', serif; /* 폰트 적용 */
 	margin-bottom: 30px; /* 원하는 만큼의 간격 설정 */
 }
+
+
 </style>
 <script src="./js/menu.js"></script>
 </head>
@@ -53,10 +88,10 @@ h4 {
 			<div>
 				<article>
 					<!-- test -->
-					<h1>MyPage</h1>
+					<h1>- MyPage</h1>
 					<h4>
-						Name : ${info.mname } <br> <br> ID : ${info.mid }님,
-						HELLO😊
+						Name&ensp; :&ensp; ${info.mname } <br>
+						<br> ID&ensp; : &ensp;${info.mid }님, &ensp;HELLO😊
 					</h4>
 					<button type="button" onclick="window.location.href='./changename'">닉네임
 						변경하기</button>

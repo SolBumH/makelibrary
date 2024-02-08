@@ -54,7 +54,6 @@ body {
 <body>
 	<%@ include file="menu.jsp"%>
 	<nav class="change">
-		<ul>
 			<li onclick="window.location.href='./info'">> My Page</li>
 			<li onclick="window.location.href='./changename'">닉네임 변경</li>
 			<li onclick="window.location.href='./changePw'">패스워드 변경</li>
