@@ -32,11 +32,11 @@ $(function(){
 </script>
 </head>
 <body>
+				<h1>회 원 관 리</h1>
 	<div class="wrap">
 		<%@ include file="menu.jsp"%>
 		<div class="main">
 			<article>
-				<h2>회원관리</h2>
 				<div class="nav-lists">
 					<ul class="nav-lists-group">
 						<li class="nav-lists-item" onclick="url('./members?grade=0')">탈퇴</li>
