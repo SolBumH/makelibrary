@@ -1,15 +1,24 @@
 @charset "UTF-8";
+
 .change {
-   padding-top: 100px; /* 컨텐츠를 아래로 내림 */
-   position: fixed;
-   top: 0; /* 원하는 위치로 조정 */
-   left: 0; /* 왼쪽에 배치 */
-   width: 180px; /* 메뉴 너비 조정 */
-   height: 100%; /* 화면 전체 높이로 설정 */
-   background-color: #D2D5B8;
-   padding:0; /* 내부 여백 설정 */
-   box-sizing: border-box; /* 내부 여백을 너비에 포함 */
-   z-index: 999; /* 다른 요소 위로 표시 */
+	padding-top: 100px;
+	/* 컨텐츠를 아래로 내림 */
+	position: fixed;
+	top: 0;
+	/* 원하는 위치로 조정 */
+	left: 0;
+	/* 왼쪽에 배치 */
+	width: 180px;
+	/* 메뉴 너비 조정 */
+	height: 100%;
+	/* 화면 전체 높이로 설정 */
+	background-color: #C9BA9B;
+	padding: 0;
+	/* 내부 여백 설정 */
+	box-sizing: border-box;
+	/* 내부 여백을 너비에 포함 */
+	z-index: 999;
+	/* 다른 요소 위로 표시 */
 }
 
 .change ul {
@@ -24,8 +33,10 @@
 }
 
 .change ul li:hover {
+
 	background-color: #C9BA9B;
 	width: 150px;
+
 }
 
 .container {

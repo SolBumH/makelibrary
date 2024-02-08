@@ -9,14 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.library.dto.BookrentDTO;
 import com.library.dto.MemberDTO;
 import com.library.dto.ReviewDTO;
 import com.library.util.Util;
 
 public class AdminDAO extends AbstractDAO {
 
-	// 계정관리
+  // 계정관리
 	public List<MemberDTO> memberList() {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		Connection con = db.getConnection();
@@ -46,38 +45,40 @@ public class AdminDAO extends AbstractDAO {
 	}
 
 	// 계정 등급 관리
-	public List<MemberDTO> memberList(int grade) {
+			public List<MemberDTO> memberList(int grade) {
 
-		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT mno, mid, mname, mdate, mgrade FROM member WHERE mgrade=?";
+				List<MemberDTO> list = new ArrayList<MemberDTO>();
+				Connection con = db.getConnection();
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String sql = "SELECT mno, mid, mname, mdate, mgrade FROM member WHERE mgrade=?";
 
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, grade);
-			rs = pstmt.executeQuery();
+				try {
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, grade);
+					rs = pstmt.executeQuery();
 
-			while (rs.next()) {
-				MemberDTO e = new MemberDTO();
-				e.setMno(rs.getInt("mno"));
-				e.setMid(rs.getString("mid"));
-				e.setMname(rs.getString("mname"));
-				e.setMdate(rs.getString("mdate"));
-				e.setMgrade(rs.getInt("mgrade"));
-				list.add(e);
+					while (rs.next()) {
+						MemberDTO e = new MemberDTO();
+						e.setMno(rs.getInt("mno"));
+						e.setMid(rs.getString("mid"));
+						e.setMname(rs.getString("mname"));
+						e.setMdate(rs.getString("mdate"));
+						e.setMgrade(rs.getInt("mgrade"));
+						list.add(e);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rs, pstmt, con);
+				}
+
+				return list;
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs, pstmt, con);
-		}
-		return list;
-	}
 
 	// 레벨업
 	public int memberUpdate(int grade, int mno) {
+
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE member SET mgrade=? WHERE mno=?";
@@ -96,13 +97,14 @@ public class AdminDAO extends AbstractDAO {
 		return result;
 	}
 
-	// 전체 대출 리스트
+
+	//전체 대출 리스트
 	public List<Map<String, Object>> allRent() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT rtno, btitle, mid, rtenum, rtdate, rtdateadd FROM rentlist " + "LIMIT 0, 10";
+		String sql = "SELECT btitle, mid, rtenum, rtdate FROM rentlist " + "LIMIT 0, 10";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -110,12 +112,10 @@ public class AdminDAO extends AbstractDAO {
 
 			while (rs.next()) {
 				Map<String, Object> e = new HashMap<String, Object>();
-				e.put("rtno", rs.getInt("rtno"));
 				e.put("btitle", rs.getString("btitle"));
 				e.put("mid", rs.getString("mid"));
 				e.put("rtenum", rs.getString("rtenum"));
 				e.put("rtdate", rs.getString("rtdate"));
-				e.put("rtdateadd", rs.getString("rtdateadd"));
 				list.add(e);
 			}
 		} catch (SQLException e) {
@@ -125,36 +125,7 @@ public class AdminDAO extends AbstractDAO {
 		}
 		return list;
 	}
-
-	public List<Map<String, Object>> allRent(String rtenum) {
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT rtno, btitle, mid, rtenum, rtdate, rtdateadd FROM rentlist where rtenum=?";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rtenum);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Map<String, Object> e = new HashMap<String, Object>();
-				e.put("rtno", rs.getInt("rtno"));
-				e.put("btitle", rs.getString("btitle"));
-				e.put("mid", rs.getString("mid"));
-				e.put("rtenum", rs.getString("rtenum"));
-				e.put("rtdate", rs.getString("rtdate"));
-				e.put("rtdateadd", rs.getString("rtdateadd"));
-				list.add(e);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rs, pstmt, con);
-		}
-		return list;
-	}
-
+	
 	// 계정별 대출관리
 
 	// 게시글 상태 변경
@@ -192,6 +163,7 @@ public class AdminDAO extends AbstractDAO {
 				e.setRno(rs.getInt("rno"));
 				e.setMno(rs.getInt("mno"));
 				e.setRtitle(rs.getString("rtitle"));
+				e.setRauthor(rs.getString("rauthor"));
 				e.setRcontent(rs.getString("rcontent"));
 				e.setRdate(rs.getDate("rdate"));
 				e.setRdel(rs.getString("rdel"));
@@ -203,25 +175,5 @@ public class AdminDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		return list;
-	}
-
-	// 전체 대출여부 0,1 선택
-	public BookrentDTO rentUpdate(int rtno, String rtenum) {
-		Connection con = db.getConnection();
-		PreparedStatement pstmt = null;
-		String sql = "UPDATE bookrent SET rtenum=? WHERE rtno=? ";
-		BookrentDTO dto = null;
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(2, rtno);
-			pstmt.setString(1, rtenum);
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(null, pstmt, con);
-		}
-		return dto;
 	}
 }

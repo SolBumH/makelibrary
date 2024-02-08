@@ -52,7 +52,7 @@ public class Bookreview extends HttpServlet {
 		ReviewDAO dao = new ReviewDAO();
 		dao.makeReview(dto);
 		
-		response.sendRedirect("/bookreview");
+		response.sendRedirect("./bookreview");
 	}
 }
 
