@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.db.DBConnection;
+import com.library.dto.MemberDTO;
 import com.library.dto.ReviewDTO;
 
 public class ReviewDAO extends AbstractDAO {
@@ -19,16 +20,13 @@ public class ReviewDAO extends AbstractDAO {
 
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO reviews (mno, rno, rtitle, rauthor, rcontent, rdate) VALUES ((select mno from member where mid=?), ?, ?, ?,?, CURRENT_TIMESTAMP)";
+		String sql = "INSERT INTO reviews (mno, rtitle, rcontent) VALUES ((select mno from member where mid=?), ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, dto.getMno());
-			pstmt.setInt(2, dto.getRno());
-			pstmt.setString(3, dto.getRtitle());
-			pstmt.setString(4, dto.getRauthor());
-			pstmt.setString(5, dto.getRcontent());
-			pstmt.executeUpdate();
-
+			pstmt.setString(1, dto.getMid());
+			pstmt.setString(2, dto.getRtitle());
+			pstmt.setString(3, dto.getRcontent());
+			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -36,17 +34,14 @@ public class ReviewDAO extends AbstractDAO {
 		}
 	}
 
-	
-
 	public List<ReviewDTO> showReviews() {
 		List<ReviewDTO> reviews = new ArrayList<>();
 		Connection con = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		String sql = "SELECT mno, rno, rtitle, rcontent, rdate FROM reviews";
-		System.out.println("dao오냐");
-		try {
+
+    try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -65,9 +60,7 @@ public class ReviewDAO extends AbstractDAO {
 			close(rs, pstmt, con);
 		}
 		return reviews;
-
 	}
-	
 
 	public List<ReviewDTO> myReviews(String mid) {
 		List<ReviewDTO> reviews = new ArrayList<>();
@@ -81,11 +74,10 @@ public class ReviewDAO extends AbstractDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
-
+		
 			while (rs.next()) {
 				ReviewDTO review = new ReviewDTO();
-				review.setRno(rs.getInt("rno"));
-				review.setMno(rs.getInt("mno"));
+				review.setMname(rs.getString("mname"));
 				review.setRtitle(rs.getString("rtitle"));
 				review.setRcontent(rs.getString("rcontent"));
 				review.setRdate(rs.getDate("rdate"));
@@ -99,5 +91,29 @@ public class ReviewDAO extends AbstractDAO {
 		return reviews;
 
 	}
-	
+
+	public MemberDTO Bookreview(MemberDTO dto) {
+
+		Connection con = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM member WHERE mid=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getMid());
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dto.setMno(rs.getInt("mno"));
+				dto.setMname(rs.getString("mname"));
+				dto.setMpw(rs.getString("mpw"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, pstmt, con);
+		}
+		return dto;
+	}
 }
