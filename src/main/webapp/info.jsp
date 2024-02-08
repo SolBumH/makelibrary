@@ -100,11 +100,29 @@ button:hover {
 			<hr>
 			<div class="list">
 				<h2>현재 대출중인 책 목록</h2>
-				<c:forEach items="${list }" var="list">
-					<h4>${list.btitle }/${list.rtdate }</h4>
-				</c:forEach>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th>반납 날짜</th>
+							<th>책 제목</th>
+						</tr>
+					</thead>
+					<tbody>
+						<form action="/return" method="post">
+							<c:forEach items="${list }" var="list">
+								<tr class="booktablebody">
+									<td><input type="checkbox" value="${list.rtno }"
+										name="rtno" /></td>
+									<td><h4>${list.rtdateadd }</h4></td>
+									<td><h4>${list.btitle }</h4></td>
+								</tr>
+							</c:forEach>
+							<button type="submit">반납하기</button>
+						</form>
+					</tbody>
+				</table>
 				<hr>
-				<button type="button" onclick="window.location.href='./main'">HomePage</button>
 			</div>
 		</div>
 	</div>
