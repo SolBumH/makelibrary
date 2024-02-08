@@ -32,7 +32,6 @@ public class ChangeName extends HttpServlet {
     HttpSession session = request.getSession();
 
     if (session.getAttribute("mid") != null) {
-      System.out.println("요기");
       String mname = request.getParameter("newname2");
       MemberDTO dto = new MemberDTO();
       dto.setMid((String) (session.getAttribute("mid")));
@@ -41,16 +40,13 @@ public class ChangeName extends HttpServlet {
       int result = dao.changeName(dto);
 
       if (result == 1) {
-        System.out.println("저기");
         session.removeAttribute("mname");
         session.setAttribute("mname", mname);
         response.sendRedirect("./info");
       } else {
-        System.out.println("거기");
         response.sendRedirect("./error.jsp");
       }
     } else {
-      System.out.println("요이");
       response.sendRedirect("./error.jsp");
       // 로그인을 하지않았다면 에러 페이지로 넘어가게된다.
     }

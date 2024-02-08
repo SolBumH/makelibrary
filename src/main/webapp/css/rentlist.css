@@ -41,3 +41,27 @@ body{
 	float: left;
 	height: 1000px;
 }
+.ab{
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	background-color: #E8E7D2;
+}
+.me{
+	height: 100vH;
+	background-color: #D2D5B8;
+	padding-right: 15px;
+	/* overflow: hidden; */
+}
+.main{
+	width: calc(100% - var(--main));
+	height: auto;
+	background-color: #E8E7D2;
+}
+.wrap{
+	width: 100%;
+	height: auto;
+	display: flex;
+	border: double;
+}
+

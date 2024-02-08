@@ -1,0 +1,22 @@
+@charset "UTF-8";
+table {
+	min-width: 500px ;
+	width: auto ;
+}
+th, td {
+	margin-right : 5px;
+	padding: 20px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	padding-top: 30px;
+	padding-right: 50px;
+	font-family: 'Stylish', serif; /* 폰트 적용 */
+}
+
+.list1 {
+	margin-top: 80px;
+	margin-left: 200px;
+	margin-bottom: 0px;;
+	font-family: 'Stylish', serif; /* 폰트 적용 */
+}
+
