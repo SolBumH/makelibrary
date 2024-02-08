@@ -169,8 +169,8 @@ public class MemberDAO extends AbstractDAO {
         rentlists.setRtno(rs.getInt("rtno"));
         rentlists.setMno(rs.getInt("mno"));
         // rentlists.setBisbn(rs.getString("bisbn"));
-        rentlists.setRtdate(rs.getString("rtdate"));
-        rentlists.setRtdateadd(rs.getString("rtdateadd"));
+        rentlists.setRtdate(rs.getString("rtdate").substring(0, 11));
+        rentlists.setRtdateadd(rs.getString("rtdateadd").substring(0, 11));
         rentlists.setRtenum(rs.getString("rtenum"));
         rentlists.setBtitle(rs.getString("btitle"));
         rentlist.add(rentlists);
