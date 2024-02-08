@@ -16,15 +16,20 @@ body {
 
 h1 {
 	margin-top: 80px;
-	margin-left: 200px;
+	margin-left: auto;
 	padding: 0;
 	text-align: center;
 }
 
-.rentlist1 {
-margin-left: 180px;
-	width: 400px;
-	height: 100px;
+table, tr, td{
+	border-collapse:separate;
+	margin-left : auto;
+	margin-right: auto;
+	height: auto;
+	border-bottom: inset;
+	text-align: center;
+	border: ridge;
+	font-size: xx-large;
 }
 </style>
 </head>
@@ -46,15 +51,15 @@ margin-left: 180px;
 	<nav class="rentlist1">
 		<table>
 			<tr>
-				<th>도서 제목</th>
-				<th>대출일</th>
-				<th>반납 예정일</th>
+				<th scope="col">도서 제목</th>
+				<th scope="col">대출일</th>
+				<th scope="col">반납 예정일</th>
 			</tr>
 			<c:forEach items="${bookrentlist }" var="row">
 				<tr>
-					<td class="w1">${row.btitle }</td>
-					<td class="w1">${row.rtdate }</td>
-					<td class="w1">${row.rtdateadd }</td>
+					<td class="noBorder">${row.btitle }</td>
+					<td class="noBorder">${row.rtdate }</td>
+					<td class="noBorder">${row.rtdateadd }</td>
 				</tr>
 			</c:forEach>
 			</nav>

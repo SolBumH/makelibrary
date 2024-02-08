@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>에러페이지</h1>
+  <img class="what" alt="error" src="./img/에러.gif"> <br>
   <a href="./index">index</a><br>
   <a href="./booklist">booklist</a><br>
   <a href="./bookreview">bookreview</a><br>
