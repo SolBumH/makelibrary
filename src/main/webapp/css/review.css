@@ -120,5 +120,6 @@ textarea{
 .Rbtn{
 	color: #4D5057;
 	background-color: #C9BA9B;
-	font-family: 'KCCChassam';		
+	font-family: 'KCCChassam';
+	margin: 0 auto;		
 }

@@ -14,6 +14,7 @@ import com.library.util.Util;
 
 @WebServlet("/return")
 public class Return extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   public Return() {
@@ -33,4 +34,5 @@ public class Return extends HttpServlet {
     }
     response.sendRedirect("/info");
   }
+
 }

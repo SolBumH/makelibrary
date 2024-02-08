@@ -266,12 +266,12 @@ public class BookDAO extends AbstractDAO {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from cartList where mno=(select mno from member where mid='asd')";
+		String sql = "select * from cartList where mno=(select mno from member where mid=?)";
 		List<BookDTO> list = new ArrayList<>();
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			// pstmt.setString(1, mid);
+			pstmt.setString(1, mid);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -338,7 +338,7 @@ public class BookDAO extends AbstractDAO {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(2, "asd"); // mid 로 변경
+			pstmt.setString(2, mid); // mid 로 변경
 			pstmt.setString(1, isbn);
 			pstmt.execute();
 		} catch (SQLException e) {
