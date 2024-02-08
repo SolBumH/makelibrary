@@ -39,9 +39,6 @@ body {
 				<div class='iceJaram-Rg'>
 					<img class="love" alt="index" src="./img/도서관4.png"> <br>
 					<div class='iceJaram-Rg'>
-						<img class="king" alt="login" src="./img/빅토리아.png" width="250"
-							height="100"> <br> <img class="love" alt="index"
-							src="./img/도서관.png" width="700" height="500"> <br>
 					</div>
 				</div>
 			</div>

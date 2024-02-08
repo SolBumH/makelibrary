@@ -68,14 +68,7 @@ $(document).ready(function() {
 	function makeReview() {
 
 		
- 	$("#commentcontent").keyup(function(){
-		 let text = $(this).val();
-		 if(text.length > 100){
-		 alert("100자 넘었어요.");
-		 $(this).val(  text.substr(0, 100)   );   
-		 }
-		 $("#comment-btn").text("글쓰기 " + text.length +  "/100");
-		 }); 
+
 
 	}
 });
@@ -113,8 +106,10 @@ $(document).ready(function() {
 						placeholder="160자까지 입력할 수 있습니다." maxlength="180"></textarea>
 				</div>
 				<div class="review">
-					<button type="button" class="Rbtn">리뷰 작성완료</button>
+				<c:if test="${sessionScope.mid ne null }">							
+					<button type="button" class="Rbtn" onclick="needLogin()">리뷰 작성완료</button>
 				</div>
+				</c:if>
 			</div>
 		</div>
 		<div class="reviews">
