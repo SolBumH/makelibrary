@@ -103,7 +103,7 @@ public class AdminDAO extends AbstractDAO {
     Connection con = db.getConnection();
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "SELECT btitle, mid, rtenum, rtdate FROM rentlist " + "LIMIT 0, 10";
+    String sql = "SELECT rtno, btitle, mid, rtenum, rtdate, rtdateadd FROM rentlist " + "LIMIT 0, 10";
 
     try {
       pstmt = con.prepareStatement(sql);
@@ -111,10 +111,12 @@ public class AdminDAO extends AbstractDAO {
 
       while (rs.next()) {
         Map<String, Object> e = new HashMap<String, Object>();
+        e.put("rtno", rs.getInt("rtno"));
         e.put("btitle", rs.getString("btitle"));
         e.put("mid", rs.getString("mid"));
         e.put("rtenum", rs.getString("rtenum"));
         e.put("rtdate", rs.getString("rtdate"));
+        e.put("rtdateadd", rs.getString("rtdateadd"));
         list.add(e);
       }
     } catch (SQLException e) {
